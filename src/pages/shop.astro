@@ -1,0 +1,251 @@
+---
+import Base    from '../layouts/Base.astro';
+import { getProducts, urlFor } from '../lib/sanity';
+
+const products = await getProducts();
+const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? '';
+---
+<Base
+  title="Shop — Ready-to-Ship Fabrics & Garments | DONGXI"
+  description="Ready-to-ship fabrics, swatch bundles & sample pieces direct from Guangzhou. Silk, lace, embroidery & more."
+  ogUrl="https://dongxi.io/shop"
+>
+  <slot slot="head">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.css">
+  </slot>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <a href="/" class="logo"><span class="logo-pip"></span>DONGXI</a>
+    <div class="bar-r">
+      <a href="/" class="tcta tcta-ghost" style="color:rgba(240,235,224,.6);">← dongxi.io</a>
+      <button class="tcta snipcart-checkout">
+        Cart <span class="snipcart-items-count"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="shop-hero">
+    <div class="content-w">
+      <div class="shop-hero-inner">
+        <div>
+          <div class="sec-label">Ready to ship · 现货直发</div>
+          <h1 class="shop-h1">Fabric.<br><em>In stock.</em></h1>
+        </div>
+        <p class="shop-note">
+          Stock fabrics, swatch bundles & small-batch pieces.<br>
+          Ships from Guangzhou · DHL / sea freight.<br>
+          <a href="/#inquiry">Need custom production? →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER + GRID -->
+  <section class="shop-body">
+    <div class="content-w">
+      <div class="filter-row" id="filters">
+        <button class="fp on" data-f="all">All</button>
+        <button class="fp" data-f="fabric">Fabrics</button>
+        <button class="fp" data-f="sample">Swatch bundles</button>
+        <button class="fp" data-f="garment">Garments</button>
+      </div>
+
+      {products.length === 0 ? (
+        <p class="empty">Products coming soon — <a href="/#inquiry">send an inquiry</a> in the meantime.</p>
+      ) : (
+        <div class="prod-grid" id="prodGrid">
+          {products.map((p: any) => {
+            const imgs: string[] = p.images?.map((img: any) =>
+              urlFor(img).width(600).auto('format').url()
+            ) ?? [];
+            const videoUrl = p.video?.asset?.url ?? null;
+            const badge = p.badge
+              ? `<span class="pc-badge b-${p.badge}">${p.badge.toUpperCase()}</span>`
+              : '';
+            return (
+              <div class="pc" data-cat={p.category}>
+                <div class="pc-media">
+                  <div class="pc-slides" id={`sl-${p._id}`}>
+                    {videoUrl && (
+                      <div class="pc-slide">
+                        <video src={videoUrl} autoplay muted loop playsinline></video>
+                      </div>
+                    )}
+                    {imgs.map((src: string) => (
+                      <div class="pc-slide">
+                        <img src={src} alt={p.name} loading="lazy">
+                      </div>
+                    ))}
+                  </div>
+                  {imgs.length + (videoUrl ? 1 : 0) > 1 && (
+                    <div class="pc-dots">
+                      {[...(videoUrl ? [0] : []), ...imgs.map((_: any, i: number) => i + (videoUrl ? 1 : 0))].map((i: number) => (
+                        <div class={`pc-dot${i === 0 ? ' on' : ''}`}></div>
+                      ))}
+                    </div>
+                  )}
+                  {imgs.length + (videoUrl ? 1 : 0) > 1 && (
+                    <>
+                      <button class="pc-nav prev">&#8249;</button>
+                      <button class="pc-nav next">&#8250;</button>
+                    </>
+                  )}
+                  <Fragment set:html={badge} />
+                </div>
+                <div class="pc-info">
+                  <div class="pc-cat">
+                    {p.collection && <span class="pc-season">{p.collection} · </span>}
+                    {p.category}
+                  </div>
+                  <div class="pc-name">{p.name}</div>
+                  {p.moq && <div class="pc-moq">{p.moq}</div>}
+                  <div class="pc-price-row">
+                    <span class="pc-price">${p.price.toFixed(2)}</span>
+                    <span class="pc-unit">{p.unit}</span>
+                  </div>
+                  <button
+                    class="pc-add snipcart-add-item"
+                    data-item-id={p.slug}
+                    data-item-price={p.price.toFixed(2)}
+                    data-item-url="https://dongxi.io/shop"
+                    data-item-description={p.description ?? ''}
+                    data-item-name={p.name}
+                    data-item-image={imgs[0] ?? ''}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- DUTIES NOTE -->
+  <p class="duties-note">
+    Prices in USD · Import duties & taxes borne by recipient · Ships from Guangzhou, China
+  </p>
+
+  <!-- INQUIRY BANNER -->
+  <div class="inq-banner">
+    <div class="content-w">
+      <h2>Need a <em>custom order?</em></h2>
+      <p>From photo or sample · Bulk production · 48hr quote</p>
+      <a href="/#inquiry" class="inq-cta">Start an Inquiry →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="shop-foot">
+    <span>DONGXI · 广州东西 · hello@dongxi.io</span>
+    <span>© 2025 All rights reserved</span>
+  </footer>
+
+  <!-- Snipcart -->
+  <div hidden id="snipcart" data-api-key={SNIPCART} data-currency="usd"></div>
+  <script async src="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.js"></script>
+</Base>
+
+<style>
+body { background: var(--paper); color: var(--ink); }
+
+.shop-hero { padding: 100px 0 56px; border-bottom: 1px solid var(--line); }
+.shop-hero-inner { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.shop-h1 { font-size:clamp(40px,7vw,80px); font-weight:400; line-height:1.0; }
+.shop-h1 em { font-style:italic; color:var(--rust); }
+.shop-note { font-family:'Azeret Mono',monospace; font-size:10px; line-height:1.9; color:rgba(28,25,20,.45); max-width:340px; text-align:right; }
+.shop-note a { color:var(--rust); text-decoration:none; }
+@media(max-width:680px){ .shop-note { text-align:left; max-width:100%; } }
+
+.shop-body { padding: 0 0 80px; }
+.filter-row { display:flex; gap:8px; flex-wrap:wrap; padding:32px 0 26px; }
+.fp {
+  font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase;
+  padding:7px 14px; background:transparent;
+  border:1px solid rgba(28,25,20,.18); color:rgba(28,25,20,.4);
+  cursor:none; transition:all .15s; border-radius:2px;
+}
+.fp.on, .fp:hover { background:var(--rust); border-color:var(--rust); color:var(--paper); }
+
+.prod-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+@media(min-width:600px)  { .prod-grid { gap:14px; } }
+@media(min-width:960px)  { .prod-grid { grid-template-columns:repeat(3,1fr); gap:16px; } }
+@media(min-width:1280px) { .prod-grid { grid-template-columns:repeat(4,1fr); } }
+
+.pc { background:#fff; border:1px solid var(--line); border-radius:6px; overflow:hidden; display:flex; flex-direction:column; transition:box-shadow .2s; }
+.pc:hover { box-shadow: 0 6px 24px rgba(28,25,20,.1); }
+.pc-media { position:relative; aspect-ratio:3/4; overflow:hidden; background:var(--paper2); }
+.pc-slides { display:flex; width:100%; height:100%; overflow-x:scroll; scroll-snap-type:x mandatory; scrollbar-width:none; }
+.pc-slides::-webkit-scrollbar { display:none; }
+.pc-slide { flex:0 0 100%; scroll-snap-align:start; }
+.pc-slide img, .pc-slide video { width:100%; height:100%; object-fit:cover; display:block; }
+.pc-dots { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:5px; pointer-events:none; z-index:2; }
+.pc-dot { width:5px; height:5px; border-radius:50%; background:rgba(28,25,20,.2); transition:background .2s; }
+.pc-dot.on { background:var(--rust); }
+.pc-nav { position:absolute; top:50%; transform:translateY(-50%); background:rgba(240,235,224,.82); border:none; color:var(--ink); width:28px; height:28px; border-radius:50%; align-items:center; justify-content:center; cursor:none; z-index:3; font-size:14px; transition:background .15s; display:none; }
+.pc-nav:hover { background:var(--paper); }
+.pc-nav.prev { left:8px; } .pc-nav.next { right:8px; }
+@media(hover:hover) { .pc:hover .pc-nav { display:flex; } }
+.pc-badge { position:absolute; top:10px; left:10px; font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.08em; text-transform:uppercase; padding:4px 8px; border-radius:2px; z-index:2; }
+.b-new { background:var(--ink); color:var(--paper); }
+.b-hot { background:var(--rust); color:var(--paper); }
+.b-sale { background:#b5812a; color:#fff; }
+.pc-info { padding:12px 13px 14px; flex:1; display:flex; flex-direction:column; }
+.pc-cat  { font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.12em; text-transform:uppercase; color:rgba(28,25,20,.32); }
+.pc-season { color: var(--rust); }
+.pc-name { font-size:13px; color:var(--ink); line-height:1.3; margin-top:4px; flex:1; }
+.pc-moq  { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.32); margin-top:3px; }
+.pc-price-row { display:flex; align-items:baseline; gap:6px; margin-top:10px; }
+.pc-price { font-family:'Azeret Mono',monospace; font-size:17px; font-weight:500; color:var(--ink); }
+.pc-unit  { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.38); }
+.pc-add { margin-top:10px; padding:9px 0; width:100%; background:var(--ink); color:var(--paper); font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.12em; text-transform:uppercase; border:none; cursor:none; transition:background .15s; border-radius:2px; }
+.pc-add:hover { background:var(--rust); }
+.empty { padding:60px 0; font-family:'Azeret Mono',monospace; font-size:11px; color:rgba(28,25,20,.35); }
+.empty a { color:var(--rust); }
+
+.duties-note { text-align:center; padding:14px; font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.35); letter-spacing:.06em; border-top:1px solid var(--line); }
+.inq-banner { background:var(--ink); color:var(--paper); padding:56px 0; text-align:center; }
+.inq-banner h2 { font-size:clamp(24px,4vw,44px); font-weight:400; margin-bottom:10px; }
+.inq-banner h2 em { color:var(--rust2); font-style:italic; }
+.inq-banner p { font-family:'Azeret Mono',monospace; font-size:10px; color:rgba(240,235,224,.35); margin-bottom:28px; }
+.inq-cta { display:inline-block; padding:13px 36px; background:var(--rust); color:var(--paper); font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.16em; text-transform:uppercase; text-decoration:none; transition:background .15s; }
+.inq-cta:hover { background:var(--rust2); }
+.shop-foot { background:var(--ink2); padding:22px 36px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.shop-foot span { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(240,235,224,.22); letter-spacing:.06em; }
+:root { --color-primary: #c04b28; }
+</style>
+
+<script>
+// Filter
+document.getElementById('filters')?.querySelectorAll('.fp').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.fp').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    const f = (btn as HTMLElement).dataset.f ?? 'all';
+    document.querySelectorAll<HTMLElement>('.pc').forEach(card => {
+      card.style.display = (f === 'all' || card.dataset.cat === f) ? '' : 'none';
+    });
+  });
+});
+
+// Slide mechanics
+document.querySelectorAll('.pc-slides').forEach(sl => {
+  const card = sl.closest('.pc');
+  const dots = [...(card?.querySelectorAll('.pc-dot') ?? [])];
+  sl.addEventListener('scroll', () => {
+    const idx = Math.round(sl.scrollLeft / sl.clientWidth);
+    dots.forEach((d, i) => d.classList.toggle('on', i === idx));
+  }, { passive: true });
+  card?.querySelectorAll('.pc-nav').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dir = btn.classList.contains('next') ? 1 : -1;
+      const cur = Math.round(sl.scrollLeft / sl.clientWidth);
+      sl.scrollTo({ left: (cur + dir) * sl.clientWidth, behavior: 'smooth' });
+    });
+  });
+});
+</script>

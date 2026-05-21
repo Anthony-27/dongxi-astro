@@ -1,0 +1,1114 @@
+---
+import Base from '../layouts/Base.astro';
+import { getShowcase, urlFor } from '../lib/sanity';
+
+const showcaseItems = await getShowcase();
+const showcaseJSON = JSON.stringify(
+  showcaseItems.map((s: any) => ({
+    id:       s._id,
+    title:    s.title,
+    tag:      s.tag   ?? '',
+    category: s.category ?? '',
+    meta:     s.meta  ?? '',
+    images:   (s.images ?? []).map((img: any) =>
+      urlFor(img).width(800).auto('format').url()
+    ),
+  }))
+);
+---
+<Base
+  title="DONGXI — Guangzhou Fabric & Garment Manufacturer | B2B Production"
+  description="Source fabrics & custom garments direct from Guangzhou. Silk, lace, embroidery & more. 48hr quote. MOQ from 50m."
+  ogUrl="https://dongxi.io"
+>
+
+<!-- TOPBAR -->
+<header class="topbar" id="top">
+  <a href="/" class="logo"><span class="logo-pip"></span>DONGXI</a>
+  <nav class="top-nav">
+    <a href="#why"     class="tnl" data-k="nav_why">Why Us</a>
+    <a href="#catalog" class="tnl" data-k="nav_cat">Catalog</a>
+    <a href="#process" class="tnl" data-k="nav_how">Process</a>
+    <a href="#inquiry" class="tnl" data-k="nav_inq">Inquiry</a>
+    <a href="/shop"    class="tnl">Shop →</a>
+  </nav>
+  <div class="top-r">
+    <div class="lang-wrap">
+      <button class="lang-cur" id="langBtn">EN ▾</button>
+      <div class="lang-drop" id="langDrop">
+        <button class="ld-item active" data-l="en">EN · English</button>
+        <button class="ld-item" data-l="zh">ZH · 中文</button>
+        <button class="ld-item" data-l="ru">RU · Русский</button>
+        <button class="ld-item" data-l="ar">AR · العربية</button>
+      </div>
+    </div>
+    <div class="curr-wrap" id="currWrap">
+      <button class="curr-btn on" data-c="USD">USD</button>
+      <button class="curr-btn" data-c="CNY">CNY</button>
+      <button class="curr-btn" data-c="RUB">RUB</button>
+      <button class="curr-btn" data-c="AED">AED</button>
+    </div>
+    <a href="#inquiry" class="tcta" data-k="cta_inq">Get a Quote</a>
+  </div>
+</header>
+
+<!-- S1 HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner content-w">
+    <div class="hero-text">
+      <div class="sec-label" data-k="h_label">Guangzhou · Direct Factory</div>
+      <h1 class="hero-h">
+        <span data-k="h_line1">Fabric.</span><br>
+        <em data-k="h_line2">Built for</em><br>
+        <span data-k="h_line3">your brand.</span>
+      </h1>
+      <p class="hero-sub" data-k="h_sub">From photo or sample to finished garment — silk, lace, embroidery, custom weaves. 48-hour quote. MOQ from 50&nbsp;m.</p>
+      <div class="hero-btns">
+        <a href="#inquiry" class="tcta" data-k="cta_inq">Get a Quote</a>
+        <a href="#catalog" class="tcta tcta-ghost" data-k="cta_cat">Browse Catalog</a>
+      </div>
+    </div>
+    <div class="hero-vis">
+      <div class="hero-badge">
+        <div class="hb-num">48h</div>
+        <div class="hb-txt" data-k="hb_quote">quote</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S2 BIG STATS -->
+<section class="bigstats">
+  <div class="content-w bsg">
+    <div class="bs-pin">
+      <span class="bs-n">12+</span>
+      <span class="bs-l" data-k="bs_yr">years in textile manufacturing</span>
+    </div>
+    <div class="bs-div"></div>
+    <div class="bs-pin">
+      <span class="bs-n">50+</span>
+      <span class="bs-l" data-k="bs_ct">countries shipped to</span>
+    </div>
+  </div>
+</section>
+
+<!-- S3 WHY -->
+<section class="why-sec" id="why">
+  <div class="content-w">
+    <div class="sec-label" data-k="why_label">Why DONGXI</div>
+    <h2 class="sec-h2" data-k="why_h">Factory price.<br>World-class finish.</h2>
+    <div class="why-grid">
+      <div class="wc">
+        <div class="wc-icon">◈</div>
+        <div class="wc-t" data-k="wc1t">Direct Factory</div>
+        <div class="wc-d" data-k="wc1d">No middlemen. You talk to the maker. Margins stay with your brand.</div>
+      </div>
+      <div class="wc">
+        <div class="wc-icon">⟳</div>
+        <div class="wc-t" data-k="wc2t">Fast Sampling</div>
+        <div class="wc-d" data-k="wc2d">Sample in 7–14 days. Bulk in 30–45 days. Rush options available.</div>
+      </div>
+      <div class="wc">
+        <div class="wc-icon">❋</div>
+        <div class="wc-t" data-k="wc3t">Craft Quality</div>
+        <div class="wc-d" data-k="wc3d">Jacquard looms, embroidery machines, silk weaving — all in-house.</div>
+      </div>
+      <div class="wc">
+        <div class="wc-icon">⊕</div>
+        <div class="wc-t" data-k="wc4t">Low MOQ</div>
+        <div class="wc-d" data-k="wc4d">Fabrics from 50 m. Garments from 50 pcs. Flexible for emerging labels.</div>
+      </div>
+      <div class="wc">
+        <div class="wc-icon">✦</div>
+        <div class="wc-t" data-k="wc5t">Full Service</div>
+        <div class="wc-d" data-k="wc5d">Design, grading, cut & sew, packaging, shipping — one contact.</div>
+      </div>
+      <div class="wc">
+        <div class="wc-icon">◎</div>
+        <div class="wc-t" data-k="wc6t">Transparent Pricing</div>
+        <div class="wc-d" data-k="wc6d">Itemised quotes. No hidden fees. Volume discounts clearly stated.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S4 CATALOG -->
+<section class="catalog-sec" id="catalog">
+  <div class="content-w">
+    <div class="sec-label" data-k="cat_label">What we make</div>
+    <h2 class="sec-h2" data-k="cat_h">Our catalog</h2>
+    <div class="fab-grid" id="fabGrid"></div>
+    <div class="cat-note" data-k="cat_note">Don't see your material? <a href="#inquiry">Send a photo →</a></div>
+  </div>
+</section>
+
+<!-- S5 STATS ROW -->
+<section class="stats-row">
+  <div class="content-w sr-grid">
+    <div class="sr-item">
+      <span class="sr-n" data-k="sr1n">50 m</span>
+      <span class="sr-l" data-k="sr1l">min. fabric MOQ</span>
+    </div>
+    <div class="sr-item">
+      <span class="sr-n" data-k="sr2n">7–14 d</span>
+      <span class="sr-l" data-k="sr2l">sample lead time</span>
+    </div>
+    <div class="sr-item">
+      <span class="sr-n" data-k="sr3n">30–45 d</span>
+      <span class="sr-l" data-k="sr3l">bulk lead time</span>
+    </div>
+    <div class="sr-item">
+      <span class="sr-n" data-k="sr4n">DHL / Sea</span>
+      <span class="sr-l" data-k="sr4l">worldwide shipping</span>
+    </div>
+  </div>
+</section>
+
+<!-- S6 PROCESS -->
+<section class="process-sec" id="process">
+  <div class="content-w">
+    <div class="sec-label" data-k="proc_label">How it works</div>
+    <h2 class="sec-h2" data-k="proc_h">From idea<br><em>to delivery.</em></h2>
+    <div class="proc-steps">
+      <div class="ps">
+        <div class="ps-n">01</div>
+        <div class="ps-t" data-k="ps1t">Send Inquiry</div>
+        <div class="ps-d" data-k="ps1d">Share your photos, sketches or samples via the form below.</div>
+      </div>
+      <div class="ps-arrow">→</div>
+      <div class="ps">
+        <div class="ps-n">02</div>
+        <div class="ps-t" data-k="ps2t">Get a Quote</div>
+        <div class="ps-d" data-k="ps2d">We reply within 48 hours with fabric options & unit price.</div>
+      </div>
+      <div class="ps-arrow">→</div>
+      <div class="ps">
+        <div class="ps-n">03</div>
+        <div class="ps-t" data-k="ps3t">Approve Sample</div>
+        <div class="ps-d" data-k="ps3d">Physical sample shipped to you for approval before bulk.</div>
+      </div>
+      <div class="ps-arrow">→</div>
+      <div class="ps">
+        <div class="ps-n">04</div>
+        <div class="ps-t" data-k="ps4t">Bulk Production</div>
+        <div class="ps-d" data-k="ps4d">Full run produced, QC checked, packed and shipped worldwide.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S7 TIERS -->
+<section class="tiers-sec">
+  <div class="content-w">
+    <div class="sec-label" data-k="tier_label">Pricing tiers</div>
+    <h2 class="sec-h2" data-k="tier_h">More volume,<br>better price.</h2>
+    <div class="tier-grid">
+      <div class="tier">
+        <div class="tier-name" data-k="t1name">Sample</div>
+        <div class="tier-moq">MOQ <span class="curr-val" data-base="50" data-unit="m">50 m</span></div>
+        <ul class="tier-list">
+          <li data-k="t1l1">Single colourway</li>
+          <li data-k="t1l2">7–14 day lead time</li>
+          <li data-k="t1l3">DHL express delivery</li>
+        </ul>
+        <a href="#inquiry" class="tier-cta" data-k="cta_inq">Inquire</a>
+      </div>
+      <div class="tier tier-mid">
+        <div class="tier-tag" data-k="t2tag">MOST POPULAR</div>
+        <div class="tier-name" data-k="t2name">Standard Bulk</div>
+        <div class="tier-moq">MOQ <span class="curr-val" data-base="200" data-unit="m">200 m</span></div>
+        <ul class="tier-list">
+          <li data-k="t2l1">Multiple colourways</li>
+          <li data-k="t2l2">30–45 day lead time</li>
+          <li data-k="t2l3">Sea or air freight</li>
+          <li data-k="t2l4">Volume discount applied</li>
+        </ul>
+        <a href="#inquiry" class="tier-cta" data-k="cta_inq">Inquire</a>
+      </div>
+      <div class="tier">
+        <div class="tier-name" data-k="t3name">Large Order</div>
+        <div class="tier-moq">MOQ <span class="curr-val" data-base="1000" data-unit="m">1000 m</span></div>
+        <ul class="tier-list">
+          <li data-k="t3l1">Full factory allocation</li>
+          <li data-k="t3l2">Custom weave / print</li>
+          <li data-k="t3l3">Priority scheduling</li>
+          <li data-k="t3l4">Best unit price</li>
+        </ul>
+        <a href="#inquiry" class="tier-cta" data-k="cta_inq">Inquire</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S8 SHOWCASE -->
+<section class="showcase-sec" id="showcase">
+  <div class="content-w">
+    <div class="sc-head">
+      <div>
+        <div class="sec-label" data-k="sc_label">From our factory</div>
+        <h2 class="sec-h2" data-k="sc_h">Recent work.</h2>
+      </div>
+      <div class="sc-filters" id="scFilters">
+        <button class="scf on" data-f="all" data-k="scf_all">All</button>
+        <button class="scf" data-f="garment" data-k="scf_gar">Garments</button>
+        <button class="scf" data-f="fabric"  data-k="scf_fab">Fabrics</button>
+        <button class="scf" data-f="embroidery" data-k="scf_emb">Embroidery</button>
+      </div>
+    </div>
+    <div class="sc-track-wrap">
+      <div class="sc-track" id="scTrack"></div>
+    </div>
+    <p class="sc-empty" id="scEmpty" style="display:none">No items yet — check back soon.</p>
+  </div>
+</section>
+
+<!-- S9 INQUIRY -->
+<section class="inq-sec" id="inquiry">
+  <div class="content-w">
+    <div class="sec-label" data-k="inq_label">Start your order</div>
+    <h2 class="sec-h2" data-k="inq_h">Get a quote<br><em>in 48 hours.</em></h2>
+
+    <form id="iqForm" enctype="multipart/form-data" novalidate>
+      <!-- Step indicators -->
+      <div class="step-bar">
+        <div class="sb-item active" id="sb1"><span class="sb-n">1</span><span class="sb-l" data-k="sb1">Contact</span></div>
+        <div class="sb-line"></div>
+        <div class="sb-item" id="sb2"><span class="sb-n">2</span><span class="sb-l" data-k="sb2">Details</span></div>
+        <div class="sb-line"></div>
+        <div class="sb-item" id="sb3"><span class="sb-n">3</span><span class="sb-l" data-k="sb3">Files</span></div>
+      </div>
+
+      <!-- STEP 1: Contact -->
+      <div class="iq-step active" id="step1">
+        <div class="iq-row">
+          <label class="iq-label" data-k="f_name">Your name *</label>
+          <input class="iq-in" id="fName" type="text" required autocomplete="name">
+        </div>
+        <div class="iq-row">
+          <label class="iq-label" data-k="f_email">Email address *</label>
+          <input class="iq-in" id="fEmail" type="email" required autocomplete="email">
+        </div>
+        <div class="iq-row">
+          <label class="iq-label" data-k="f_co">Company / Brand (optional)</label>
+          <input class="iq-in" id="fCo" type="text" autocomplete="organization">
+        </div>
+        <div class="iq-row">
+          <label class="iq-label" data-k="f_dest">Destination country *</label>
+          <select class="iq-in" id="fDest" required>
+            <option value="">— select —</option>
+            <optgroup label="Asia">
+              <option>Japan</option><option>South Korea</option>
+              <option>Singapore</option><option>Malaysia</option>
+              <option>Thailand</option><option>Vietnam</option>
+              <option>Philippines</option><option>Indonesia</option>
+              <option>India</option><option>Bangladesh</option>
+              <option>Pakistan</option><option>Sri Lanka</option>
+              <option>China · 中国大陆</option>
+              <option>China · 中国香港 HK</option>
+              <option>China · 中国澳门 MO</option>
+              <option>China · 中国台湾 TW</option>
+            </optgroup>
+            <optgroup label="Middle East">
+              <option>UAE</option><option>Saudi Arabia</option>
+              <option>Qatar</option><option>Kuwait</option>
+              <option>Bahrain</option><option>Oman</option>
+              <option>Turkey</option><option>Israel</option>
+              <option>Jordan</option><option>Lebanon</option>
+            </optgroup>
+            <optgroup label="Europe">
+              <option>United Kingdom</option><option>France</option>
+              <option>Germany</option><option>Italy</option>
+              <option>Spain</option><option>Portugal</option>
+              <option>Netherlands</option><option>Belgium</option>
+              <option>Sweden</option><option>Denmark</option>
+              <option>Norway</option><option>Finland</option>
+              <option>Switzerland</option><option>Austria</option>
+              <option>Poland</option><option>Czech Republic</option>
+              <option>Greece</option><option>Romania</option>
+              <option>Russia</option><option>Ukraine</option>
+            </optgroup>
+            <optgroup label="Americas">
+              <option>United States</option><option>Canada</option>
+              <option>Mexico</option><option>Brazil</option>
+              <option>Argentina</option><option>Colombia</option>
+              <option>Chile</option><option>Peru</option>
+            </optgroup>
+            <optgroup label="Africa">
+              <option>South Africa</option><option>Nigeria</option>
+              <option>Kenya</option><option>Ghana</option>
+              <option>Ethiopia</option><option>Morocco</option>
+              <option>Egypt</option>
+            </optgroup>
+            <optgroup label="Oceania">
+              <option>Australia</option><option>New Zealand</option>
+            </optgroup>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <button type="button" class="tcta" onclick="goS(2)" data-k="btn_next">Next →</button>
+      </div>
+
+      <!-- STEP 2: Details -->
+      <div class="iq-step" id="step2">
+        <div class="iq-row">
+          <label class="iq-label" data-k="f_type">Order type *</label>
+          <div class="radio-grid">
+            <label class="ropt">
+              <input type="radio" name="orderType" value="photo_to_bulk">
+              <span data-k="fo1">Photo / sketch → bulk production</span>
+            </label>
+            <label class="ropt">
+              <input type="radio" name="orderType" value="sample_to_bulk">
+              <span data-k="fo2">Send sample garment → replicate & bulk</span>
+            </label>
+            <label class="ropt">
+              <input type="radio" name="orderType" value="fabric_sourcing">
+              <span data-k="fo3">Source fabric only (no CMT)</span>
+            </label>
+            <label class="ropt">
+              <input type="radio" name="orderType" value="full_cmt">
+              <span data-k="fo4">Full CMT — cut, make & trim</span>
+            </label>
+          </div>
+        </div>
+        <div class="iq-row">
+          <label class="iq-label" data-k="f_qty">Quantity / MOQ</label>
+          <input class="iq-in" id="fQty" type="text" placeholder="e.g. 500 pcs or 200 m">
+        </div>
+        <div class="iq-row">
+          <label class="iq-label" data-k="f_mat">Material / fabric type</label>
+          <input class="iq-in" id="fMat" type="text" placeholder="e.g. 100% silk charmeuse, lace overlay">
+        </div>
+        <div class="iq-row">
+          <label class="iq-label" data-k="f_msg">Message</label>
+          <textarea class="iq-in" id="fMsg" rows="4" placeholder="Describe your product, colours, finish, deadline…"></textarea>
+        </div>
+        <div class="iq-btns">
+          <button type="button" class="tcta tcta-ghost" onclick="goS(1)" data-k="btn_back">← Back</button>
+          <button type="button" class="tcta" onclick="goS(3)" data-k="btn_next">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Files -->
+      <div class="iq-step" id="step3">
+        <div class="iq-row">
+          <label class="iq-label" data-k="f_files">Reference photos / tech pack (optional)</label>
+          <label class="file-drop" id="fileDrop">
+            <input type="file" id="fFiles" multiple accept="image/*,.pdf,.ai,.eps" style="display:none">
+            <div class="fd-inner">
+              <div class="fd-icon">⊕</div>
+              <div class="fd-txt" data-k="fd_txt">Drop files or click to browse</div>
+              <div class="fd-sub" data-k="fd_sub">JPG, PNG, PDF, AI · max 10 MB each</div>
+            </div>
+          </label>
+          <div class="file-list" id="fileList"></div>
+        </div>
+        <div class="iq-row iq-check">
+          <label class="ropt">
+            <input type="checkbox" id="fGdpr" required>
+            <span data-k="f_gdpr">I agree to be contacted regarding my inquiry.</span>
+          </label>
+        </div>
+        <div class="iq-btns">
+          <button type="button" class="tcta tcta-ghost" onclick="goS(2)" data-k="btn_back">← Back</button>
+          <button type="submit" class="tcta" id="subBtn" data-k="btn_send">Send Inquiry →</button>
+        </div>
+        <div id="iqMsg" class="iq-msg"></div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-foot">
+  <div class="content-w sf-inner">
+    <div class="sf-brand">
+      <a href="/" class="logo"><span class="logo-pip"></span>DONGXI</a>
+      <p class="sf-tag" data-k="ft_tag">Guangzhou textile manufacturer since 2012.</p>
+    </div>
+    <div class="sf-links">
+      <a href="#why"     data-k="nav_why">Why Us</a>
+      <a href="#catalog" data-k="nav_cat">Catalog</a>
+      <a href="#process" data-k="nav_how">Process</a>
+      <a href="#inquiry" data-k="nav_inq">Inquiry</a>
+      <a href="/shop">Shop</a>
+    </div>
+    <div class="sf-contact">
+      <a href="mailto:hello@dongxi.io">hello@dongxi.io</a>
+      <span data-k="ft_addr">Guangzhou, China · 广州</span>
+    </div>
+  </div>
+  <div class="sf-copy">
+    <span>© 2025 DONGXI · 广州东西贸易有限公司</span>
+    <span data-k="ft_rights">All rights reserved</span>
+  </div>
+</footer>
+
+</Base>
+
+<style is:global>
+/* ── PAGE-LEVEL OVERRIDES ── */
+body { background: var(--paper); color: var(--ink); }
+
+/* TOPBAR */
+.topbar { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 32px; height:56px; background:rgba(28,25,20,.97); backdrop-filter:blur(8px); border-bottom:1px solid rgba(240,235,224,.06); }
+.logo { font-family:'Azeret Mono',monospace; font-size:13px; letter-spacing:.18em; color:var(--paper); text-decoration:none; display:flex; align-items:center; gap:8px; }
+.logo-pip { width:6px; height:6px; border-radius:50%; background:var(--rust); display:inline-block; }
+.top-nav { display:flex; gap:24px; }
+.top-nav .tnl { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(240,235,224,.45); text-decoration:none; transition:color .15s; }
+.top-nav .tnl:hover { color:var(--paper); }
+@media(max-width:760px){ .top-nav { display:none; } }
+.top-r { display:flex; align-items:center; gap:14px; }
+
+/* Lang dropdown */
+.lang-wrap { position:relative; }
+.lang-cur { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.1em; color:rgba(240,235,224,.45); background:transparent; border:none; cursor:none; padding:4px 0; transition:color .15s; }
+.lang-cur:hover { color:var(--paper); }
+.lang-drop { display:none; position:absolute; top:calc(100% + 8px); right:0; background:var(--ink2); border:1px solid rgba(240,235,224,.1); border-radius:4px; padding:6px 0; min-width:140px; z-index:200; }
+.lang-drop.open { display:block; }
+.ld-item { display:block; width:100%; text-align:left; padding:8px 14px; font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.08em; color:rgba(240,235,224,.5); background:transparent; border:none; cursor:none; transition:color .12s; }
+.ld-item:hover, .ld-item.active { color:var(--paper); }
+
+/* Currency */
+.curr-wrap { display:flex; gap:4px; }
+.curr-btn { font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.08em; padding:4px 8px; background:transparent; border:1px solid rgba(240,235,224,.12); color:rgba(240,235,224,.4); cursor:none; border-radius:2px; transition:all .12s; }
+.curr-btn.on, .curr-btn:hover { background:var(--rust); border-color:var(--rust); color:var(--paper); }
+@media(max-width:560px){ .curr-wrap { display:none; } }
+
+/* CTA */
+.tcta { display:inline-block; font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; padding:10px 22px; background:var(--rust); color:var(--paper); border:none; cursor:none; transition:background .15s; border-radius:2px; white-space:nowrap; }
+.tcta:hover { background:var(--rust2); }
+.tcta-ghost { background:transparent; border:1px solid rgba(240,235,224,.22); color:rgba(240,235,224,.6); }
+.tcta-ghost:hover { background:rgba(240,235,224,.07); border-color:rgba(240,235,224,.4); color:var(--paper); }
+
+/* HERO */
+.hero { padding: 140px 0 80px; min-height: 90vh; display:flex; align-items:center; background: var(--paper); }
+.hero-inner { display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap; }
+.hero-text { max-width:580px; }
+.hero-h { font-size:clamp(52px,8vw,100px); font-weight:400; line-height:1.0; margin:12px 0 20px; }
+.hero-h em { font-style:italic; color:var(--rust); }
+.hero-sub { font-family:'Azeret Mono',monospace; font-size:11px; line-height:1.9; color:rgba(28,25,20,.48); max-width:420px; margin-bottom:28px; }
+.hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+.hero-vis { flex:0 0 auto; }
+.hero-badge { width:140px; height:140px; border-radius:50%; border:1px solid var(--line); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; }
+.hb-num { font-family:'Libre Baskerville',serif; font-size:36px; color:var(--rust); }
+.hb-txt { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.14em; color:rgba(28,25,20,.4); text-transform:uppercase; }
+
+/* BIG STATS */
+.bigstats { border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:40px 0; background:var(--paper2); }
+.bsg { display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap; }
+.bs-pin { display:flex; flex-direction:column; align-items:center; padding:0 56px; }
+.bs-n { font-family:'Libre Baskerville',serif; font-size:clamp(42px,6vw,72px); color:var(--ink); }
+.bs-l { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.1em; color:rgba(28,25,20,.38); text-transform:uppercase; margin-top:4px; }
+.bs-div { width:1px; height:56px; background:var(--line); }
+
+/* WHY */
+.why-sec { padding:80px 0; }
+.why-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1px; border:1px solid var(--line); margin-top:40px; }
+.wc { padding:32px 28px; border:1px solid var(--line); }
+.wc-icon { font-size:20px; margin-bottom:14px; color:var(--rust); }
+.wc-t { font-size:14px; font-weight:600; margin-bottom:8px; }
+.wc-d { font-family:'Azeret Mono',monospace; font-size:9px; line-height:1.9; color:rgba(28,25,20,.48); }
+
+/* CATALOG */
+.catalog-sec { padding:80px 0; background:var(--paper2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.fab-grid { display:flex; flex-wrap:wrap; gap:10px; margin-top:36px; }
+.fb { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; padding:9px 18px; border:1px solid var(--line); border-radius:100px; color:rgba(28,25,20,.55); background:transparent; cursor:none; transition:all .15s; }
+.fb:hover { background:var(--rust); border-color:var(--rust); color:var(--paper); }
+.cat-note { font-family:'Azeret Mono',monospace; font-size:10px; color:rgba(28,25,20,.35); margin-top:28px; }
+.cat-note a { color:var(--rust); text-decoration:none; }
+
+/* STATS ROW */
+.stats-row { padding:48px 0; background:var(--ink); }
+.sr-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+@media(max-width:680px){ .sr-grid { grid-template-columns:repeat(2,1fr); } }
+.sr-item { display:flex; flex-direction:column; align-items:center; text-align:center; }
+.sr-n { font-family:'Libre Baskerville',serif; font-size:clamp(22px,3vw,36px); color:var(--paper); }
+.sr-l { font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.1em; color:rgba(240,235,224,.32); text-transform:uppercase; margin-top:6px; }
+
+/* PROCESS */
+.process-sec { padding:80px 0; }
+.process-sec em { color:var(--rust); font-style:italic; }
+.proc-steps { display:flex; align-items:flex-start; gap:0; margin-top:48px; flex-wrap:wrap; }
+.ps { flex:1; min-width:160px; padding:0 24px; }
+.ps:first-child { padding-left:0; }
+.ps-n { font-family:'Libre Baskerville',serif; font-size:32px; color:var(--rust); opacity:.3; margin-bottom:10px; }
+.ps-t { font-size:15px; font-weight:600; margin-bottom:8px; }
+.ps-d { font-family:'Azeret Mono',monospace; font-size:9px; line-height:1.9; color:rgba(28,25,20,.45); }
+.ps-arrow { padding-top:28px; color:rgba(28,25,20,.2); font-size:20px; }
+@media(max-width:700px){ .ps-arrow { display:none; } .ps { padding:0 0 32px; } }
+
+/* TIERS */
+.tiers-sec { padding:80px 0; background:var(--paper2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.tier-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px; }
+@media(max-width:700px){ .tier-grid { grid-template-columns:1fr; } }
+.tier { border:1px solid var(--line); border-radius:6px; padding:32px 28px; background:#fff; position:relative; display:flex; flex-direction:column; gap:12px; }
+.tier-mid { border-color:var(--rust); }
+.tier-tag { position:absolute; top:-1px; left:50%; transform:translateX(-50%); background:var(--rust); color:var(--paper); font-family:'Azeret Mono',monospace; font-size:7px; letter-spacing:.12em; padding:4px 10px; border-radius:0 0 4px 4px; white-space:nowrap; }
+.tier-name { font-size:18px; font-weight:600; }
+.tier-moq { font-family:'Azeret Mono',monospace; font-size:10px; color:rgba(28,25,20,.4); }
+.tier-list { list-style:none; padding:0; margin:4px 0; display:flex; flex-direction:column; gap:6px; flex:1; }
+.tier-list li { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.55); display:flex; align-items:center; gap:8px; }
+.tier-list li::before { content:'—'; color:var(--rust); font-size:10px; }
+.tier-cta { display:inline-block; text-align:center; padding:10px 0; width:100%; background:var(--ink); color:var(--paper); font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; border-radius:3px; transition:background .15s; cursor:none; }
+.tier-cta:hover { background:var(--rust); }
+
+/* SHOWCASE */
+.showcase-sec { padding:80px 0; overflow:hidden; }
+.sc-head { display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:32px; }
+.sc-filters { display:flex; gap:8px; flex-wrap:wrap; }
+.scf { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; padding:7px 14px; background:transparent; border:1px solid rgba(28,25,20,.18); color:rgba(28,25,20,.4); cursor:none; transition:all .15s; border-radius:2px; }
+.scf.on, .scf:hover { background:var(--rust); border-color:var(--rust); color:var(--paper); }
+.sc-track-wrap { overflow-x:auto; scrollbar-width:none; cursor:grab; }
+.sc-track-wrap::-webkit-scrollbar { display:none; }
+.sc-track { display:flex; gap:14px; padding-bottom:8px; width:max-content; }
+.sc-card { width:260px; flex:0 0 260px; border-radius:6px; overflow:hidden; background:#fff; border:1px solid var(--line); }
+@media(max-width:600px){ .sc-card { width:220px; flex:0 0 220px; } }
+.sc-card-media { position:relative; aspect-ratio:3/4; overflow:hidden; background:var(--paper2); }
+.sc-slides { display:flex; width:100%; height:100%; overflow-x:scroll; scroll-snap-type:x mandatory; scrollbar-width:none; }
+.sc-slides::-webkit-scrollbar { display:none; }
+.sc-slide { flex:0 0 100%; scroll-snap-align:start; }
+.sc-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+.sc-dots { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); display:flex; gap:4px; pointer-events:none; }
+.sc-dot { width:4px; height:4px; border-radius:50%; background:rgba(28,25,20,.2); }
+.sc-dot.on { background:var(--rust); }
+.sc-info { padding:12px 14px; }
+.sc-tag { font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.1em; text-transform:uppercase; color:var(--rust); }
+.sc-title { font-size:13px; margin-top:4px; line-height:1.3; }
+.sc-meta { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.38); margin-top:4px; }
+.sc-empty { font-family:'Azeret Mono',monospace; font-size:11px; color:rgba(28,25,20,.35); padding:48px 0; }
+
+/* INQUIRY */
+.inq-sec { padding:80px 0; background:var(--paper2); border-top:1px solid var(--line); }
+.inq-sec em { color:var(--rust); font-style:italic; }
+.step-bar { display:flex; align-items:center; gap:0; margin:40px 0 36px; }
+.sb-item { display:flex; align-items:center; gap:8px; }
+.sb-n { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Azeret Mono',monospace; font-size:9px; background:rgba(28,25,20,.1); color:rgba(28,25,20,.4); transition:all .2s; }
+.sb-l { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.08em; color:rgba(28,25,20,.4); }
+.sb-item.active .sb-n { background:var(--rust); color:#fff; }
+.sb-item.active .sb-l { color:var(--ink); }
+.sb-line { flex:1; height:1px; background:var(--line); min-width:24px; }
+.iq-step { display:none; }
+.iq-step.active { display:block; }
+.iq-row { margin-bottom:20px; }
+.iq-label { display:block; font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:rgba(28,25,20,.5); margin-bottom:8px; }
+.iq-in { width:100%; padding:11px 14px; font-family:'Azeret Mono',monospace; font-size:11px; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:3px; outline:none; transition:border .15s; box-sizing:border-box; }
+.iq-in:focus { border-color:var(--rust); }
+textarea.iq-in { resize:vertical; }
+select.iq-in { cursor:none; }
+.radio-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+@media(max-width:560px){ .radio-grid { grid-template-columns:1fr; } }
+.ropt { display:flex; align-items:flex-start; gap:10px; font-family:'Azeret Mono',monospace; font-size:10px; color:rgba(28,25,20,.65); cursor:none; line-height:1.5; }
+.ropt input { margin-top:2px; accent-color:var(--rust); cursor:none; flex-shrink:0; }
+.iq-btns { display:flex; gap:10px; margin-top:8px; }
+.iq-check { margin-top:8px; }
+
+/* File drop */
+.file-drop { display:block; border:1px dashed rgba(28,25,20,.25); border-radius:4px; padding:32px; text-align:center; cursor:none; transition:border .15s; }
+.file-drop:hover { border-color:var(--rust); }
+.fd-icon { font-size:24px; color:rgba(28,25,20,.2); margin-bottom:8px; }
+.fd-txt { font-family:'Azeret Mono',monospace; font-size:10px; color:rgba(28,25,20,.5); }
+.fd-sub { font-family:'Azeret Mono',monospace; font-size:8px; color:rgba(28,25,20,.3); margin-top:4px; }
+.file-list { margin-top:12px; display:flex; flex-wrap:wrap; gap:8px; }
+.fi-chip { font-family:'Azeret Mono',monospace; font-size:9px; padding:5px 10px; background:rgba(28,25,20,.06); border-radius:100px; color:rgba(28,25,20,.6); }
+.iq-msg { margin-top:16px; font-family:'Azeret Mono',monospace; font-size:10px; padding:12px 16px; border-radius:3px; display:none; }
+.iq-msg.ok { background:rgba(60,140,60,.1); color:#2d7a2d; display:block; }
+.iq-msg.err { background:rgba(180,40,40,.08); color:#a32020; display:block; }
+
+/* FOOTER */
+.site-foot { background:var(--ink); color:var(--paper); padding:56px 0 0; }
+.sf-inner { display:grid; grid-template-columns:1fr auto auto; gap:48px; align-items:start; flex-wrap:wrap; }
+@media(max-width:700px){ .sf-inner { grid-template-columns:1fr; gap:32px; } }
+.sf-tag { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(240,235,224,.3); margin-top:10px; }
+.sf-links { display:flex; flex-direction:column; gap:10px; }
+.sf-links a { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.08em; color:rgba(240,235,224,.4); text-decoration:none; transition:color .12s; }
+.sf-links a:hover { color:var(--paper); }
+.sf-contact { display:flex; flex-direction:column; gap:8px; }
+.sf-contact a { font-family:'Azeret Mono',monospace; font-size:10px; color:rgba(240,235,224,.5); text-decoration:none; }
+.sf-contact a:hover { color:var(--paper); }
+.sf-contact span { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(240,235,224,.25); }
+.sf-copy { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(240,235,224,.06); margin-top:40px; padding:18px 0; }
+.sf-copy span { font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.06em; color:rgba(240,235,224,.2); }
+
+/* SEC LABELS + H2 */
+.sec-label { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--rust); margin-bottom:10px; }
+.sec-h2 { font-family:'Libre Baskerville',serif; font-size:clamp(30px,4.5vw,56px); font-weight:400; line-height:1.1; }
+.sec-h2 em { font-style:italic; color:var(--rust); }
+</style>
+
+<script define:vars={{ showcaseJSON }}>
+// ── TRANSLATIONS ──────────────────────────────────────────────
+const T = {
+  en: {
+    nav_why:'Why Us', nav_cat:'Catalog', nav_how:'Process', nav_inq:'Inquiry',
+    cta_inq:'Get a Quote', cta_cat:'Browse Catalog',
+    h_label:'Guangzhou · Direct Factory',
+    h_line1:'Fabric.', h_line2:'Built for', h_line3:'your brand.',
+    h_sub:'From photo or sample to finished garment — silk, lace, embroidery, custom weaves. 48-hour quote. MOQ from 50 m.',
+    hb_quote:'quote',
+    bs_yr:'years in textile manufacturing', bs_ct:'countries shipped to',
+    why_label:'Why DONGXI', why_h:'Factory price.\nWorld-class finish.',
+    wc1t:'Direct Factory', wc1d:'No middlemen. You talk to the maker. Margins stay with your brand.',
+    wc2t:'Fast Sampling', wc2d:'Sample in 7–14 days. Bulk in 30–45 days. Rush options available.',
+    wc3t:'Craft Quality', wc3d:'Jacquard looms, embroidery machines, silk weaving — all in-house.',
+    wc4t:'Low MOQ', wc4d:'Fabrics from 50 m. Garments from 50 pcs. Flexible for emerging labels.',
+    wc5t:'Full Service', wc5d:'Design, grading, cut & sew, packaging, shipping — one contact.',
+    wc6t:'Transparent Pricing', wc6d:'Itemised quotes. No hidden fees. Volume discounts clearly stated.',
+    cat_label:'What we make', cat_h:'Our catalog',
+    cat_note:'Don\'t see your material? <a href="#inquiry">Send a photo →</a>',
+    sr1n:'50 m',sr1l:'min. fabric MOQ', sr2n:'7–14 d',sr2l:'sample lead time',
+    sr3n:'30–45 d',sr3l:'bulk lead time', sr4n:'DHL / Sea',sr4l:'worldwide shipping',
+    proc_label:'How it works', proc_h:'From idea\nto delivery.',
+    ps1t:'Send Inquiry', ps1d:'Share your photos, sketches or samples via the form below.',
+    ps2t:'Get a Quote', ps2d:'We reply within 48 hours with fabric options & unit price.',
+    ps3t:'Approve Sample', ps3d:'Physical sample shipped to you for approval before bulk.',
+    ps4t:'Bulk Production', ps4d:'Full run produced, QC checked, packed and shipped worldwide.',
+    tier_label:'Pricing tiers', tier_h:'More volume,\nbetter price.',
+    t1name:'Sample', t2name:'Standard Bulk', t3name:'Large Order',
+    t2tag:'MOST POPULAR',
+    t1l1:'Single colourway',t1l2:'7–14 day lead time',t1l3:'DHL express delivery',
+    t2l1:'Multiple colourways',t2l2:'30–45 day lead time',t2l3:'Sea or air freight',t2l4:'Volume discount applied',
+    t3l1:'Full factory allocation',t3l2:'Custom weave / print',t3l3:'Priority scheduling',t3l4:'Best unit price',
+    sc_label:'From our factory', sc_h:'Recent work.',
+    scf_all:'All',scf_gar:'Garments',scf_fab:'Fabrics',scf_emb:'Embroidery',
+    inq_label:'Start your order', inq_h:'Get a quote\nin 48 hours.',
+    sb1:'Contact',sb2:'Details',sb3:'Files',
+    f_name:'Your name *',f_email:'Email address *',f_co:'Company / Brand (optional)',
+    f_dest:'Destination country *',f_type:'Order type *',f_qty:'Quantity / MOQ',
+    f_mat:'Material / fabric type',f_msg:'Message',f_files:'Reference photos / tech pack (optional)',
+    fd_txt:'Drop files or click to browse',fd_sub:'JPG, PNG, PDF, AI · max 10 MB each',
+    f_gdpr:'I agree to be contacted regarding my inquiry.',
+    fo1:'Photo / sketch → bulk production',fo2:'Send sample garment → replicate & bulk',
+    fo3:'Source fabric only (no CMT)',fo4:'Full CMT — cut, make & trim',
+    btn_next:'Next →',btn_back:'← Back',btn_send:'Send Inquiry →',
+    ft_tag:'Guangzhou textile manufacturer since 2012.',
+    ft_addr:'Guangzhou, China · 广州',ft_rights:'All rights reserved',
+    msg_ok:'✓ Inquiry sent! We\'ll reply within 48 hours.',
+    msg_err:'Something went wrong — please email hello@dongxi.io',
+    msg_val:'Please fill in all required fields.',
+  },
+  zh: {
+    nav_why:'为什么选我们',nav_cat:'产品目录',nav_how:'流程',nav_inq:'询价',
+    cta_inq:'立即询价',cta_cat:'浏览产品',
+    h_label:'广州 · 直接工厂',
+    h_line1:'面料。',h_line2:'为您的',h_line3:'品牌而生。',
+    h_sub:'来图或寄样即可完成定制——真丝、蕾丝、刺绣、定制织物。48小时报价，最低起订量50米。',
+    hb_quote:'报价',
+    bs_yr:'年纺织生产经验',bs_ct:'个国家和地区出货',
+    why_label:'为什么选东西',why_h:'出厂价格。\n世界级品质。',
+    wc1t:'直接工厂',wc1d:'无中间商，直接与制造商沟通，利润留在您的品牌。',
+    wc2t:'快速打样',wc2d:'样品7-14天，大货30-45天，支持加急。',
+    wc3t:'精湛工艺',wc3d:'提花织机、刺绣机、丝绸编织，全部自有设备。',
+    wc4t:'低起订量',wc4d:'面料起订量50米，成衣起订量50件，适合新兴品牌。',
+    wc5t:'一站式服务',wc5d:'设计、打版、裁剪缝制、包装、运输，一个联系人搞定。',
+    wc6t:'透明报价',wc6d:'逐项报价，无隐藏费用，量大优惠一目了然。',
+    cat_label:'我们的产品',cat_h:'产品目录',
+    cat_note:'没找到您的面料？<a href="#inquiry">发送图片询价 →</a>',
+    sr1n:'50 米',sr1l:'面料最低起订量',sr2n:'7–14 天',sr2l:'打样周期',
+    sr3n:'30–45 天',sr3l:'大货周期',sr4n:'DHL/海运',sr4l:'全球发货',
+    proc_label:'合作流程',proc_h:'从想法\n到交付。',
+    ps1t:'发送询价',ps1d:'通过下方表单分享您的照片、草图或样品。',
+    ps2t:'获得报价',ps2d:'我们在48小时内回复面料选项和单价。',
+    ps3t:'确认样品',ps3d:'实物样品寄送至您处，确认后再批量生产。',
+    ps4t:'批量生产',ps4d:'整批生产，质检完毕，包装后发往全球。',
+    tier_label:'价格等级',tier_h:'量越大，\n价格越好。',
+    t1name:'样品',t2name:'标准大货',t3name:'大量订单',t2tag:'最受欢迎',
+    t1l1:'单一色系',t1l2:'7–14天交期',t1l3:'DHL快递',
+    t2l1:'多色系',t2l2:'30–45天交期',t2l3:'海运或空运',t2l4:'享受量大折扣',
+    t3l1:'全厂资源调配',t3l2:'定制织造/印花',t3l3:'优先排期',t3l4:'最优单价',
+    sc_label:'工厂出品',sc_h:'近期作品。',
+    scf_all:'全部',scf_gar:'成衣',scf_fab:'面料',scf_emb:'刺绣',
+    inq_label:'开始您的订单',inq_h:'48小时内\n获得报价。',
+    sb1:'联系方式',sb2:'订单详情',sb3:'上传文件',
+    f_name:'您的姓名 *',f_email:'电子邮件 *',f_co:'公司/品牌（可选）',
+    f_dest:'目的地国家 *',f_type:'订单类型 *',f_qty:'数量/起订量',
+    f_mat:'材料/面料类型',f_msg:'留言',f_files:'参考图片/技术包（可选）',
+    fd_txt:'拖拽文件或点击选择',fd_sub:'JPG, PNG, PDF, AI · 每个最大10MB',
+    f_gdpr:'我同意就本次询价接受联系。',
+    fo1:'来图/草图 → 批量生产',fo2:'寄样衣 → 复制并大货',
+    fo3:'仅采购面料（无缝制）',fo4:'全程CMT — 裁剪、缝制、修整',
+    btn_next:'下一步 →',btn_back:'← 返回',btn_send:'发送询价 →',
+    ft_tag:'广州纺织制造商，始于2012年。',
+    ft_addr:'中国广州',ft_rights:'版权所有',
+    msg_ok:'✓ 询价已发送！我们将在48小时内回复。',
+    msg_err:'出现问题，请发邮件至 hello@dongxi.io',
+    msg_val:'请填写所有必填项。',
+  },
+  ru: {
+    nav_why:'Почему мы',nav_cat:'Каталог',nav_how:'Процесс',nav_inq:'Запрос',
+    cta_inq:'Получить цену',cta_cat:'Каталог',
+    h_label:'Гуанчжоу · Прямой производитель',
+    h_line1:'Ткани.',h_line2:'Созданы для',h_line3:'вашего бренда.',
+    h_sub:'От фото или образца до готового изделия — шёлк, кружево, вышивка, ткани на заказ. Котировка за 48 ч. МОЗ от 50 м.',
+    hb_quote:'цена за 48ч',
+    bs_yr:'лет в текстильном производстве',bs_ct:'стран доставки',
+    why_label:'Почему DONGXI',why_h:'Цена завода.\nКачество мирового уровня.',
+    wc1t:'Прямой производитель',wc1d:'Без посредников. Вы говорите с фабрикой. Маржа остаётся вашему бренду.',
+    wc2t:'Быстрые образцы',wc2d:'Образец за 7–14 дней. Опт за 30–45 дней. Срочные заказы возможны.',
+    wc3t:'Высокое качество',wc3d:'Жаккардовые станки, вышивальные машины, ткачество шёлка — всё своё.',
+    wc4t:'Низкий МОЗ',wc4d:'Ткани от 50 м. Одежда от 50 шт. Гибко для новых брендов.',
+    wc5t:'Полный сервис',wc5d:'Дизайн, раскладка, раскрой и пошив, упаковка, доставка — один контакт.',
+    wc6t:'Прозрачные цены',wc6d:'Детальные расчёты. Без скрытых платежей. Скидки за объём чётко указаны.',
+    cat_label:'Что мы производим',cat_h:'Наш каталог',
+    cat_note:'Не нашли свой материал? <a href="#inquiry">Пришлите фото →</a>',
+    sr1n:'50 м',sr1l:'мин. МОЗ ткани',sr2n:'7–14 д',sr2l:'срок образца',
+    sr3n:'30–45 д',sr3l:'срок опта',sr4n:'DHL / Море',sr4l:'доставка по всему миру',
+    proc_label:'Как это работает',proc_h:'От идеи\nдо доставки.',
+    ps1t:'Запрос',ps1d:'Поделитесь фото, эскизами или образцами через форму ниже.',
+    ps2t:'Получить цену',ps2d:'Мы отвечаем в течение 48 часов с вариантами ткани и ценой.',
+    ps3t:'Утвердить образец',ps3d:'Физический образец отправляется вам для согласования перед опт. заказом.',
+    ps4t:'Массовое производство',ps4d:'Полный тираж, контроль качества, упаковка и отправка по всему миру.',
+    tier_label:'Ценовые уровни',tier_h:'Больше объём —\nлучше цена.',
+    t1name:'Образец',t2name:'Стандартный опт',t3name:'Крупный заказ',t2tag:'ПОПУЛЯРНО',
+    t1l1:'Один цвет',t1l2:'7–14 дней',t1l3:'DHL экспресс',
+    t2l1:'Несколько цветов',t2l2:'30–45 дней',t2l3:'Море или авиа',t2l4:'Скидка за объём',
+    t3l1:'Полная загрузка фабрики',t3l2:'Индивидуальное ткачество/печать',t3l3:'Приоритетный график',t3l4:'Лучшая цена за единицу',
+    sc_label:'С нашей фабрики',sc_h:'Последние работы.',
+    scf_all:'Все',scf_gar:'Одежда',scf_fab:'Ткани',scf_emb:'Вышивка',
+    inq_label:'Начать заказ',inq_h:'Получите цену\nза 48 часов.',
+    sb1:'Контакт',sb2:'Детали',sb3:'Файлы',
+    f_name:'Ваше имя *',f_email:'Email *',f_co:'Компания / Бренд (необязательно)',
+    f_dest:'Страна назначения *',f_type:'Тип заказа *',f_qty:'Количество / МОЗ',
+    f_mat:'Материал / тип ткани',f_msg:'Сообщение',f_files:'Референсы / тех. пакет (необязательно)',
+    fd_txt:'Перетащите файлы или нажмите',fd_sub:'JPG, PNG, PDF, AI · макс 10 МБ',
+    f_gdpr:'Я согласен с тем, что меня могут связаться по этому запросу.',
+    fo1:'Фото/эскиз → массовое производство',fo2:'Прислать образец одежды → копия и опт',
+    fo3:'Только закупка ткани (без пошива)',fo4:'Полный CMT — раскрой, пошив, отделка',
+    btn_next:'Далее →',btn_back:'← Назад',btn_send:'Отправить запрос →',
+    ft_tag:'Гуанчжоуский текстильный производитель с 2012 года.',
+    ft_addr:'Гуанчжоу, Китай',ft_rights:'Все права защищены',
+    msg_ok:'✓ Запрос отправлен! Мы ответим в течение 48 часов.',
+    msg_err:'Что-то пошло не так — напишите на hello@dongxi.io',
+    msg_val:'Пожалуйста, заполните все обязательные поля.',
+  },
+  ar: {
+    nav_why:'لماذا نحن',nav_cat:'الكتالوج',nav_how:'العملية',nav_inq:'استفسار',
+    cta_inq:'احصل على عرض',cta_cat:'تصفح الكتالوج',
+    h_label:'قوانغتشو · مباشرة من المصنع',
+    h_line1:'أقمشة.',h_line2:'مصممة',h_line3:'لعلامتك.',
+    h_sub:'من الصورة أو العينة إلى المنتج النهائي — حرير، دانتيل، تطريز، أقمشة مخصصة. عرض خلال 48 ساعة. الحد الأدنى من 50 متر.',
+    hb_quote:'عرض',
+    bs_yr:'سنة في تصنيع المنسوجات',bs_ct:'دولة نشحن إليها',
+    why_label:'لماذا DONGXI',why_h:'سعر المصنع.\nجودة عالمية.',
+    wc1t:'مباشرة من المصنع',wc1d:'لا وسطاء. أنت تتحدث مع المُنتج. الأرباح تبقى لعلامتك.',
+    wc2t:'عينات سريعة',wc2d:'عينة في 7-14 يوم. كميات كبيرة في 30-45 يوم.',
+    wc3t:'جودة الحرفية',wc3d:'أنوال جاكار، ماكينات تطريز، نسيج الحرير — كل شيء داخلي.',
+    wc4t:'حد أدنى منخفض',wc4d:'أقمشة من 50 م. ملابس من 50 قطعة.',
+    wc5t:'خدمة متكاملة',wc5d:'تصميم، قص وخياطة، تعبئة، شحن — جهة اتصال واحدة.',
+    wc6t:'أسعار شفافة',wc6d:'عروض تفصيلية. لا رسوم خفية. خصومات الحجم واضحة.',
+    cat_label:'ما نصنعه',cat_h:'كتالوجنا',
+    cat_note:'لم تجد مادتك؟ <a href="#inquiry">أرسل صورة →</a>',
+    sr1n:'50 م',sr1l:'الحد الأدنى للأقمشة',sr2n:'7–14 ي',sr2l:'مدة العينة',
+    sr3n:'30–45 ي',sr3l:'مدة الإنتاج',sr4n:'DHL / بحري',sr4l:'شحن عالمي',
+    proc_label:'كيف نعمل',proc_h:'من الفكرة\nإلى التسليم.',
+    ps1t:'أرسل استفساراً',ps1d:'شارك صورك أو رسوماتك عبر النموذج أدناه.',
+    ps2t:'احصل على عرض',ps2d:'نرد خلال 48 ساعة مع خيارات الأقمشة والأسعار.',
+    ps3t:'اعتمد العينة',ps3d:'عينة مادية ترسل إليك للاعتماد قبل الإنتاج.',
+    ps4t:'الإنتاج بالجملة',ps4d:'إنتاج كامل، فحص جودة، تعبئة وشحن عالمي.',
+    tier_label:'مستويات الأسعار',tier_h:'كلما زاد الحجم،\nتحسّن السعر.',
+    t1name:'عينة',t2name:'جملة قياسية',t3name:'طلب كبير',t2tag:'الأكثر طلباً',
+    t1l1:'لون واحد',t1l2:'7-14 يوم',t1l3:'DHL سريع',
+    t2l1:'ألوان متعددة',t2l2:'30-45 يوم',t2l3:'بحري أو جوي',t2l4:'خصم حجم مطبق',
+    t3l1:'تخصيص كامل المصنع',t3l2:'نسيج/طباعة مخصصة',t3l3:'جدولة أولوية',t3l4:'أفضل سعر وحدة',
+    sc_label:'من مصنعنا',sc_h:'أعمال حديثة.',
+    scf_all:'الكل',scf_gar:'ملابس',scf_fab:'أقمشة',scf_emb:'تطريز',
+    inq_label:'ابدأ طلبك',inq_h:'احصل على عرض\nخلال 48 ساعة.',
+    sb1:'التواصل',sb2:'التفاصيل',sb3:'الملفات',
+    f_name:'اسمك *',f_email:'البريد الإلكتروني *',f_co:'الشركة / العلامة (اختياري)',
+    f_dest:'بلد الوجهة *',f_type:'نوع الطلب *',f_qty:'الكمية / الحد الأدنى',
+    f_mat:'المادة / نوع القماش',f_msg:'رسالة',f_files:'صور مرجعية / حزمة تقنية (اختياري)',
+    fd_txt:'اسحب الملفات أو انقر للتصفح',fd_sub:'JPG, PNG, PDF, AI · 10 ميغابايت كحد أقصى',
+    f_gdpr:'أوافق على التواصل بشأن استفساري.',
+    fo1:'صورة/رسم → إنتاج بالجملة',fo2:'إرسال عينة ملابس → نسخ وإنتاج بالجملة',
+    fo3:'توريد قماش فقط (بدون خياطة)',fo4:'CMT كامل — قص، خياطة، تشطيب',
+    btn_next:'التالي →',btn_back:'← رجوع',btn_send:'إرسال الاستفسار →',
+    ft_tag:'مصنع نسيج قوانغتشو منذ 2012.',
+    ft_addr:'قوانغتشو، الصين',ft_rights:'جميع الحقوق محفوظة',
+    msg_ok:'✓ تم إرسال الاستفسار! سنرد خلال 48 ساعة.',
+    msg_err:'حدث خطأ — يرجى مراسلتنا على hello@dongxi.io',
+    msg_val:'يرجى ملء جميع الحقول المطلوبة.',
+  },
+};
+
+// ── CURRENCIES ──────────────────────────────────────────────
+const C = { USD:1, CNY:7.25, RUB:90, AED:3.67 };
+const SYM = { USD:'$', CNY:'¥', RUB:'₽', AED:'AED ' };
+let curLang = 'en', curCurr = 'USD';
+
+// ── CATALOG FABRICS ──────────────────────────────────────────
+const FABS = [
+  'Silk Charmeuse','Silk Chiffon','Silk Satin','Raw Silk',
+  'Jacquard Weave','Brocade','Velvet','Corduroy',
+  'Cotton Poplin','Cotton Twill','Cotton Canvas','Linen',
+  'Denim','Lace','Tulle','Organza',
+  'Polyester Taffeta','Recycled Poly','Nylon','Spandex Blend',
+  'Wool Melton','Cashmere Blend','Knit Jersey','Rib Knit',
+  'Embroidery Fabric','Burnout Velvet','Devore','Crinkle',
+];
+
+// ── SHOWCASE DATA ────────────────────────────────────────────
+let SHOWCASE = [];
+try { SHOWCASE = JSON.parse(showcaseJSON); } catch(e) {}
+
+// ── RENDER FABS ──────────────────────────────────────────────
+function renderFabs() {
+  const g = document.getElementById('fabGrid');
+  if (!g) return;
+  g.innerHTML = FABS.map(f =>
+    `<button class="fb">${f}</button>`
+  ).join('');
+}
+
+// ── RENDER SHOWCASE ──────────────────────────────────────────
+let scFilter = 'all';
+function renderShowcase() {
+  const track = document.getElementById('scTrack');
+  const empty = document.getElementById('scEmpty');
+  if (!track) return;
+  const items = scFilter === 'all' ? SHOWCASE : SHOWCASE.filter(s => s.category === scFilter);
+  if (items.length === 0) {
+    track.innerHTML = '';
+    if (empty) empty.style.display = 'block';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+  track.innerHTML = items.map(s => {
+    const imgs = s.images ?? [];
+    const slidesHtml = imgs.map(src =>
+      `<div class="sc-slide"><img src="${src}" alt="${s.title}" loading="lazy"></div>`
+    ).join('');
+    const dotsHtml = imgs.length > 1
+      ? `<div class="sc-dots">${imgs.map((_,i) => `<div class="sc-dot${i===0?' on':''}"></div>`).join('')}</div>`
+      : '';
+    return `
+      <div class="sc-card" data-cat="${s.category}">
+        <div class="sc-card-media">
+          <div class="sc-slides">${slidesHtml}</div>
+          ${dotsHtml}
+        </div>
+        <div class="sc-info">
+          <div class="sc-tag">${s.tag || s.category}</div>
+          <div class="sc-title">${s.title}</div>
+          ${s.meta ? `<div class="sc-meta">${s.meta}</div>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+
+  // Bind slide dot sync
+  track.querySelectorAll('.sc-card').forEach(card => {
+    const sl = card.querySelector('.sc-slides');
+    const dots = [...(card.querySelectorAll('.sc-dot') ?? [])];
+    if (!sl || dots.length === 0) return;
+    sl.addEventListener('scroll', () => {
+      const idx = Math.round(sl.scrollLeft / sl.clientWidth);
+      dots.forEach((d,i) => d.classList.toggle('on', i === idx));
+    }, { passive: true });
+  });
+}
+
+// ── APPLY LANGUAGE ───────────────────────────────────────────
+function applyLang(l) {
+  curLang = l;
+  const t = T[l] || T.en;
+  const dir = l === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.dir = dir;
+  document.querySelectorAll('[data-k]').forEach(el => {
+    const k = el.dataset.k;
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  document.querySelectorAll('.ld-item').forEach(b => {
+    b.classList.toggle('active', b.dataset.l === l);
+  });
+  const btn = document.getElementById('langBtn');
+  if (btn) btn.textContent = l.toUpperCase() + ' ▾';
+}
+
+// ── APPLY CURRENCY ───────────────────────────────────────────
+function applyCurr(c) {
+  curCurr = c;
+  const rate = C[c] || 1;
+  const sym  = SYM[c] || '$';
+  document.querySelectorAll('.curr-val').forEach(el => {
+    const base = parseFloat(el.dataset.base || '0');
+    const unit = el.dataset.unit || '';
+    el.textContent = sym + Math.round(base * rate).toLocaleString() + ' ' + unit;
+  });
+  document.querySelectorAll('.curr-btn').forEach(b => {
+    b.classList.toggle('on', b.dataset.c === c);
+  });
+}
+
+// ── FORM STEPS ───────────────────────────────────────────────
+function goS(n) {
+  // Validate current step before going forward
+  const cur = parseInt(document.querySelector('.iq-step.active')?.id?.replace('step','') || '1');
+  if (n > cur) {
+    if (cur === 1) {
+      const name  = document.getElementById('fName').value.trim();
+      const email = document.getElementById('fEmail').value.trim();
+      const dest  = document.getElementById('fDest').value;
+      if (!name || !email || !dest) {
+        showMsg(T[curLang].msg_val, 'err');
+        return;
+      }
+    }
+  }
+  document.querySelectorAll('.iq-step').forEach((s,i) => {
+    s.classList.toggle('active', i + 1 === n);
+  });
+  document.querySelectorAll('.sb-item').forEach((s,i) => {
+    s.classList.toggle('active', i + 1 === n);
+  });
+  document.getElementById('iqMsg')?.classList.remove('ok','err');
+}
+
+function showMsg(msg, cls) {
+  const el = document.getElementById('iqMsg');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'iq-msg ' + cls;
+}
+
+// ── SUBMIT ───────────────────────────────────────────────────
+async function submitF(e) {
+  e.preventDefault();
+  const t = T[curLang];
+  const name  = document.getElementById('fName').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  const gdpr  = document.getElementById('fGdpr').checked;
+  if (!name || !email || !gdpr) { showMsg(t.msg_val,'err'); return; }
+
+  const btn = document.getElementById('subBtn');
+  if (btn) { btn.disabled = true; btn.textContent = '…'; }
+
+  const fd = new FormData();
+  fd.append('access_key', '9e7e8d98-fd52-4e0a-aa56-f0413b9e1a66');
+  fd.append('name',    name);
+  fd.append('email',   email);
+  fd.append('company', document.getElementById('fCo')?.value || '');
+  fd.append('destination', document.getElementById('fDest')?.value || '');
+  fd.append('orderType',   document.querySelector('input[name=orderType]:checked')?.value || '');
+  fd.append('quantity',    document.getElementById('fQty')?.value || '');
+  fd.append('material',    document.getElementById('fMat')?.value || '');
+  fd.append('message',     document.getElementById('fMsg')?.value || '');
+  fd.append('subject', `New DONGXI Inquiry from ${name}`);
+
+  const files = document.getElementById('fFiles')?.files ?? [];
+  for (let i = 0; i < files.length; i++) {
+    fd.append('attachment' + i, files[i], files[i].name);
+  }
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
+    const json = await res.json();
+    if (json.success) {
+      showMsg(t.msg_ok, 'ok');
+      document.getElementById('iqForm')?.reset();
+      document.getElementById('fileList').innerHTML = '';
+      goS(1);
+    } else {
+      showMsg(t.msg_err, 'err');
+    }
+  } catch {
+    showMsg(t.msg_err, 'err');
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = T[curLang].btn_send; }
+  }
+}
+
+// ── DRAG-SCROLL FOR SHOWCASE ─────────────────────────────────
+function initDragScroll() {
+  const wrap = document.querySelector('.sc-track-wrap');
+  if (!wrap) return;
+  let isDown = false, startX = 0, scrollLeft = 0;
+  wrap.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - wrap.offsetLeft; scrollLeft = wrap.scrollLeft; wrap.style.cursor='grabbing'; });
+  wrap.addEventListener('mouseleave', () => { isDown = false; wrap.style.cursor='grab'; });
+  wrap.addEventListener('mouseup',   () => { isDown = false; wrap.style.cursor='grab'; });
+  wrap.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    wrap.scrollLeft = scrollLeft - (e.pageX - wrap.offsetLeft - startX);
+  });
+}
+
+// ── FILE INPUT ───────────────────────────────────────────────
+function initFileInput() {
+  const drop = document.getElementById('fileDrop');
+  const input = document.getElementById('fFiles');
+  const list  = document.getElementById('fileList');
+  if (!drop || !input || !list) return;
+  drop.addEventListener('click', () => input.click());
+  drop.addEventListener('dragover', e => { e.preventDefault(); drop.style.borderColor='var(--rust)'; });
+  drop.addEventListener('dragleave', () => { drop.style.borderColor=''; });
+  drop.addEventListener('drop', e => {
+    e.preventDefault(); drop.style.borderColor='';
+    const dt = new DataTransfer();
+    [...(input.files??[])].forEach(f => dt.items.add(f));
+    [...(e.dataTransfer?.files??[])].forEach(f => dt.items.add(f));
+    input.files = dt.files;
+    renderFileList();
+  });
+  input.addEventListener('change', renderFileList);
+  function renderFileList() {
+    list.innerHTML = [...(input.files??[])].map(f =>
+      `<div class="fi-chip">${f.name}</div>`
+    ).join('');
+  }
+}
+
+// ── TOPBAR SCROLL ────────────────────────────────────────────
+function initTopbar() {
+  const top = document.getElementById('top');
+  if (!top) return;
+  window.addEventListener('scroll', () => {
+    top.style.background = window.scrollY > 20
+      ? 'rgba(28,25,20,.98)'
+      : 'rgba(28,25,20,.97)';
+  }, { passive: true });
+}
+
+// ── INIT ─────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  renderFabs();
+  renderShowcase();
+  initDragScroll();
+  initFileInput();
+  initTopbar();
+  applyLang('en');
+  applyCurr('USD');
+
+  // Lang toggle
+  document.getElementById('langBtn')?.addEventListener('click', () => {
+    document.getElementById('langDrop')?.classList.toggle('open');
+  });
+  document.querySelectorAll('.ld-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyLang(btn.dataset.l);
+      document.getElementById('langDrop')?.classList.remove('open');
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.lang-wrap')) {
+      document.getElementById('langDrop')?.classList.remove('open');
+    }
+  });
+
+  // Currency
+  document.querySelectorAll('.curr-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyCurr(btn.dataset.c));
+  });
+
+  // Showcase filters
+  document.querySelectorAll('.scf').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.scf').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      scFilter = btn.dataset.f ?? 'all';
+      renderShowcase();
+    });
+  });
+
+  // Form submit
+  document.getElementById('iqForm')?.addEventListener('submit', submitF);
+});
+</script>
