@@ -11,146 +11,120 @@ const showcaseJSON = JSON.stringify(
     category: s.category ?? '',
     meta:     s.meta  ?? '',
     images:   (s.images ?? []).map((img: any) =>
-      urlFor(img).width(800).auto('format').url()
+      urlFor(img).width(900).auto('format').url()
     ),
   }))
 );
 ---
 <Base
-  title="DONGXI — Guangzhou Fabric & Garment Manufacturer | B2B Production"
-  description="Source fabrics & custom garments direct from Guangzhou. Silk, lace, embroidery & more. 48hr quote. MOQ from 50m."
+  title="DONGXI — Guangzhou Fabric & Garment Manufacturer"
+  description="Direct factory in Guangzhou. Silk, lace, embroidery, custom weaves. 48-hour quote. MOQ from 50m."
   ogUrl="https://dongxi.io"
 >
 
-<!-- TOPBAR -->
-<header class="topbar" id="top">
-  <a href="/" class="logo"><span class="logo-pip"></span>DONGXI</a>
-  <nav class="top-nav">
-    <a href="#why"     class="tnl" data-k="nav_why">Why Us</a>
-    <a href="#catalog" class="tnl" data-k="nav_cat">Catalog</a>
-    <a href="#inquiry" class="tnl" data-k="nav_inq">Inquiry</a>
-    <a href="/shop" class="shop-link">Shop <span class="shop-link-arrow">↗</span></a>
+<!-- NAV -->
+<header class="nav" id="nav">
+  <nav class="nav-left">
+    <a href="#catalog" class="nav-link" data-k="nav_cat">Catalog</a>
+    <a href="#showcase" class="nav-link" data-k="nav_sc">Work</a>
   </nav>
-  <a href="/shop" class="shop-mobile-btn">Shop ↗</a>
-  <div class="top-r">
+  <a href="/" class="nav-logo"><span class="nav-pip"></span>DONGXI</a>
+  <nav class="nav-right">
+    <a href="#inquiry" class="nav-link" data-k="nav_inq">Inquiry</a>
+    <a href="/shop" class="nav-link nav-shop" data-k="nav_shop">Shop ↗</a>
     <div class="lang-wrap">
-      <button class="lang-cur" id="langBtn">EN ▾</button>
+      <button class="nav-link lang-cur" id="langBtn">EN</button>
       <div class="lang-drop" id="langDrop">
-        <button class="ld-item active" data-l="en">EN · English</button>
-        <button class="ld-item" data-l="zh">ZH · 中文</button>
-        <button class="ld-item" data-l="ru">RU · Русский</button>
-        <button class="ld-item" data-l="ar">AR · العربية</button>
+        <button class="ld-item" data-l="en">English</button>
+        <button class="ld-item" data-l="zh">中文</button>
+        <button class="ld-item" data-l="ru">Русский</button>
+        <button class="ld-item" data-l="ar">العربية</button>
       </div>
     </div>
-    <a href="#inquiry" class="tcta" data-k="cta_inq">Get a Quote</a>
+  </nav>
+  <!-- mobile -->
+  <div class="nav-mobile">
+    <a href="/shop" class="nav-link nav-shop">Shop ↗</a>
+    <div class="lang-wrap">
+      <button class="nav-link lang-cur" id="langBtnM">EN</button>
+      <div class="lang-drop" id="langDropM">
+        <button class="ld-item" data-l="en">English</button>
+        <button class="ld-item" data-l="zh">中文</button>
+        <button class="ld-item" data-l="ru">Русский</button>
+        <button class="ld-item" data-l="ar">العربية</button>
+      </div>
+    </div>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-inner content-w">
-    <div class="hero-text">
-      <div class="sec-label" data-k="h_label">Guangzhou · Direct Factory</div>
-      <h1 class="hero-h">
-        <span data-k="h_line1">Fabric.</span><br>
-        <em data-k="h_line2">Built for</em><br>
-        <span data-k="h_line3">your brand.</span>
-      </h1>
-      <p class="hero-sub" data-k="h_sub">From photo or sample to finished garment — silk, lace, embroidery, custom weaves. 48-hour quote. MOQ from 50 m.</p>
-      <div class="hero-btns">
-        <a href="#inquiry" class="tcta hero-cta-main" data-k="cta_inq">Get a Quote</a>
-        <a href="/shop"    class="tcta hero-cta-shop">Shop Ready Stock ↗</a>
-      </div>
-    </div>
-    <div class="hero-stats">
-      <div class="hs-item">
-        <span class="hs-n">48h</span>
-        <span class="hs-l" data-k="hb_quote">quote</span>
-      </div>
-      <div class="hs-div"></div>
-      <div class="hs-item">
-        <span class="hs-n">12+</span>
-        <span class="hs-l" data-k="bs_yr">years</span>
-      </div>
-      <div class="hs-div"></div>
-      <div class="hs-item">
-        <span class="hs-n">50+</span>
-        <span class="hs-l" data-k="bs_ct">countries</span>
-      </div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-k="h_label">Guangzhou · Direct Factory</p>
+    <h1 class="hero-h">
+      <span data-k="h_line1">Fabric</span><br>
+      <em data-k="h_line2">for your</em><br>
+      <span data-k="h_line3">brand.</span>
+    </h1>
+    <div class="hero-actions">
+      <a href="#inquiry" class="btn-ghost btn-light" data-k="cta_inq">Get a Quote</a>
+      <a href="/shop"    class="btn-ghost btn-light btn-ghost-dim" data-k="cta_shop">Shop Ready Stock ↗</a>
     </div>
   </div>
-</section>
-
-<!-- WHY — 3 cards -->
-<section class="why-sec" id="why">
-  <div class="content-w">
-    <div class="sec-label" data-k="why_label">Why DONGXI</div>
-    <div class="why-grid">
-      <div class="wc">
-        <div class="wc-icon">◈</div>
-        <div class="wc-t" data-k="wc1t">Direct Factory</div>
-        <div class="wc-d" data-k="wc1d">No middlemen. You talk to the maker. Margins stay with your brand.</div>
-      </div>
-      <div class="wc">
-        <div class="wc-icon">⟳</div>
-        <div class="wc-t" data-k="wc2t">Fast Turnaround</div>
-        <div class="wc-d" data-k="wc2d">Sample in 7–14 days. Bulk in 30–45 days. MOQ from 50 m / 50 pcs.</div>
-      </div>
-      <div class="wc">
-        <div class="wc-icon">❋</div>
-        <div class="wc-t" data-k="wc3t">Full Service</div>
-        <div class="wc-d" data-k="wc3d">Design · sampling · CMT · packaging · shipping — one contact.</div>
-      </div>
-    </div>
+  <div class="hero-foot">
+    <span data-k="hero_f1">48h quote</span>
+    <span class="hf-sep">·</span>
+    <span data-k="hero_f2">MOQ from 50 m</span>
+    <span class="hf-sep">·</span>
+    <span data-k="hero_f3">Ships worldwide</span>
+    <span class="hf-sep">·</span>
+    <span data-k="hero_f4">12 years</span>
   </div>
 </section>
 
 <!-- CATALOG -->
 <section class="catalog-sec" id="catalog">
-  <div class="content-w">
-    <div class="sec-label" data-k="cat_label">What we make</div>
-    <h2 class="sec-h2" data-k="cat_h">Our catalog</h2>
-    <p class="cat-sub" data-k="cat_sub">Click any material to start an inquiry.</p>
+  <div class="sec-container">
+    <p class="sec-eyebrow" data-k="cat_label">What we make</p>
+    <h2 class="sec-title" data-k="cat_h">Our catalog.</h2>
+    <p class="sec-sub" data-k="cat_sub">Select a material to start an inquiry.</p>
     <div class="fab-grid" id="fabGrid"></div>
   </div>
 </section>
 
 <!-- SHOWCASE -->
 <section class="showcase-sec" id="showcase">
-  <div class="content-w">
-    <div class="sc-head">
-      <div>
-        <div class="sec-label" data-k="sc_label">From our factory</div>
-        <h2 class="sec-h2" data-k="sc_h">Recent work.</h2>
-      </div>
-      <div class="sc-filters" id="scFilters">
-        <button class="scf on" data-f="all"        data-k="scf_all">All</button>
-        <button class="scf"    data-f="garment"    data-k="scf_gar">Garments</button>
-        <button class="scf"    data-f="fabric"     data-k="scf_fab">Fabrics</button>
-        <button class="scf"    data-f="embroidery" data-k="scf_emb">Embroidery</button>
-      </div>
+  <div class="sec-container sc-header-row">
+    <div>
+      <p class="sec-eyebrow" data-k="sc_label">From our factory</p>
+      <h2 class="sec-title" data-k="sc_h">Recent work.</h2>
     </div>
-    <div class="sc-track-wrap">
-      <div class="sc-track" id="scTrack"></div>
+    <div class="sc-filters" id="scFilters">
+      <button class="scf active" data-f="all"        data-k="scf_all">All</button>
+      <button class="scf"        data-f="garment"    data-k="scf_gar">Garments</button>
+      <button class="scf"        data-f="fabric"     data-k="scf_fab">Fabrics</button>
+      <button class="scf"        data-f="embroidery" data-k="scf_emb">Embroidery</button>
     </div>
-    <p class="sc-empty" id="scEmpty" style="display:none">No items yet — check back soon.</p>
   </div>
+  <div class="sc-track-wrap">
+    <div class="sc-track" id="scTrack"></div>
+  </div>
+  <p class="sc-empty" id="scEmpty" style="display:none">No items yet.</p>
 </section>
 
-<!-- INQUIRY — single step -->
+<!-- INQUIRY -->
 <section class="inq-sec" id="inquiry">
-  <div class="content-w inq-layout">
-
+  <div class="sec-container inq-layout">
     <div class="inq-left">
-      <div class="sec-label" data-k="inq_label">Start your order</div>
-      <h2 class="sec-h2" data-k="inq_h">Get a quote<br><em>in 48 hours.</em></h2>
-      <div class="inq-facts">
-        <div class="if-row"><span class="if-dot"></span><span data-k="ps1d">Share photos, sketches or samples.</span></div>
-        <div class="if-row"><span class="if-dot"></span><span data-k="ps2d">We reply within 48 hours with options & price.</span></div>
-        <div class="if-row"><span class="if-dot"></span><span data-k="ps3d">Sample shipped to you for approval before bulk.</span></div>
-      </div>
+      <p class="sec-eyebrow" data-k="inq_label">Start your order</p>
+      <h2 class="sec-title inq-title" data-k="inq_h">Get a quote<br><em>in 48 hours.</em></h2>
+      <ul class="inq-facts">
+        <li data-k="ps1d">Share photos, sketches or samples.</li>
+        <li data-k="ps2d">We reply within 48 hours with options & price.</li>
+        <li data-k="ps3d">Sample shipped to you before bulk production.</li>
+      </ul>
     </div>
-
     <form id="iqForm" class="inq-form" novalidate>
       <div class="iq-row two-col">
         <div>
@@ -164,52 +138,45 @@ const showcaseJSON = JSON.stringify(
       </div>
       <div class="iq-row">
         <label class="iq-label" data-k="f_msg">Tell us what you need</label>
-        <textarea class="iq-in" id="fMsg" rows="4" data-k-ph="msg_ph" placeholder="Fabric type, quantity, destination, deadline…"></textarea>
+        <textarea class="iq-in" id="fMsg" rows="5" placeholder="Fabric type, quantity, destination, deadline…"></textarea>
       </div>
       <div class="iq-row">
-        <label class="iq-label" data-k="f_files">Reference photos / tech pack (optional)</label>
+        <label class="iq-label" data-k="f_files">Reference photos / tech pack</label>
         <label class="file-drop" id="fileDrop">
           <input type="file" id="fFiles" multiple accept="image/*,.pdf,.ai,.eps" style="display:none">
-          <div class="fd-inner">
-            <div class="fd-icon">⊕</div>
-            <div class="fd-txt" data-k="fd_txt">Drop files or click to browse</div>
-            <div class="fd-sub" data-k="fd_sub">JPG · PNG · PDF · AI</div>
-          </div>
+          <span class="fd-txt" data-k="fd_txt">Drop files or click to browse</span>
+          <span class="fd-sub" data-k="fd_sub">JPG · PNG · PDF · AI</span>
         </label>
         <div class="file-list" id="fileList"></div>
       </div>
       <div class="iq-row iq-bottom">
-        <label class="ropt">
+        <label class="iq-gdpr">
           <input type="checkbox" id="fGdpr" required>
           <span data-k="f_gdpr">I agree to be contacted regarding my inquiry.</span>
         </label>
-        <button type="submit" class="tcta inq-submit" id="subBtn" data-k="btn_send">Send Inquiry →</button>
+        <button type="submit" class="btn-ghost btn-dark" id="subBtn" data-k="btn_send">Send Inquiry</button>
       </div>
       <div id="iqMsg" class="iq-msg"></div>
     </form>
-
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="site-foot">
-  <div class="content-w sf-inner">
-    <div class="sf-brand">
-      <a href="/" class="logo"><span class="logo-pip"></span>DONGXI</a>
-      <p class="sf-tag" data-k="ft_tag">Guangzhou textile manufacturer since 2012.</p>
+<footer class="foot">
+  <div class="sec-container foot-inner">
+    <div>
+      <a href="/" class="nav-logo foot-logo"><span class="nav-pip"></span>DONGXI</a>
+      <p class="foot-sub" data-k="ft_tag">Guangzhou textile manufacturer since 2012.</p>
     </div>
-    <div class="sf-links">
-      <a href="#why"     data-k="nav_why">Why Us</a>
-      <a href="#catalog" data-k="nav_cat">Catalog</a>
-      <a href="#inquiry" data-k="nav_inq">Inquiry</a>
-      <a href="/shop">Shop</a>
-    </div>
-    <div class="sf-contact">
+    <div class="foot-links">
+      <a href="#catalog"  data-k="nav_cat">Catalog</a>
+      <a href="#showcase" data-k="nav_sc">Work</a>
+      <a href="#inquiry"  data-k="nav_inq">Inquiry</a>
+      <a href="/shop"     data-k="nav_shop">Shop</a>
       <a href="mailto:hello@dongxi.io">hello@dongxi.io</a>
-      <span data-k="ft_addr">Guangzhou, China · 广州</span>
     </div>
   </div>
-  <div class="sf-copy">
+  <div class="foot-copy">
     <span>© 2025 DONGXI · 广州东西贸易有限公司</span>
     <span data-k="ft_rights">All rights reserved</span>
   </div>
@@ -218,292 +185,437 @@ const showcaseJSON = JSON.stringify(
 </Base>
 
 <style is:global>
-body { background: var(--paper); color: var(--ink); }
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #f8f5f1; color: #1a1a1a; font-family: 'Azeret Mono', monospace; -webkit-font-smoothing: antialiased; }
 
-/* ── TOPBAR ── */
-.topbar { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 32px; height:56px; background:rgba(28,25,20,.97); backdrop-filter:blur(8px); border-bottom:1px solid rgba(240,235,224,.06); }
-.logo { font-family:'Azeret Mono',monospace; font-size:13px; letter-spacing:.18em; color:var(--paper); text-decoration:none; display:flex; align-items:center; gap:8px; }
-.logo-pip { width:6px; height:6px; border-radius:50%; background:var(--rust); display:inline-block; }
-.top-nav { display:flex; align-items:center; gap:24px; }
-.top-nav .tnl { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(240,235,224,.45); text-decoration:none; transition:color .15s; }
-.top-nav .tnl:hover { color:var(--paper); }
-@media(max-width:760px){ .top-nav { display:none; } }
-.top-r { display:flex; align-items:center; gap:14px; }
+/* ── TOKENS ── */
+:root {
+  --ink:     #1a1a1a;
+  --paper:   #f8f5f1;
+  --paper2:  #f2ede8;
+  --rust:    #c04b28;
+  --border:  #e5e0d8;
+  --c-w: min(100% - 48px, 1280px);
+  --sec-pad: clamp(80px, 10vw, 140px);
+}
 
-/* Shop link in nav */
-.shop-link { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--paper); text-decoration:none; padding:7px 16px; border:1px solid rgba(240,235,224,.3); border-radius:2px; display:inline-flex; align-items:center; gap:6px; transition:background .15s, border-color .15s; position:relative; overflow:hidden; }
-.shop-link::before { content:''; position:absolute; inset:0; background:var(--rust); transform:translateX(-101%); transition:transform .22s cubic-bezier(.4,0,.2,1); }
-.shop-link:hover::before { transform:translateX(0); }
-.shop-link:hover { border-color:var(--rust); }
-.shop-link span, .shop-link-arrow { position:relative; z-index:1; }
-.shop-link-arrow { font-size:11px; transition:transform .15s; }
-.shop-link:hover .shop-link-arrow { transform:translate(2px,-2px); }
+/* ── TYPOGRAPHY ── */
+.editorial  { font-family: 'Cormorant Garamond', 'Libre Baskerville', Georgia, serif; font-weight: 300; }
+.mono       { font-family: 'Azeret Mono', monospace; }
+.zh         { font-family: 'Noto Serif SC', serif; }
 
-/* Mobile shop btn */
-.shop-mobile-btn { display:none; font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--paper); text-decoration:none; padding:7px 16px; background:var(--rust); border-radius:2px; transition:background .15s; }
-.shop-mobile-btn:hover { background:var(--rust2); }
-@media(max-width:760px){ .shop-mobile-btn { display:inline-block; } }
+/* ── LAYOUT ── */
+.sec-container { width: var(--c-w); margin-inline: auto; }
+
+/* ── NAV ── */
+.nav {
+  position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 100;
+  height: 60px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding-inline: clamp(20px, 4vw, 60px);
+  background: transparent;
+  transition: background .4s ease, border-color .4s ease;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled { background: #f8f5f1; border-bottom-color: var(--border); }
+.nav.on-hero  { color: #f8f5f1; }
+.nav-left  { display: flex; align-items: center; gap: 32px; }
+.nav-right { display: flex; align-items: center; gap: 24px; justify-content: flex-end; }
+.nav-logo {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 13px; letter-spacing: .2em;
+  text-decoration: none; color: inherit;
+  display: flex; align-items: center; gap: 8px;
+  justify-content: center;
+}
+.nav-pip { width: 6px; height: 6px; border-radius: 50%; background: var(--rust); flex-shrink: 0; }
+.nav-link {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  text-decoration: none; color: inherit; background: none; border: none;
+  cursor: pointer; transition: opacity .15s;
+}
+.nav-link:hover { opacity: .5; }
+.nav-shop { opacity: .65; }
+.nav-mobile { display: none; align-items: center; gap: 16px; grid-column: 3; justify-content: flex-end; }
+@media(max-width: 700px) {
+  .nav { grid-template-columns: auto 1fr; }
+  .nav-left, .nav-right { display: none; }
+  .nav-mobile { display: flex; }
+  .nav-logo { justify-content: flex-start; }
+}
 
 /* Lang dropdown */
-.lang-wrap { position:relative; }
-.lang-cur { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.1em; color:rgba(240,235,224,.45); background:transparent; border:none; cursor:none; padding:4px 0; transition:color .15s; }
-.lang-cur:hover { color:var(--paper); }
-.lang-drop { display:none; position:absolute; top:calc(100% + 8px); right:0; background:var(--ink2); border:1px solid rgba(240,235,224,.1); border-radius:4px; padding:6px 0; min-width:140px; z-index:200; }
-.lang-drop.open { display:block; }
-.ld-item { display:block; width:100%; text-align:left; padding:8px 14px; font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.08em; color:rgba(240,235,224,.5); background:transparent; border:none; cursor:none; transition:color .12s; }
-.ld-item:hover, .ld-item.active { color:var(--paper); }
+.lang-wrap { position: relative; }
+.lang-drop {
+  display: none; position: absolute; top: calc(100% + 10px); right: 0;
+  background: var(--ink); border: none;
+  padding: 8px 0; min-width: 110px; z-index: 200;
+}
+.lang-drop.open { display: block; }
+.ld-item {
+  display: block; width: 100%; text-align: left;
+  padding: 9px 16px;
+  font-family: 'Azeret Mono', monospace; font-size: 9px; letter-spacing: .1em;
+  color: rgba(248,245,241,.5); background: none; border: none; cursor: pointer;
+  transition: color .1s;
+}
+.ld-item:hover { color: #f8f5f1; }
 
-/* CTA */
-.tcta { display:inline-block; font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; padding:10px 22px; background:var(--rust); color:var(--paper); border:none; cursor:none; transition:background .15s; border-radius:2px; white-space:nowrap; }
-.tcta:hover { background:var(--rust2); }
+/* ── BUTTONS ── */
+.btn-ghost {
+  display: inline-block;
+  font-family: 'Azeret Mono', monospace;
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 36px;
+  border: 1px solid currentColor;
+  background: transparent; color: inherit;
+  transition: background .25s, color .25s;
+  cursor: pointer; border-radius: 0;
+  white-space: nowrap;
+}
+.btn-ghost:hover { background: currentColor; }
+.btn-light { color: #f8f5f1; }
+.btn-light:hover { color: #1a1a1a; }
+.btn-ghost-dim { opacity: .55; }
+.btn-ghost-dim:hover { opacity: 1; }
+.btn-dark { color: #1a1a1a; }
+.btn-dark:hover { color: #f8f5f1; }
 
 /* ── HERO ── */
-.hero { padding:140px 0 100px; min-height:92vh; display:flex; align-items:center; }
-.hero-inner { display:flex; align-items:flex-end; justify-content:space-between; gap:48px; flex-wrap:wrap; }
-.hero-text { max-width:600px; }
-.hero-h { font-size:clamp(56px,9vw,108px); font-weight:400; line-height:1.0; margin:14px 0 24px; }
-.hero-h em { font-style:italic; color:var(--rust); }
-.hero-sub { font-family:'Azeret Mono',monospace; font-size:11px; line-height:2; color:rgba(28,25,20,.45); max-width:440px; margin-bottom:36px; }
-.hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
-.hero-cta-main { padding:14px 32px; font-size:10px; letter-spacing:.16em; }
-.hero-cta-shop { padding:14px 32px; font-size:10px; letter-spacing:.16em; background:transparent; border:1px solid rgba(28,25,20,.2); color:var(--ink); }
-.hero-cta-shop:hover { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+.hero {
+  position: relative;
+  height: 100svh; min-height: 600px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: hidden;
+  color: #f8f5f1;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: var(--ink);
+  /* when you have a hero image, replace with:
+     background: url('...') center/cover no-repeat;
+     then add: after { content:''; position:absolute; inset:0; background:rgba(0,0,0,.35); } */
+}
+.hero-content {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding-inline: 24px;
+}
+.hero-eyebrow {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(248,245,241,.45);
+  margin-bottom: 32px;
+}
+.hero-h {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(72px, 13vw, 160px);
+  line-height: 1.0;
+  letter-spacing: -.01em;
+  margin-bottom: 52px;
+}
+.hero-h em { font-style: italic; color: rgba(248,245,241,.7); }
+.hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.hero-foot {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  z-index: 1;
+  display: flex; align-items: center; gap: 20px;
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(248,245,241,.28);
+  white-space: nowrap;
+}
+.hf-sep { opacity: .3; }
+@media(max-width: 560px) {
+  .hero-foot { gap: 12px; font-size: 8px; flex-wrap: wrap; justify-content: center; }
+}
 
-/* Hero stats strip */
-.hero-stats { display:flex; align-items:center; gap:0; flex-shrink:0; }
-.hs-item { display:flex; flex-direction:column; align-items:center; padding:0 32px; }
-.hs-n { font-family:'Libre Baskerville',serif; font-size:clamp(28px,4vw,48px); color:var(--ink); }
-.hs-l { font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.12em; text-transform:uppercase; color:rgba(28,25,20,.35); margin-top:4px; }
-.hs-div { width:1px; height:40px; background:var(--line); }
-@media(max-width:760px){ .hero-stats { display:none; } }
-
-/* ── WHY ── */
-.why-sec { padding:80px 0; border-top:1px solid var(--line); }
-.why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--line); margin-top:40px; }
-@media(max-width:680px){ .why-grid { grid-template-columns:1fr; } }
-.wc { padding:40px 36px; border-right:1px solid var(--line); }
-.wc:last-child { border-right:none; }
-@media(max-width:680px){ .wc { border-right:none; border-bottom:1px solid var(--line); } }
-.wc:last-child { border-bottom:none; }
-.wc-icon { font-size:22px; margin-bottom:20px; color:var(--rust); }
-.wc-t { font-size:15px; font-weight:600; margin-bottom:10px; }
-.wc-d { font-family:'Azeret Mono',monospace; font-size:10px; line-height:1.9; color:rgba(28,25,20,.45); }
+/* ── SECTION SHARED ── */
+.sec-eyebrow {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 16px;
+}
+.sec-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.1; letter-spacing: -.01em;
+  color: var(--ink);
+}
+.sec-title em { font-style: italic; color: var(--rust); }
+.sec-sub {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 10px; color: rgba(26,26,26,.4);
+  margin-top: 10px; letter-spacing: .04em;
+}
 
 /* ── CATALOG ── */
-.catalog-sec { padding:80px 0; background:var(--paper2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-.cat-sub { font-family:'Azeret Mono',monospace; font-size:10px; color:rgba(28,25,20,.38); margin:8px 0 32px; }
-.fab-grid { display:flex; flex-wrap:wrap; gap:10px; }
-.fb { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; padding:10px 20px; border:1px solid var(--line); border-radius:100px; color:rgba(28,25,20,.55); background:#fff; cursor:none; transition:all .18s; }
-.fb:hover { background:var(--rust); border-color:var(--rust); color:var(--paper); transform:translateY(-1px); }
+.catalog-sec {
+  padding: var(--sec-pad) 0;
+  border-top: 1px solid var(--border);
+}
+.fab-grid {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 40px;
+}
+.fb {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 10px 22px;
+  border: 1px solid var(--border);
+  background: transparent; color: rgba(26,26,26,.5);
+  cursor: pointer; transition: border-color .2s, color .2s, background .2s;
+  border-radius: 0;
+}
+.fb:hover {
+  border-color: var(--ink); color: var(--paper);
+  background: var(--ink);
+}
 
 /* ── SHOWCASE ── */
-.showcase-sec { padding:80px 0; overflow:hidden; }
-.sc-head { display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:36px; }
-.sc-filters { display:flex; gap:8px; flex-wrap:wrap; }
-.scf { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; padding:7px 14px; background:transparent; border:1px solid rgba(28,25,20,.15); color:rgba(28,25,20,.4); cursor:none; transition:all .15s; border-radius:2px; }
-.scf.on, .scf:hover { background:var(--rust); border-color:var(--rust); color:var(--paper); }
-.sc-track-wrap { overflow-x:auto; scrollbar-width:none; cursor:grab; }
-.sc-track-wrap::-webkit-scrollbar { display:none; }
-.sc-track { display:flex; gap:16px; padding-bottom:8px; width:max-content; }
-.sc-card { width:280px; flex:0 0 280px; border-radius:4px; overflow:hidden; background:#fff; border:1px solid var(--line); transition:transform .25s, box-shadow .25s; }
-.sc-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(28,25,20,.1); }
-@media(max-width:600px){ .sc-card { width:230px; flex:0 0 230px; } }
-.sc-card-media { position:relative; aspect-ratio:3/4; overflow:hidden; background:var(--paper2); }
+.showcase-sec {
+  padding: var(--sec-pad) 0;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+.sc-header-row {
+  display: flex; align-items: flex-end;
+  justify-content: space-between; gap: 24px;
+  flex-wrap: wrap; margin-bottom: 48px;
+}
+.sc-filters { display: flex; gap: 0; }
+.scf {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 10px 20px;
+  background: transparent; border: 1px solid var(--border);
+  margin-left: -1px;
+  color: rgba(26,26,26,.4); cursor: pointer; transition: all .15s;
+}
+.scf:first-child { margin-left: 0; }
+.scf.active, .scf:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); z-index: 1; }
+.sc-track-wrap {
+  padding-left: calc((100% - var(--c-w)) / 2);
+  overflow-x: auto; scrollbar-width: none; cursor: grab;
+}
+.sc-track-wrap::-webkit-scrollbar { display: none; }
+.sc-track { display: flex; gap: 2px; width: max-content; padding-right: 48px; }
+.sc-card { width: 320px; flex: 0 0 320px; overflow: hidden; background: var(--paper2); }
+@media(max-width: 600px) { .sc-card { width: 260px; flex: 0 0 260px; } }
+.sc-card-media { position: relative; aspect-ratio: 3/4; overflow: hidden; }
 .sc-slides { display:flex; width:100%; height:100%; overflow-x:scroll; scroll-snap-type:x mandatory; scrollbar-width:none; }
 .sc-slides::-webkit-scrollbar { display:none; }
 .sc-slide { flex:0 0 100%; scroll-snap-align:start; }
-.sc-slide img { width:100%; height:100%; object-fit:cover; display:block; }
-.sc-dots { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); display:flex; gap:4px; pointer-events:none; }
-.sc-dot { width:4px; height:4px; border-radius:50%; background:rgba(28,25,20,.2); }
-.sc-dot.on { background:var(--rust); }
-.sc-info { padding:14px 16px; }
-.sc-tag { font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.1em; text-transform:uppercase; color:var(--rust); }
-.sc-title { font-size:14px; margin-top:4px; line-height:1.3; font-weight:500; }
-.sc-meta { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.38); margin-top:4px; }
-.sc-empty { font-family:'Azeret Mono',monospace; font-size:11px; color:rgba(28,25,20,.35); padding:48px 0; }
+.sc-slide img { width:100%; height:100%; object-fit:cover; display:block; transition: transform .6s ease; }
+.sc-card:hover .sc-slide img { transform: scale(1.03); }
+.sc-dots { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:5px; pointer-events:none; }
+.sc-dot { width:4px; height:4px; border-radius:50%; background:rgba(248,245,241,.35); transition:background .2s; }
+.sc-dot.on { background:#f8f5f1; }
+.sc-info { padding: 20px 20px 24px; }
+.sc-tag { font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.14em; text-transform:uppercase; color:var(--rust); }
+.sc-title { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:20px; margin-top:6px; line-height:1.25; color:var(--ink); }
+.sc-meta { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(26,26,26,.38); margin-top:5px; }
+.sc-empty { font-family:'Azeret Mono',monospace; font-size:10px; color:rgba(26,26,26,.3); padding:60px 0; width:var(--c-w); margin-inline:auto; }
 
 /* ── INQUIRY ── */
-.inq-sec { padding:100px 0; background:var(--paper2); border-top:1px solid var(--line); }
-.inq-sec em { color:var(--rust); font-style:italic; }
-.inq-layout { display:grid; grid-template-columns:1fr 1.6fr; gap:80px; align-items:start; }
-@media(max-width:860px){ .inq-layout { grid-template-columns:1fr; gap:48px; } }
-.inq-left { padding-top:8px; }
-.inq-facts { margin-top:32px; display:flex; flex-direction:column; gap:14px; }
-.if-row { display:flex; align-items:flex-start; gap:12px; font-family:'Azeret Mono',monospace; font-size:10px; line-height:1.8; color:rgba(28,25,20,.5); }
-.if-dot { width:5px; height:5px; border-radius:50%; background:var(--rust); flex-shrink:0; margin-top:7px; }
-.inq-form { display:flex; flex-direction:column; gap:0; }
-.iq-row { margin-bottom:20px; }
-.iq-row.two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-@media(max-width:500px){ .iq-row.two-col { grid-template-columns:1fr; } }
-.iq-label { display:block; font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:rgba(28,25,20,.45); margin-bottom:8px; }
-.iq-in { width:100%; padding:12px 14px; font-family:'Azeret Mono',monospace; font-size:11px; color:var(--ink); background:#fff; border:1px solid rgba(28,25,20,.12); border-radius:3px; outline:none; transition:border .15s; box-sizing:border-box; }
-.iq-in:focus { border-color:var(--rust); }
-textarea.iq-in { resize:vertical; }
-.file-drop { display:block; border:1px dashed rgba(28,25,20,.18); border-radius:4px; padding:28px; text-align:center; cursor:none; transition:border .15s, background .15s; }
-.file-drop:hover { border-color:var(--rust); background:rgba(192,75,40,.03); }
-.fd-icon { font-size:20px; color:rgba(28,25,20,.18); margin-bottom:6px; }
-.fd-txt { font-family:'Azeret Mono',monospace; font-size:10px; color:rgba(28,25,20,.45); }
-.fd-sub { font-family:'Azeret Mono',monospace; font-size:8px; color:rgba(28,25,20,.28); margin-top:3px; }
-.file-list { margin-top:10px; display:flex; flex-wrap:wrap; gap:8px; }
-.fi-chip { font-family:'Azeret Mono',monospace; font-size:9px; padding:5px 10px; background:rgba(28,25,20,.06); border-radius:100px; color:rgba(28,25,20,.55); }
-.iq-bottom { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:4px; }
-.ropt { display:flex; align-items:flex-start; gap:10px; font-family:'Azeret Mono',monospace; font-size:10px; color:rgba(28,25,20,.5); cursor:none; line-height:1.6; }
-.ropt input { margin-top:2px; accent-color:var(--rust); cursor:none; flex-shrink:0; }
-.inq-submit { padding:14px 36px; font-size:10px; letter-spacing:.16em; }
-.iq-msg { margin-top:14px; font-family:'Azeret Mono',monospace; font-size:10px; padding:12px 16px; border-radius:3px; display:none; }
-.iq-msg.ok  { background:rgba(60,140,60,.08); color:#2d7a2d; display:block; }
-.iq-msg.err { background:rgba(180,40,40,.07); color:#a32020; display:block; }
+.inq-sec {
+  padding: var(--sec-pad) 0;
+  background: var(--ink); color: var(--paper);
+  border-top: 1px solid rgba(248,245,241,.06);
+}
+.inq-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 100px; align-items: start;
+}
+@media(max-width: 860px) { .inq-layout { grid-template-columns: 1fr; gap: 56px; } }
+.inq-left { padding-top: 4px; }
+.inq-title { color: var(--paper); }
+.inq-facts {
+  list-style: none;
+  margin-top: 40px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.inq-facts li {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 10px; letter-spacing: .04em; line-height: 1.9;
+  color: rgba(248,245,241,.35);
+  padding-left: 18px; position: relative;
+}
+.inq-facts li::before {
+  content: '—';
+  position: absolute; left: 0;
+  color: var(--rust);
+}
+.inq-form { display: flex; flex-direction: column; gap: 28px; }
+.iq-row { display: flex; flex-direction: column; gap: 10px; }
+.iq-row.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media(max-width: 500px) { .iq-row.two-col { grid-template-columns: 1fr; } }
+.iq-label {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(248,245,241,.35);
+}
+.iq-in {
+  width: 100%; padding: 14px 0;
+  font-family: 'Azeret Mono', monospace; font-size: 11px;
+  color: var(--paper); background: transparent;
+  border: none; border-bottom: 1px solid rgba(248,245,241,.15);
+  outline: none; transition: border-color .2s;
+  box-sizing: border-box;
+}
+.iq-in::placeholder { color: rgba(248,245,241,.2); }
+.iq-in:focus { border-bottom-color: rgba(248,245,241,.5); }
+textarea.iq-in { resize: none; line-height: 1.8; }
+.file-drop {
+  display: flex; flex-direction: column; gap: 4px;
+  border: 1px dashed rgba(248,245,241,.15);
+  padding: 28px 24px; text-align: center;
+  cursor: pointer; transition: border-color .2s;
+}
+.file-drop:hover { border-color: rgba(248,245,241,.35); }
+.fd-txt { font-family:'Azeret Mono',monospace; font-size:10px; color:rgba(248,245,241,.4); }
+.fd-sub { font-family:'Azeret Mono',monospace; font-size:8px; color:rgba(248,245,241,.2); letter-spacing:.06em; }
+.file-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.fi-chip { font-family:'Azeret Mono',monospace; font-size:9px; padding:5px 12px; border:1px solid rgba(248,245,241,.15); color:rgba(248,245,241,.5); }
+.iq-bottom { flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+.iq-gdpr { display:flex; align-items:flex-start; gap:10px; font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.04em; color:rgba(248,245,241,.3); cursor:pointer; line-height:1.7; }
+.iq-gdpr input { accent-color:var(--rust); margin-top:3px; flex-shrink:0; }
+.iq-msg { font-family:'Azeret Mono',monospace; font-size:10px; padding:12px 16px; display:none; }
+.iq-msg.ok  { background:rgba(60,140,60,.12); color:#7ecf7e; display:block; }
+.iq-msg.err { background:rgba(200,60,60,.1);  color:#e08080; display:block; }
 
 /* ── FOOTER ── */
-.site-foot { background:var(--ink); color:var(--paper); padding:64px 0 0; }
-.sf-inner { display:grid; grid-template-columns:1fr auto auto; gap:56px; align-items:start; }
-@media(max-width:700px){ .sf-inner { grid-template-columns:1fr; gap:32px; } }
-.sf-tag { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(240,235,224,.28); margin-top:12px; line-height:1.8; }
-.sf-links { display:flex; flex-direction:column; gap:12px; }
-.sf-links a { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.08em; color:rgba(240,235,224,.38); text-decoration:none; transition:color .12s; }
-.sf-links a:hover { color:var(--paper); }
-.sf-contact { display:flex; flex-direction:column; gap:10px; }
-.sf-contact a { font-family:'Azeret Mono',monospace; font-size:10px; color:rgba(240,235,224,.5); text-decoration:none; }
-.sf-contact a:hover { color:var(--paper); }
-.sf-contact span { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(240,235,224,.22); }
-.sf-copy { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(240,235,224,.06); margin-top:48px; padding:18px 0; }
-.sf-copy span { font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.06em; color:rgba(240,235,224,.18); }
-
-/* ── SHARED ── */
-.sec-label { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--rust); margin-bottom:12px; }
-.sec-h2 { font-family:'Libre Baskerville',serif; font-size:clamp(30px,4.5vw,56px); font-weight:400; line-height:1.1; }
-.sec-h2 em { font-style:italic; color:var(--rust); }
+.foot {
+  background: var(--ink); color: var(--paper);
+  border-top: 1px solid rgba(248,245,241,.06);
+  padding: 60px 0 0;
+}
+.foot-inner {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 40px; flex-wrap: wrap;
+}
+.foot-logo { color: var(--paper); }
+.foot-sub { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(248,245,241,.22); margin-top:12px; line-height:1.8; }
+.foot-links { display:flex; gap:24px; flex-wrap:wrap; align-items:center; }
+.foot-links a { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:rgba(248,245,241,.3); text-decoration:none; transition:color .15s; }
+.foot-links a:hover { color:var(--paper); }
+.foot-copy {
+  display:flex; justify-content:space-between; align-items:center;
+  border-top:1px solid rgba(248,245,241,.05);
+  margin-top:48px; padding:18px 0;
+  width:var(--c-w); margin-inline:auto;
+}
+.foot-copy span { font-family:'Azeret Mono',monospace; font-size:8px; letter-spacing:.06em; color:rgba(248,245,241,.15); }
 </style>
 
 <script define:vars={{ showcaseJSON }}>
-// ── TRANSLATIONS ──────────────────────────────────────────────
 const T = {
   en: {
-    nav_why:'Why Us', nav_cat:'Catalog', nav_inq:'Inquiry',
-    cta_inq:'Get a Quote',
+    nav_cat:'Catalog', nav_sc:'Work', nav_inq:'Inquiry', nav_shop:'Shop ↗',
     h_label:'Guangzhou · Direct Factory',
-    h_line1:'Fabric.', h_line2:'Built for', h_line3:'your brand.',
-    h_sub:'From photo or sample to finished garment — silk, lace, embroidery, custom weaves. 48-hour quote. MOQ from 50 m.',
-    hb_quote:'quote', bs_yr:'years', bs_ct:'countries',
-    why_label:'Why DONGXI',
-    wc1t:'Direct Factory', wc1d:'No middlemen. You talk to the maker. Margins stay with your brand.',
-    wc2t:'Fast Turnaround', wc2d:'Sample in 7–14 days. Bulk in 30–45 days. MOQ from 50 m / 50 pcs.',
-    wc3t:'Full Service', wc3d:'Design · sampling · CMT · packaging · shipping — one contact.',
-    cat_label:'What we make', cat_h:'Our catalog',
-    cat_sub:'Click any material to start an inquiry.',
+    h_line1:'Fabric', h_line2:'for your', h_line3:'brand.',
+    cta_inq:'Get a Quote', cta_shop:'Shop Ready Stock ↗',
+    hero_f1:'48h quote', hero_f2:'MOQ from 50 m', hero_f3:'Ships worldwide', hero_f4:'12 years',
+    cat_label:'What we make', cat_h:'Our catalog.',
+    cat_sub:'Select a material to start an inquiry.',
     sc_label:'From our factory', sc_h:'Recent work.',
     scf_all:'All', scf_gar:'Garments', scf_fab:'Fabrics', scf_emb:'Embroidery',
     inq_label:'Start your order', inq_h:'Get a quote\nin 48 hours.',
     ps1d:'Share photos, sketches or samples.',
     ps2d:'We reply within 48 hours with options & price.',
-    ps3d:'Sample shipped to you for approval before bulk.',
-    f_name:'Name *', f_email:'Email *',
-    f_msg:'Tell us what you need',
-    msg_ph:'Fabric type, quantity, destination, deadline…',
-    f_files:'Reference photos / tech pack (optional)',
+    ps3d:'Sample shipped to you before bulk production.',
+    f_name:'Name *', f_email:'Email *', f_msg:'Tell us what you need',
+    f_files:'Reference photos / tech pack',
     fd_txt:'Drop files or click to browse', fd_sub:'JPG · PNG · PDF · AI',
     f_gdpr:'I agree to be contacted regarding my inquiry.',
-    btn_send:'Send Inquiry →',
+    btn_send:'Send Inquiry',
     ft_tag:'Guangzhou textile manufacturer since 2012.',
-    ft_addr:'Guangzhou, China · 广州', ft_rights:'All rights reserved',
-    nav_why:'Why Us', nav_cat:'Catalog',
-    msg_ok:'✓ Sent! We\'ll reply within 48 hours.',
-    msg_err:'Something went wrong — please email hello@dongxi.io',
+    ft_rights:'All rights reserved',
+    msg_ok:'✓ Sent. We\'ll reply within 48 hours.',
+    msg_err:'Something went wrong — email hello@dongxi.io',
     msg_val:'Please fill in your name and email.',
   },
   zh: {
-    nav_why:'为什么选我们', nav_cat:'产品目录', nav_inq:'询价',
-    cta_inq:'立即询价',
+    nav_cat:'产品目录', nav_sc:'作品', nav_inq:'询价', nav_shop:'购买 ↗',
     h_label:'广州 · 直接工厂',
-    h_line1:'面料。', h_line2:'为您的', h_line3:'品牌而生。',
-    h_sub:'来图或寄样即可定制——真丝、蕾丝、刺绣、定制织物。48小时报价，最低起订量50米。',
-    hb_quote:'报价', bs_yr:'年经验', bs_ct:'个国家',
-    why_label:'为什么选东西',
-    wc1t:'直接工厂', wc1d:'无中间商，直接与制造商沟通，利润留给您的品牌。',
-    wc2t:'快速交货', wc2d:'样品7-14天，大货30-45天，最低起订量50米/50件。',
-    wc3t:'一站式服务', wc3d:'设计 · 打样 · 裁剪缝制 · 包装 · 运输，一个联系人搞定。',
-    cat_label:'我们的产品', cat_h:'产品目录',
-    cat_sub:'点击任意面料，立即发起询价。',
+    h_line1:'面料', h_line2:'为您的', h_line3:'品牌而生。',
+    cta_inq:'立即询价', cta_shop:'购买现货 ↗',
+    hero_f1:'48小时报价', hero_f2:'最低起订50米', hero_f3:'全球发货', hero_f4:'12年经验',
+    cat_label:'我们的产品', cat_h:'产品目录。',
+    cat_sub:'点击面料类型，开始询价。',
     sc_label:'工厂出品', sc_h:'近期作品。',
     scf_all:'全部', scf_gar:'成衣', scf_fab:'面料', scf_emb:'刺绣',
     inq_label:'开始您的订单', inq_h:'48小时内\n获得报价。',
     ps1d:'分享您的照片、草图或样品。',
     ps2d:'我们48小时内回复面料方案及报价。',
-    ps3d:'实物样品寄送您处确认后再大货生产。',
-    f_name:'姓名 *', f_email:'邮箱 *',
-    f_msg:'告诉我们您的需求',
-    msg_ph:'面料类型、数量、目的地、交期…',
-    f_files:'参考图片 / 技术包（可选）',
+    ps3d:'实物样品寄送确认后再大货生产。',
+    f_name:'姓名 *', f_email:'邮箱 *', f_msg:'告诉我们您的需求',
+    f_files:'参考图片 / 技术包',
     fd_txt:'拖拽文件或点击选择', fd_sub:'JPG · PNG · PDF · AI',
     f_gdpr:'我同意就本次询价接受联系。',
-    btn_send:'发送询价 →',
+    btn_send:'发送询价',
     ft_tag:'广州纺织制造商，始于2012年。',
-    ft_addr:'中国广州', ft_rights:'版权所有',
+    ft_rights:'版权所有',
     msg_ok:'✓ 已发送！我们将在48小时内回复。',
     msg_err:'出现问题，请发邮件至 hello@dongxi.io',
     msg_val:'请填写姓名和邮箱。',
   },
   ru: {
-    nav_why:'Почему мы', nav_cat:'Каталог', nav_inq:'Запрос',
-    cta_inq:'Получить цену',
+    nav_cat:'Каталог', nav_sc:'Работы', nav_inq:'Запрос', nav_shop:'Магазин ↗',
     h_label:'Гуанчжоу · Прямой производитель',
-    h_line1:'Ткани.', h_line2:'Созданы для', h_line3:'вашего бренда.',
-    h_sub:'От фото или образца до готового изделия. Котировка за 48 ч. МОЗ от 50 м.',
-    hb_quote:'цена', bs_yr:'лет', bs_ct:'стран',
-    why_label:'Почему DONGXI',
-    wc1t:'Прямой производитель', wc1d:'Без посредников. Вы говорите с фабрикой напрямую.',
-    wc2t:'Быстрые сроки', wc2d:'Образец за 7–14 дней. Опт за 30–45 дней. МОЗ от 50 м.',
-    wc3t:'Полный сервис', wc3d:'Дизайн · образцы · пошив · упаковка · доставка.',
-    cat_label:'Что мы производим', cat_h:'Наш каталог',
-    cat_sub:'Нажмите на материал, чтобы начать запрос.',
+    h_line1:'Ткани', h_line2:'для вашего', h_line3:'бренда.',
+    cta_inq:'Получить цену', cta_shop:'Купить сейчас ↗',
+    hero_f1:'Цена за 48 ч', hero_f2:'МОЗ от 50 м', hero_f3:'Доставка по миру', hero_f4:'12 лет',
+    cat_label:'Что мы производим', cat_h:'Наш каталог.',
+    cat_sub:'Выберите материал, чтобы начать запрос.',
     sc_label:'С нашей фабрики', sc_h:'Последние работы.',
     scf_all:'Все', scf_gar:'Одежда', scf_fab:'Ткани', scf_emb:'Вышивка',
     inq_label:'Начать заказ', inq_h:'Получите цену\nза 48 часов.',
     ps1d:'Поделитесь фото, эскизами или образцами.',
-    ps2d:'Мы ответим в течение 48 часов с вариантами и ценой.',
-    ps3d:'Образец отправляется вам для согласования перед опт. заказом.',
-    f_name:'Имя *', f_email:'Email *',
-    f_msg:'Опишите ваш запрос',
-    msg_ph:'Тип ткани, количество, страна, сроки…',
-    f_files:'Референсы / тех. пакет (необязательно)',
+    ps2d:'Ответим в течение 48 часов с вариантами и ценой.',
+    ps3d:'Образец отправляется вам перед оптовым заказом.',
+    f_name:'Имя *', f_email:'Email *', f_msg:'Опишите ваш запрос',
+    f_files:'Референсы / тех. пакет',
     fd_txt:'Перетащите файлы или нажмите', fd_sub:'JPG · PNG · PDF · AI',
-    f_gdpr:'Я согласен на обратную связь по этому запросу.',
-    btn_send:'Отправить запрос →',
+    f_gdpr:'Согласен на обратную связь по этому запросу.',
+    btn_send:'Отправить запрос',
     ft_tag:'Гуанчжоуский текстильный производитель с 2012 года.',
-    ft_addr:'Гуанчжоу, Китай', ft_rights:'Все права защищены',
-    msg_ok:'✓ Отправлено! Ответим в течение 48 часов.',
+    ft_rights:'Все права защищены',
+    msg_ok:'✓ Отправлено. Ответим в течение 48 часов.',
     msg_err:'Ошибка — напишите на hello@dongxi.io',
     msg_val:'Пожалуйста, заполните имя и email.',
   },
   ar: {
-    nav_why:'لماذا نحن', nav_cat:'الكتالوج', nav_inq:'استفسار',
-    cta_inq:'احصل على عرض',
+    nav_cat:'الكتالوج', nav_sc:'أعمالنا', nav_inq:'استفسار', nav_shop:'المتجر ↗',
     h_label:'قوانغتشو · مباشرة من المصنع',
-    h_line1:'أقمشة.', h_line2:'مصممة', h_line3:'لعلامتك.',
-    h_sub:'من الصورة إلى المنتج النهائي. عرض خلال 48 ساعة. الحد الأدنى من 50 متر.',
-    hb_quote:'عرض', bs_yr:'سنة', bs_ct:'دولة',
-    why_label:'لماذا DONGXI',
-    wc1t:'مباشرة من المصنع', wc1d:'لا وسطاء. أنت تتحدث مع المُنتج مباشرة.',
-    wc2t:'تسليم سريع', wc2d:'عينة في 7-14 يوم. كميات كبيرة في 30-45 يوم.',
-    wc3t:'خدمة متكاملة', wc3d:'تصميم · عينات · خياطة · تعبئة · شحن.',
-    cat_label:'ما نصنعه', cat_h:'كتالوجنا',
-    cat_sub:'انقر على أي مادة لبدء الاستفسار.',
+    h_line1:'أقمشة', h_line2:'لعلامتك', h_line3:'التجارية.',
+    cta_inq:'احصل على عرض', cta_shop:'تسوق الآن ↗',
+    hero_f1:'عرض خلال 48 ساعة', hero_f2:'الحد الأدنى 50 متر', hero_f3:'شحن عالمي', hero_f4:'12 سنة',
+    cat_label:'ما نصنعه', cat_h:'كتالوجنا.',
+    cat_sub:'اختر مادة لبدء الاستفسار.',
     sc_label:'من مصنعنا', sc_h:'أعمال حديثة.',
     scf_all:'الكل', scf_gar:'ملابس', scf_fab:'أقمشة', scf_emb:'تطريز',
     inq_label:'ابدأ طلبك', inq_h:'احصل على عرض\nخلال 48 ساعة.',
     ps1d:'شارك صورك أو رسوماتك أو عيناتك.',
     ps2d:'نرد خلال 48 ساعة بالخيارات والأسعار.',
-    ps3d:'عينة مادية ترسل إليك للاعتماد قبل الإنتاج.',
-    f_name:'الاسم *', f_email:'البريد الإلكتروني *',
-    f_msg:'أخبرنا بما تحتاجه',
-    msg_ph:'نوع القماش، الكمية، الوجهة، الموعد النهائي…',
-    f_files:'صور مرجعية / حزمة تقنية (اختياري)',
+    ps3d:'عينة مادية ترسل إليك قبل الإنتاج.',
+    f_name:'الاسم *', f_email:'البريد الإلكتروني *', f_msg:'أخبرنا بما تحتاجه',
+    f_files:'صور مرجعية / حزمة تقنية',
     fd_txt:'اسحب الملفات أو انقر للتصفح', fd_sub:'JPG · PNG · PDF · AI',
     f_gdpr:'أوافق على التواصل بشأن استفساري.',
-    btn_send:'إرسال الاستفسار →',
+    btn_send:'إرسال الاستفسار',
     ft_tag:'مصنع نسيج قوانغتشو منذ 2012.',
-    ft_addr:'قوانغتشو، الصين', ft_rights:'جميع الحقوق محفوظة',
-    msg_ok:'✓ تم الإرسال! سنرد خلال 48 ساعة.',
+    ft_rights:'جميع الحقوق محفوظة',
+    msg_ok:'✓ تم الإرسال. سنرد خلال 48 ساعة.',
     msg_err:'حدث خطأ — راسلنا على hello@dongxi.io',
     msg_val:'يرجى ملء الاسم والبريد الإلكتروني.',
   },
@@ -523,67 +635,20 @@ let SHOWCASE = [];
 try { SHOWCASE = JSON.parse(showcaseJSON); } catch(e) {}
 let curLang = 'en';
 
-// ── RENDER FABS ──────────────────────────────────────────────
-function renderFabs() {
-  const g = document.getElementById('fabGrid');
-  if (!g) return;
-  g.innerHTML = FABS.map(f =>
-    `<button class="fb" data-fab="${f}">${f}</button>`
-  ).join('');
-  g.querySelectorAll('.fb').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const msg = document.getElementById('fMsg');
-      if (msg && !msg.value) msg.value = btn.dataset.fab + ' — ';
-      document.getElementById('inquiry')?.scrollIntoView({ behavior:'smooth' });
-    });
-  });
+// ── NAV SCROLL ───────────────────────────────────────────────
+function initNav() {
+  const nav = document.getElementById('nav');
+  if (!nav) return;
+  const update = () => {
+    const scrolled = window.scrollY > 60;
+    nav.classList.toggle('scrolled', scrolled);
+    nav.classList.toggle('on-hero', !scrolled);
+  };
+  update();
+  window.addEventListener('scroll', update, { passive: true });
 }
 
-// ── RENDER SHOWCASE ──────────────────────────────────────────
-let scFilter = 'all';
-function renderShowcase() {
-  const track = document.getElementById('scTrack');
-  const empty = document.getElementById('scEmpty');
-  if (!track) return;
-  const items = scFilter === 'all' ? SHOWCASE : SHOWCASE.filter(s => s.category === scFilter);
-  if (items.length === 0) {
-    track.innerHTML = '';
-    if (empty) empty.style.display = 'block';
-    return;
-  }
-  if (empty) empty.style.display = 'none';
-  track.innerHTML = items.map(s => {
-    const imgs = s.images ?? [];
-    const slides = imgs.map(src =>
-      `<div class="sc-slide"><img src="${src}" alt="${s.title}" loading="lazy"></div>`
-    ).join('');
-    const dots = imgs.length > 1
-      ? `<div class="sc-dots">${imgs.map((_,i) => `<div class="sc-dot${i===0?' on':''}"></div>`).join('')}</div>`
-      : '';
-    return `
-      <div class="sc-card" data-cat="${s.category}">
-        <div class="sc-card-media">
-          <div class="sc-slides">${slides}</div>${dots}
-        </div>
-        <div class="sc-info">
-          <div class="sc-tag">${s.tag || s.category}</div>
-          <div class="sc-title">${s.title}</div>
-          ${s.meta ? `<div class="sc-meta">${s.meta}</div>` : ''}
-        </div>
-      </div>`;
-  }).join('');
-  track.querySelectorAll('.sc-card').forEach(card => {
-    const sl = card.querySelector('.sc-slides');
-    const dots = [...card.querySelectorAll('.sc-dot')];
-    if (!sl || !dots.length) return;
-    sl.addEventListener('scroll', () => {
-      const idx = Math.round(sl.scrollLeft / sl.clientWidth);
-      dots.forEach((d,i) => d.classList.toggle('on', i===idx));
-    }, { passive:true });
-  });
-}
-
-// ── APPLY LANGUAGE ───────────────────────────────────────────
+// ── LANGUAGE ─────────────────────────────────────────────────
 function applyLang(l) {
   curLang = l;
   const t = T[l] || T.en;
@@ -592,16 +657,139 @@ function applyLang(l) {
     const k = el.dataset.k;
     if (t[k] !== undefined) el.innerHTML = t[k];
   });
-  document.querySelectorAll('[data-k-ph]').forEach(el => {
-    const k = el.dataset.kPh;
-    if (t[k]) el.placeholder = t[k];
+  ['langBtn','langBtnM'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.textContent = l.toUpperCase();
   });
-  document.querySelectorAll('.ld-item').forEach(b => b.classList.toggle('active', b.dataset.l === l));
-  const btn = document.getElementById('langBtn');
-  if (btn) btn.textContent = l.toUpperCase() + ' ▾';
+  document.querySelectorAll('.ld-item').forEach(b => {
+    b.style.color = b.dataset.l === l ? '#f8f5f1' : '';
+  });
 }
 
-// ── SUBMIT ───────────────────────────────────────────────────
+function initLang() {
+  ['langBtn','langBtnM'].forEach((id, i) => {
+    const btn = document.getElementById(id);
+    const drop = document.getElementById(i === 0 ? 'langDrop' : 'langDropM');
+    if (!btn || !drop) return;
+    btn.addEventListener('click', e => { e.stopPropagation(); drop.classList.toggle('open'); });
+    drop.querySelectorAll('.ld-item').forEach(item => {
+      item.addEventListener('click', () => { applyLang(item.dataset.l); drop.classList.remove('open'); });
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.lang-drop').forEach(d => d.classList.remove('open'));
+  });
+  const bl = navigator.language.slice(0,2).toLowerCase();
+  applyLang(['en','zh','ru','ar'].includes(bl) ? bl : 'en');
+}
+
+// ── FABS ─────────────────────────────────────────────────────
+function renderFabs() {
+  const g = document.getElementById('fabGrid');
+  if (!g) return;
+  g.innerHTML = FABS.map(f => `<button class="fb" data-fab="${f}">${f}</button>`).join('');
+  g.querySelectorAll('.fb').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const msg = document.getElementById('fMsg');
+      if (msg && !msg.value) msg.value = btn.dataset.fab + ' — ';
+      document.getElementById('inquiry')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+}
+
+// ── SHOWCASE ─────────────────────────────────────────────────
+let scFilter = 'all';
+function renderShowcase() {
+  const track = document.getElementById('scTrack');
+  const empty = document.getElementById('scEmpty');
+  if (!track) return;
+  const items = scFilter === 'all' ? SHOWCASE : SHOWCASE.filter(s => s.category === scFilter);
+  if (!items.length) { track.innerHTML = ''; if (empty) empty.style.display = 'block'; return; }
+  if (empty) empty.style.display = 'none';
+  track.innerHTML = items.map(s => {
+    const imgs = s.images ?? [];
+    const slides = imgs.map(src => `<div class="sc-slide"><img src="${src}" alt="${s.title}" loading="lazy"></div>`).join('');
+    const dots = imgs.length > 1
+      ? `<div class="sc-dots">${imgs.map((_,i) => `<div class="sc-dot${i===0?' on':''}"></div>`).join('')}</div>`
+      : '';
+    return `<div class="sc-card" data-cat="${s.category}">
+      <div class="sc-card-media"><div class="sc-slides">${slides}</div>${dots}</div>
+      <div class="sc-info">
+        <div class="sc-tag">${s.tag||s.category}</div>
+        <div class="sc-title">${s.title}</div>
+        ${s.meta?`<div class="sc-meta">${s.meta}</div>`:''}
+      </div></div>`;
+  }).join('');
+  track.querySelectorAll('.sc-card').forEach(card => {
+    const sl = card.querySelector('.sc-slides');
+    const dots = [...card.querySelectorAll('.sc-dot')];
+    if (!sl||!dots.length) return;
+    sl.addEventListener('scroll', () => {
+      const idx = Math.round(sl.scrollLeft / sl.clientWidth);
+      dots.forEach((d,i) => d.classList.toggle('on', i===idx));
+    }, { passive:true });
+  });
+}
+
+function initShowcaseDrag() {
+  const wrap = document.querySelector('.sc-track-wrap');
+  if (!wrap) return;
+  let down=false, sx=0, sl=0;
+  wrap.addEventListener('mousedown', e => { down=true; sx=e.pageX-wrap.offsetLeft; sl=wrap.scrollLeft; wrap.style.cursor='grabbing'; });
+  wrap.addEventListener('mouseleave', () => { down=false; wrap.style.cursor='grab'; });
+  wrap.addEventListener('mouseup',   () => { down=false; wrap.style.cursor='grab'; });
+  wrap.addEventListener('mousemove', e => { if(!down) return; e.preventDefault(); wrap.scrollLeft=sl-(e.pageX-wrap.offsetLeft-sx); });
+}
+
+// ── FORM ─────────────────────────────────────────────────────
+function initForm() {
+  const drop  = document.getElementById('fileDrop');
+  const input = document.getElementById('fFiles');
+  const list  = document.getElementById('fileList');
+  if (drop && input && list) {
+    drop.addEventListener('click', () => input.click());
+    drop.addEventListener('dragover', e => { e.preventDefault(); drop.style.borderColor='rgba(248,245,241,.4)'; });
+    drop.addEventListener('dragleave', () => { drop.style.borderColor=''; });
+    drop.addEventListener('drop', e => {
+      e.preventDefault(); drop.style.borderColor='';
+      const dt = new DataTransfer();
+      [...(input.files??[])].forEach(f=>dt.items.add(f));
+      [...(e.dataTransfer?.files??[])].forEach(f=>dt.items.add(f));
+      input.files=dt.files; renderFiles();
+    });
+    input.addEventListener('change', renderFiles);
+    function renderFiles() {
+      list.innerHTML = [...(input.files??[])].map(f=>`<div class="fi-chip">${f.name}</div>`).join('');
+    }
+  }
+
+  document.getElementById('iqForm')?.addEventListener('submit', async e => {
+    e.preventDefault();
+    const t = T[curLang];
+    const name  = document.getElementById('fName').value.trim();
+    const email = document.getElementById('fEmail').value.trim();
+    const gdpr  = document.getElementById('fGdpr').checked;
+    if (!name||!email||!gdpr) { showMsg(t.msg_val,'err'); return; }
+    const btn = document.getElementById('subBtn');
+    if (btn) { btn.disabled=true; btn.textContent='…'; }
+    const fd = new FormData();
+    fd.append('access_key','e9868ff6-1838-4053-8bf9-5f701496acfa');
+    fd.append('subject',`New DONGXI Inquiry from ${name}`);
+    fd.append('name', name);
+    fd.append('email', email);
+    fd.append('message', document.getElementById('fMsg')?.value||'');
+    const files = document.getElementById('fFiles')?.files??[];
+    for (let i=0;i<files.length;i++) fd.append('attachment'+i, files[i], files[i].name);
+    try {
+      const res  = await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});
+      const json = await res.json();
+      showMsg(json.success ? t.msg_ok : t.msg_err, json.success ? 'ok' : 'err');
+      if (json.success) { document.getElementById('iqForm').reset(); list&&(list.innerHTML=''); }
+    } catch { showMsg(t.msg_err,'err'); }
+    finally { if(btn){btn.disabled=false;btn.textContent=T[curLang].btn_send;} }
+  });
+}
+
 function showMsg(msg, cls) {
   const el = document.getElementById('iqMsg');
   if (!el) return;
@@ -609,116 +797,22 @@ function showMsg(msg, cls) {
   el.className = 'iq-msg ' + cls;
 }
 
-async function submitF(e) {
-  e.preventDefault();
-  const t = T[curLang];
-  const name  = document.getElementById('fName').value.trim();
-  const email = document.getElementById('fEmail').value.trim();
-  const gdpr  = document.getElementById('fGdpr').checked;
-  if (!name || !email || !gdpr) { showMsg(t.msg_val,'err'); return; }
-  const btn = document.getElementById('subBtn');
-  if (btn) { btn.disabled = true; btn.textContent = '…'; }
-  const fd = new FormData();
-  fd.append('access_key', 'e9868ff6-1838-4053-8bf9-5f701496acfa');
-  fd.append('subject', `New DONGXI Inquiry from ${name}`);
-  fd.append('name',    name);
-  fd.append('email',   email);
-  fd.append('message', document.getElementById('fMsg')?.value || '');
-  const files = document.getElementById('fFiles')?.files ?? [];
-  for (let i = 0; i < files.length; i++) fd.append('attachment'+i, files[i], files[i].name);
-  try {
-    const res  = await fetch('https://api.web3forms.com/submit', { method:'POST', body:fd });
-    const json = await res.json();
-    if (json.success) {
-      showMsg(t.msg_ok, 'ok');
-      document.getElementById('iqForm')?.reset();
-      document.getElementById('fileList').innerHTML = '';
-    } else { showMsg(t.msg_err, 'err'); }
-  } catch { showMsg(t.msg_err, 'err'); }
-  finally {
-    if (btn) { btn.disabled = false; btn.textContent = T[curLang].btn_send; }
-  }
-}
-
-// ── FILE INPUT ───────────────────────────────────────────────
-function initFileInput() {
-  const drop  = document.getElementById('fileDrop');
-  const input = document.getElementById('fFiles');
-  const list  = document.getElementById('fileList');
-  if (!drop||!input||!list) return;
-  drop.addEventListener('click', () => input.click());
-  drop.addEventListener('dragover', e => { e.preventDefault(); drop.style.borderColor='var(--rust)'; });
-  drop.addEventListener('dragleave', () => { drop.style.borderColor=''; });
-  drop.addEventListener('drop', e => {
-    e.preventDefault(); drop.style.borderColor='';
-    const dt = new DataTransfer();
-    [...(input.files??[])].forEach(f => dt.items.add(f));
-    [...(e.dataTransfer?.files??[])].forEach(f => dt.items.add(f));
-    input.files = dt.files; renderFileList();
-  });
-  input.addEventListener('change', renderFileList);
-  function renderFileList() {
-    list.innerHTML = [...(input.files??[])].map(f => `<div class="fi-chip">${f.name}</div>`).join('');
-  }
-}
-
-// ── DRAG SCROLL SHOWCASE ─────────────────────────────────────
-function initDragScroll() {
-  const wrap = document.querySelector('.sc-track-wrap');
-  if (!wrap) return;
-  let isDown=false, startX=0, scrollLeft=0;
-  wrap.addEventListener('mousedown', e => { isDown=true; startX=e.pageX-wrap.offsetLeft; scrollLeft=wrap.scrollLeft; wrap.style.cursor='grabbing'; });
-  wrap.addEventListener('mouseleave', () => { isDown=false; wrap.style.cursor='grab'; });
-  wrap.addEventListener('mouseup',   () => { isDown=false; wrap.style.cursor='grab'; });
-  wrap.addEventListener('mousemove', e => {
-    if (!isDown) return; e.preventDefault();
-    wrap.scrollLeft = scrollLeft-(e.pageX-wrap.offsetLeft-startX);
-  });
-}
-
-// ── TOPBAR SCROLL ────────────────────────────────────────────
-function initTopbar() {
-  const top = document.getElementById('top');
-  if (!top) return;
-  window.addEventListener('scroll', () => {
-    top.style.borderBottomColor = window.scrollY > 20 ? 'rgba(240,235,224,.1)' : 'rgba(240,235,224,.06)';
-  }, { passive:true });
-}
-
 // ── INIT ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  initNav();
+  initLang();
   renderFabs();
   renderShowcase();
-  initFileInput();
-  initDragScroll();
-  initTopbar();
-
-  const browserLang = navigator.language.slice(0,2).toLowerCase();
-  const supported = ['en','zh','ru','ar'];
-  applyLang(supported.includes(browserLang) ? browserLang : 'en');
-
-  document.getElementById('langBtn')?.addEventListener('click', () => {
-    document.getElementById('langDrop')?.classList.toggle('open');
-  });
-  document.querySelectorAll('.ld-item').forEach(btn => {
-    btn.addEventListener('click', () => {
-      applyLang(btn.dataset.l);
-      document.getElementById('langDrop')?.classList.remove('open');
-    });
-  });
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.lang-wrap')) document.getElementById('langDrop')?.classList.remove('open');
-  });
+  initShowcaseDrag();
+  initForm();
 
   document.querySelectorAll('.scf').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.scf').forEach(b => b.classList.remove('on'));
-      btn.classList.add('on');
+      document.querySelectorAll('.scf').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
       scFilter = btn.dataset.f ?? 'all';
       renderShowcase();
     });
   });
-
-  document.getElementById('iqForm')?.addEventListener('submit', submitF);
 });
 </script>
