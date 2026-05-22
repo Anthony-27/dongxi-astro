@@ -30,7 +30,7 @@ const showcaseJSON = JSON.stringify(
     <a href="#catalog" class="tnl" data-k="nav_cat">Catalog</a>
     <a href="#process" class="tnl" data-k="nav_how">Process</a>
     <a href="#inquiry" class="tnl" data-k="nav_inq">Inquiry</a>
-    <a href="/shop"    class="tnl">Shop →</a>
+    <a href="/shop" class="shop-link">Shop <span class="shop-link-arrow">↗</span></a>
   </nav>
   <a href="/shop" class="shop-mobile-btn">Shop →</a>
   <div class="top-r">
@@ -459,7 +459,30 @@ body { background: var(--paper); color: var(--ink); }
 .top-nav .tnl { font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(240,235,224,.45); text-decoration:none; transition:color .15s; }
 .top-nav .tnl:hover { color:var(--paper); }
 @media(max-width:760px){ .top-nav { display:none; } }
-.shop-mobile-btn { display:none; font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--paper); text-decoration:none; padding:7px 14px; border:1px solid rgba(240,235,224,.25); border-radius:2px; }
+.shop-link {
+  font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--paper); text-decoration:none;
+  padding:7px 16px;
+  border:1px solid rgba(240,235,224,.3);
+  border-radius:2px;
+  display:inline-flex; align-items:center; gap:6px;
+  transition:background .15s, border-color .15s, letter-spacing .15s;
+  position:relative; overflow:hidden;
+}
+.shop-link::before {
+  content:'';
+  position:absolute; inset:0;
+  background:var(--rust);
+  transform:translateX(-101%);
+  transition:transform .22s cubic-bezier(.4,0,.2,1);
+}
+.shop-link:hover::before { transform:translateX(0); }
+.shop-link:hover { border-color:var(--rust); }
+.shop-link span, .shop-link-arrow { position:relative; z-index:1; }
+.shop-link-arrow { font-size:11px; transition:transform .15s; }
+.shop-link:hover .shop-link-arrow { transform:translate(2px,-2px); }
+.shop-mobile-btn { display:none; font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--paper); text-decoration:none; padding:7px 16px; background:var(--rust); border-radius:2px; transition:background .15s; }
+.shop-mobile-btn:hover { background:var(--rust2); }
 @media(max-width:760px){ .shop-mobile-btn { display:inline-block; } }
 .top-r { display:flex; align-items:center; gap:14px; }
 
@@ -1080,7 +1103,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initDragScroll();
   initFileInput();
   initTopbar();
-  applyLang('en');
+  const browserLang = navigator.language.slice(0,2).toLowerCase();
+  const supported = ['en','zh','ru','ar'];
+  applyLang(supported.includes(browserLang) ? browserLang : 'en');
   applyCurr('USD');
 
   // Lang toggle
