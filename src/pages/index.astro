@@ -149,13 +149,78 @@ const showcaseJSON = JSON.stringify(
         <label class="iq-label" data-k="f_dest">Destination country</label>
         <select class="iq-in iq-select" id="fDest">
           <option value="">— select —</option>
-          <optgroup label="Asia"><option>Japan</option><option>South Korea</option><option>Singapore</option><option>Malaysia</option><option>Thailand</option><option>Vietnam</option><option>Philippines</option><option>Indonesia</option><option>India</option><option>Bangladesh</option><option>Pakistan</option><option>China · 中国大陆</option><option>China · 中国香港 HK</option><option>China · 中国澳门 MO</option><option>China · 中国台湾 TW</option></optgroup>
-          <optgroup label="Middle East"><option>UAE</option><option>Saudi Arabia</option><option>Qatar</option><option>Kuwait</option><option>Turkey</option><option>Israel</option></optgroup>
-          <optgroup label="Europe"><option>United Kingdom</option><option>France</option><option>Germany</option><option>Italy</option><option>Spain</option><option>Netherlands</option><option>Sweden</option><option>Switzerland</option><option>Poland</option><option>Russia</option><option>Ukraine</option></optgroup>
-          <optgroup label="Americas"><option>United States</option><option>Canada</option><option>Mexico</option><option>Brazil</option><option>Colombia</option></optgroup>
-          <optgroup label="Africa"><option>South Africa</option><option>Nigeria</option><option>Morocco</option><option>Egypt</option></optgroup>
-          <optgroup label="Oceania"><option>Australia</option><option>New Zealand</option></optgroup>
-          <option value="Other">Other</option>
+          <optgroup label="Asia · 亚洲">
+            <option>Japan · 日本</option>
+            <option>South Korea · 韩国</option>
+            <option>Singapore · 新加坡</option>
+            <option>Malaysia · 马来西亚</option>
+            <option>Thailand · 泰国</option>
+            <option>Vietnam · 越南</option>
+            <option>Philippines · 菲律宾</option>
+            <option>Indonesia · 印度尼西亚</option>
+            <option>India · 印度</option>
+            <option>Bangladesh · 孟加拉国</option>
+            <option>Pakistan · 巴基斯坦</option>
+            <option>Sri Lanka · 斯里兰卡</option>
+            <option>China · 中国大陆</option>
+            <option>China · 中国香港 HK</option>
+            <option>China · 中国澳门 MO</option>
+            <option>China · 中国台湾 TW</option>
+          </optgroup>
+          <optgroup label="Middle East · 中东">
+            <option>United Arab Emirates · 阿联酋</option>
+            <option>Saudi Arabia · 沙特阿拉伯</option>
+            <option>Qatar · 卡塔尔</option>
+            <option>Kuwait · 科威特</option>
+            <option>Bahrain · 巴林</option>
+            <option>Oman · 阿曼</option>
+            <option>Jordan · 约旦</option>
+            <option>Lebanon · 黎巴嫩</option>
+            <option>Israel · 以色列</option>
+            <option>Turkey · 土耳其</option>
+          </optgroup>
+          <optgroup label="Europe · 欧洲">
+            <option>United Kingdom · 英国</option>
+            <option>France · 法国</option>
+            <option>Germany · 德国</option>
+            <option>Italy · 意大利</option>
+            <option>Spain · 西班牙</option>
+            <option>Portugal · 葡萄牙</option>
+            <option>Netherlands · 荷兰</option>
+            <option>Belgium · 比利时</option>
+            <option>Sweden · 瑞典</option>
+            <option>Denmark · 丹麦</option>
+            <option>Norway · 挪威</option>
+            <option>Finland · 芬兰</option>
+            <option>Switzerland · 瑞士</option>
+            <option>Austria · 奥地利</option>
+            <option>Poland · 波兰</option>
+            <option>Czech Republic · 捷克</option>
+            <option>Greece · 希腊</option>
+            <option>Ukraine · 乌克兰</option>
+          </optgroup>
+          <optgroup label="Americas · 美洲">
+            <option>United States · 美国</option>
+            <option>Canada · 加拿大</option>
+            <option>Mexico · 墨西哥</option>
+            <option>Brazil · 巴西</option>
+            <option>Argentina · 阿根廷</option>
+            <option>Colombia · 哥伦比亚</option>
+            <option>Chile · 智利</option>
+          </optgroup>
+          <optgroup label="Africa · 非洲">
+            <option>South Africa · 南非</option>
+            <option>Nigeria · 尼日利亚</option>
+            <option>Kenya · 肯尼亚</option>
+            <option>Ghana · 加纳</option>
+            <option>Morocco · 摩洛哥</option>
+            <option>Egypt · 埃及</option>
+          </optgroup>
+          <optgroup label="Oceania · 大洋洲">
+            <option>Australia · 澳大利亚</option>
+            <option>New Zealand · 新西兰</option>
+          </optgroup>
+          <option value="Other">Other · 其他</option>
         </select>
       </div>
       <div class="iq-row">
@@ -562,7 +627,7 @@ const T = {
   en: {
     nav_cat:'Catalog', nav_sc:'Work', nav_inq:'Inquiry', nav_shop:'Shop ↗',
     h_label:'Guangzhou · Direct Factory',
-    h_line1:'Your Vision,', h_line2:'Fully', h_line3:'Fabricated.',
+    h_line1:'Beyond Fabric.', h_line2:'Building', h_line3:'Your Brand.',
     cta_inq:'Get a Quote', cta_shop:'Shop Ready Stock ↗',
     hero_f1:'48h quote', hero_f2:'MOQ from 50 m', hero_f3:'Ships worldwide', hero_f4:'Est. 1995',
     cat_label:'What we make', cat_h:'Our catalog.',
@@ -591,7 +656,7 @@ const T = {
   zh: {
     nav_cat:'产品目录', nav_sc:'作品', nav_inq:'询价', nav_shop:'购买 ↗',
     h_label:'广州 · 直接工厂',
-    h_line1:'您的愿景，', h_line2:'我们', h_line3:'完整呈现。',
+    h_line1:'不止面料，', h_line2:'成就', h_line3:'您的品牌。',
     cta_inq:'立即询价', cta_shop:'购买现货 ↗',
     hero_f1:'48小时报价', hero_f2:'最低起订50米', hero_f3:'全球发货', hero_f4:'创立于1995年',
     cat_label:'我们的产品', cat_h:'产品目录。',
@@ -620,7 +685,7 @@ const T = {
   ru: {
     nav_cat:'Каталог', nav_sc:'Работы', nav_inq:'Запрос', nav_shop:'Магазин ↗',
     h_label:'Гуанчжоу · Прямой производитель',
-    h_line1:'Ваше видение,', h_line2:'воплощённое', h_line3:'полностью.',
+    h_line1:'Больше чем ткань.', h_line2:'Строим', h_line3:'ваш бренд.',
     cta_inq:'Получить цену', cta_shop:'Купить сейчас ↗',
     hero_f1:'Цена за 48 ч', hero_f2:'МОЗ от 50 м', hero_f3:'Доставка по миру', hero_f4:'Осн. в 1995',
     cat_label:'Что мы производим', cat_h:'Наш каталог.',
@@ -649,7 +714,7 @@ const T = {
   ar: {
     nav_cat:'الكتالوج', nav_sc:'أعمالنا', nav_inq:'استفسار', nav_shop:'المتجر ↗',
     h_label:'قوانغتشو · مباشرة من المصنع',
-    h_line1:'رؤيتك،', h_line2:'مُجسَّدة', h_line3:'بالكامل.',
+    h_line1:'أبعد من القماش.', h_line2:'نبني', h_line3:'علامتك.',
     cta_inq:'احصل على عرض', cta_shop:'تسوق الآن ↗',
     hero_f1:'عرض خلال 48 ساعة', hero_f2:'الحد الأدنى 50 متر', hero_f3:'شحن عالمي', hero_f4:'تأسس 1995',
     cat_label:'ما نصنعه', cat_h:'كتالوجنا.',
