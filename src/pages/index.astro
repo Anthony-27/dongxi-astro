@@ -1070,6 +1070,9 @@ function initTopbar() {
   }, { passive: true });
 }
 
+// ── EXPOSE TO GLOBAL (for onclick= attributes) ───────────────
+window.goS = goS;
+
 // ── INIT ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderFabs();
