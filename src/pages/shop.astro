@@ -66,6 +66,7 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
         <button class="fp" data-f="fabric">Fabrics</button>
         <button class="fp" data-f="sample">Swatch bundles</button>
         <button class="fp" data-f="garment">Garments</button>
+        <button class="fp" data-f="trimming">Trimmings 辅料</button>
       </div>
 
       {products.length === 0 ? (
@@ -117,6 +118,7 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
                   </div>
                   <div class="pc-name">{p.name}</div>
                   {p.moq && <div class="pc-moq">{p.moq}</div>}
+                  {p.composition && <div class="pc-comp">{p.composition}</div>}
                   <div class="pc-price-row">
                     <span class="pc-price">${p.price.toFixed(2)}</span>
                     <span class="pc-unit">{p.unit}</span>
@@ -291,6 +293,7 @@ body { background: var(--paper); color: var(--ink); }
 .pc-season { color: var(--rust); font-weight:500; }
 .pc-name { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.35; margin-top: 5px; flex: 1; }
 .pc-moq  { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.3); margin-top:4px; }
+.pc-comp { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.38); margin-top:3px; letter-spacing:.04em; }
 .pc-price-row { display:flex; align-items:baseline; gap:5px; margin-top:12px; }
 .pc-price { font-family:'Libre Baskerville',serif; font-size:20px; color:var(--ink); }
 .pc-unit  { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.35); }

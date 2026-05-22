@@ -30,6 +30,7 @@ export async function getProducts() {
       unit,
       moq,
       badge,
+      composition,
       description,
       images,
       video

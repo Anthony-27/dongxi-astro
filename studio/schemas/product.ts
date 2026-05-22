@@ -44,9 +44,10 @@ export const product = defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'Fabric 面料',         value: 'fabric'   },
-          { title: 'Swatch Bundle 色样包', value: 'sample'   },
-          { title: 'Garment 成衣',         value: 'garment'  },
+          { title: 'Fabric 面料',         value: 'fabric'    },
+          { title: 'Swatch Bundle 色样包', value: 'sample'    },
+          { title: 'Garment 成衣',         value: 'garment'   },
+          { title: 'Trimming 辅料',        value: 'trimming'  },
         ],
         layout: 'radio',
       },
@@ -98,6 +99,13 @@ export const product = defineType({
       title: '最低起订说明',
       type: 'string',
       placeholder: '例如: Min. 20m  /  Ships worldwide  /  Min. 100 pcs',
+    }),
+    defineField({
+      name: 'composition',
+      title: '成分 / Composition',
+      type: 'string',
+      placeholder: '例如: 80% Silk 20% Spandex  /  100% Cotton  /  Polyester Lace',
+      description: '面料成分，显示在产品卡片上',
     }),
     defineField({
       name: 'description',
