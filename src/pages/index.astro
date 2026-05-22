@@ -69,7 +69,7 @@ const showcaseJSON = JSON.stringify(
     </h1>
     <div class="hero-actions">
       <a href="#inquiry" class="btn-ghost btn-light" data-k="cta_inq">Get a Quote</a>
-      <a href="/shop"    class="btn-ghost btn-light btn-ghost-dim" data-k="cta_shop">Shop Ready Stock ↗</a>
+      <a href="/shop"    class="btn-solid-rust" data-k="cta_shop">Shop Ready Stock ↗</a>
     </div>
   </div>
   <div class="hero-foot">
@@ -137,8 +137,30 @@ const showcaseJSON = JSON.stringify(
         </div>
       </div>
       <div class="iq-row">
+        <label class="iq-label" data-k="f_type">Order type</label>
+        <div class="radio-grid">
+          <label class="ropt"><input type="radio" name="orderType" value="photo_to_bulk"><span data-k="fo1">Photo / sketch → bulk production</span></label>
+          <label class="ropt"><input type="radio" name="orderType" value="sample_to_bulk"><span data-k="fo2">Send sample → replicate & bulk</span></label>
+          <label class="ropt"><input type="radio" name="orderType" value="fabric_only"><span data-k="fo3">Source fabric only</span></label>
+          <label class="ropt"><input type="radio" name="orderType" value="full_cmt"><span data-k="fo4">Full CMT — cut, make & trim</span></label>
+        </div>
+      </div>
+      <div class="iq-row">
+        <label class="iq-label" data-k="f_dest">Destination country</label>
+        <select class="iq-in iq-select" id="fDest">
+          <option value="">— select —</option>
+          <optgroup label="Asia"><option>Japan</option><option>South Korea</option><option>Singapore</option><option>Malaysia</option><option>Thailand</option><option>Vietnam</option><option>Philippines</option><option>Indonesia</option><option>India</option><option>Bangladesh</option><option>Pakistan</option><option>China · 中国大陆</option><option>China · 中国香港 HK</option><option>China · 中国澳门 MO</option><option>China · 中国台湾 TW</option></optgroup>
+          <optgroup label="Middle East"><option>UAE</option><option>Saudi Arabia</option><option>Qatar</option><option>Kuwait</option><option>Turkey</option><option>Israel</option></optgroup>
+          <optgroup label="Europe"><option>United Kingdom</option><option>France</option><option>Germany</option><option>Italy</option><option>Spain</option><option>Netherlands</option><option>Sweden</option><option>Switzerland</option><option>Poland</option><option>Russia</option><option>Ukraine</option></optgroup>
+          <optgroup label="Americas"><option>United States</option><option>Canada</option><option>Mexico</option><option>Brazil</option><option>Colombia</option></optgroup>
+          <optgroup label="Africa"><option>South Africa</option><option>Nigeria</option><option>Morocco</option><option>Egypt</option></optgroup>
+          <optgroup label="Oceania"><option>Australia</option><option>New Zealand</option></optgroup>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="iq-row">
         <label class="iq-label" data-k="f_msg">Tell us what you need</label>
-        <textarea class="iq-in" id="fMsg" rows="5" placeholder="Fabric type, quantity, destination, deadline…"></textarea>
+        <textarea class="iq-in" id="fMsg" rows="4" placeholder="Fabric type, quantity, deadline…"></textarea>
       </div>
       <div class="iq-row">
         <label class="iq-label" data-k="f_files">Reference photos / tech pack</label>
@@ -177,7 +199,7 @@ const showcaseJSON = JSON.stringify(
     </div>
   </div>
   <div class="foot-copy">
-    <span>© 2025 DONGXI · 广州东西贸易有限公司</span>
+    <span>© 1995–2025 DONGXI · 广州东西贸易有限公司</span>
     <span data-k="ft_rights">All rights reserved</span>
   </div>
 </footer>
@@ -285,6 +307,18 @@ body { background: #f8f5f1; color: #1a1a1a; font-family: 'Azeret Mono', monospac
 .btn-ghost-dim:hover { opacity: 1; }
 .btn-dark { color: #1a1a1a; }
 .btn-dark:hover { color: #f8f5f1; }
+.btn-solid-rust {
+  display: inline-block;
+  font-family: 'Azeret Mono', monospace;
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 36px;
+  background: var(--rust); color: #f8f5f1;
+  border: 1px solid var(--rust);
+  transition: background .25s, border-color .25s;
+  cursor: pointer; border-radius: 0; white-space: nowrap;
+}
+.btn-solid-rust:hover { background: #a03d20; border-color: #a03d20; }
 
 /* ── HERO ── */
 .hero {
@@ -489,6 +523,12 @@ textarea.iq-in { resize: none; line-height: 1.8; }
 .iq-bottom { flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
 .iq-gdpr { display:flex; align-items:flex-start; gap:10px; font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.04em; color:rgba(248,245,241,.3); cursor:pointer; line-height:1.7; }
 .iq-gdpr input { accent-color:var(--rust); margin-top:3px; flex-shrink:0; }
+.radio-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; padding-top:4px; }
+@media(max-width:560px){ .radio-grid { grid-template-columns:1fr; } }
+.ropt { display:flex; align-items:flex-start; gap:10px; font-family:'Azeret Mono',monospace; font-size:9px; letter-spacing:.04em; color:rgba(248,245,241,.45); cursor:pointer; line-height:1.7; }
+.ropt input { accent-color:var(--rust); margin-top:3px; flex-shrink:0; }
+.iq-select { cursor:pointer; }
+.iq-select option, .iq-select optgroup { background:#1a1a1a; color:#f8f5f1; }
 .iq-msg { font-family:'Azeret Mono',monospace; font-size:10px; padding:12px 16px; display:none; }
 .iq-msg.ok  { background:rgba(60,140,60,.12); color:#7ecf7e; display:block; }
 .iq-msg.err { background:rgba(200,60,60,.1);  color:#e08080; display:block; }
@@ -522,9 +562,9 @@ const T = {
   en: {
     nav_cat:'Catalog', nav_sc:'Work', nav_inq:'Inquiry', nav_shop:'Shop ↗',
     h_label:'Guangzhou · Direct Factory',
-    h_line1:'Fabric', h_line2:'for your', h_line3:'brand.',
+    h_line1:'Your Vision,', h_line2:'Fully', h_line3:'Fabricated.',
     cta_inq:'Get a Quote', cta_shop:'Shop Ready Stock ↗',
-    hero_f1:'48h quote', hero_f2:'MOQ from 50 m', hero_f3:'Ships worldwide', hero_f4:'12 years',
+    hero_f1:'48h quote', hero_f2:'MOQ from 50 m', hero_f3:'Ships worldwide', hero_f4:'Est. 1995',
     cat_label:'What we make', cat_h:'Our catalog.',
     cat_sub:'Select a material to start an inquiry.',
     sc_label:'From our factory', sc_h:'Recent work.',
@@ -533,12 +573,16 @@ const T = {
     ps1d:'Share photos, sketches or samples.',
     ps2d:'We reply within 48 hours with options & price.',
     ps3d:'Sample shipped to you before bulk production.',
-    f_name:'Name *', f_email:'Email *', f_msg:'Tell us what you need',
+    f_name:'Name *', f_email:'Email *',
+    f_type:'Order type', f_dest:'Destination country',
+    fo1:'Photo / sketch → bulk production', fo2:'Send sample → replicate & bulk',
+    fo3:'Source fabric only', fo4:'Full CMT — cut, make & trim',
+    f_msg:'Tell us what you need',
     f_files:'Reference photos / tech pack',
     fd_txt:'Drop files or click to browse', fd_sub:'JPG · PNG · PDF · AI',
     f_gdpr:'I agree to be contacted regarding my inquiry.',
     btn_send:'Send Inquiry',
-    ft_tag:'Guangzhou textile manufacturer since 2012.',
+    ft_tag:'Guangzhou textile manufacturer since 1995.',
     ft_rights:'All rights reserved',
     msg_ok:'✓ Sent. We\'ll reply within 48 hours.',
     msg_err:'Something went wrong — email hello@dongxi.io',
@@ -547,9 +591,9 @@ const T = {
   zh: {
     nav_cat:'产品目录', nav_sc:'作品', nav_inq:'询价', nav_shop:'购买 ↗',
     h_label:'广州 · 直接工厂',
-    h_line1:'面料', h_line2:'为您的', h_line3:'品牌而生。',
+    h_line1:'您的愿景，', h_line2:'我们', h_line3:'完整呈现。',
     cta_inq:'立即询价', cta_shop:'购买现货 ↗',
-    hero_f1:'48小时报价', hero_f2:'最低起订50米', hero_f3:'全球发货', hero_f4:'12年经验',
+    hero_f1:'48小时报价', hero_f2:'最低起订50米', hero_f3:'全球发货', hero_f4:'创立于1995年',
     cat_label:'我们的产品', cat_h:'产品目录。',
     cat_sub:'点击面料类型，开始询价。',
     sc_label:'工厂出品', sc_h:'近期作品。',
@@ -558,12 +602,16 @@ const T = {
     ps1d:'分享您的照片、草图或样品。',
     ps2d:'我们48小时内回复面料方案及报价。',
     ps3d:'实物样品寄送确认后再大货生产。',
-    f_name:'姓名 *', f_email:'邮箱 *', f_msg:'告诉我们您的需求',
+    f_name:'姓名 *', f_email:'邮箱 *',
+    f_type:'订单类型', f_dest:'目的地国家',
+    fo1:'来图/草图 → 批量生产', fo2:'寄样衣 → 复制并大货',
+    fo3:'仅采购面料', fo4:'全程CMT — 裁剪、缝制、修整',
+    f_msg:'告诉我们您的需求',
     f_files:'参考图片 / 技术包',
     fd_txt:'拖拽文件或点击选择', fd_sub:'JPG · PNG · PDF · AI',
     f_gdpr:'我同意就本次询价接受联系。',
     btn_send:'发送询价',
-    ft_tag:'广州纺织制造商，始于2012年。',
+    ft_tag:'广州纺织制造商，始于1995年。',
     ft_rights:'版权所有',
     msg_ok:'✓ 已发送！我们将在48小时内回复。',
     msg_err:'出现问题，请发邮件至 hello@dongxi.io',
@@ -572,9 +620,9 @@ const T = {
   ru: {
     nav_cat:'Каталог', nav_sc:'Работы', nav_inq:'Запрос', nav_shop:'Магазин ↗',
     h_label:'Гуанчжоу · Прямой производитель',
-    h_line1:'Ткани', h_line2:'для вашего', h_line3:'бренда.',
+    h_line1:'Ваше видение,', h_line2:'воплощённое', h_line3:'полностью.',
     cta_inq:'Получить цену', cta_shop:'Купить сейчас ↗',
-    hero_f1:'Цена за 48 ч', hero_f2:'МОЗ от 50 м', hero_f3:'Доставка по миру', hero_f4:'12 лет',
+    hero_f1:'Цена за 48 ч', hero_f2:'МОЗ от 50 м', hero_f3:'Доставка по миру', hero_f4:'Осн. в 1995',
     cat_label:'Что мы производим', cat_h:'Наш каталог.',
     cat_sub:'Выберите материал, чтобы начать запрос.',
     sc_label:'С нашей фабрики', sc_h:'Последние работы.',
@@ -583,7 +631,11 @@ const T = {
     ps1d:'Поделитесь фото, эскизами или образцами.',
     ps2d:'Ответим в течение 48 часов с вариантами и ценой.',
     ps3d:'Образец отправляется вам перед оптовым заказом.',
-    f_name:'Имя *', f_email:'Email *', f_msg:'Опишите ваш запрос',
+    f_name:'Имя *', f_email:'Email *',
+    f_type:'Тип заказа', f_dest:'Страна назначения',
+    fo1:'Фото/эскиз → массовое производство', fo2:'Прислать образец → копия и опт',
+    fo3:'Только закупка ткани', fo4:'Полный CMT — раскрой, пошив, отделка',
+    f_msg:'Опишите ваш запрос',
     f_files:'Референсы / тех. пакет',
     fd_txt:'Перетащите файлы или нажмите', fd_sub:'JPG · PNG · PDF · AI',
     f_gdpr:'Согласен на обратную связь по этому запросу.',
@@ -597,9 +649,9 @@ const T = {
   ar: {
     nav_cat:'الكتالوج', nav_sc:'أعمالنا', nav_inq:'استفسار', nav_shop:'المتجر ↗',
     h_label:'قوانغتشو · مباشرة من المصنع',
-    h_line1:'أقمشة', h_line2:'لعلامتك', h_line3:'التجارية.',
+    h_line1:'رؤيتك،', h_line2:'مُجسَّدة', h_line3:'بالكامل.',
     cta_inq:'احصل على عرض', cta_shop:'تسوق الآن ↗',
-    hero_f1:'عرض خلال 48 ساعة', hero_f2:'الحد الأدنى 50 متر', hero_f3:'شحن عالمي', hero_f4:'12 سنة',
+    hero_f1:'عرض خلال 48 ساعة', hero_f2:'الحد الأدنى 50 متر', hero_f3:'شحن عالمي', hero_f4:'تأسس 1995',
     cat_label:'ما نصنعه', cat_h:'كتالوجنا.',
     cat_sub:'اختر مادة لبدء الاستفسار.',
     sc_label:'من مصنعنا', sc_h:'أعمال حديثة.',
@@ -608,7 +660,11 @@ const T = {
     ps1d:'شارك صورك أو رسوماتك أو عيناتك.',
     ps2d:'نرد خلال 48 ساعة بالخيارات والأسعار.',
     ps3d:'عينة مادية ترسل إليك قبل الإنتاج.',
-    f_name:'الاسم *', f_email:'البريد الإلكتروني *', f_msg:'أخبرنا بما تحتاجه',
+    f_name:'الاسم *', f_email:'البريد الإلكتروني *',
+    f_type:'نوع الطلب', f_dest:'بلد الوجهة',
+    fo1:'صورة/رسم → إنتاج بالجملة', fo2:'إرسال عينة → نسخ وإنتاج',
+    fo3:'توريد قماش فقط', fo4:'CMT كامل — قص، خياطة، تشطيب',
+    f_msg:'أخبرنا بما تحتاجه',
     f_files:'صور مرجعية / حزمة تقنية',
     fd_txt:'اسحب الملفات أو انقر للتصفح', fd_sub:'JPG · PNG · PDF · AI',
     f_gdpr:'أوافق على التواصل بشأن استفساري.',
@@ -777,6 +833,8 @@ function initForm() {
     fd.append('subject',`New DONGXI Inquiry from ${name}`);
     fd.append('name', name);
     fd.append('email', email);
+    fd.append('orderType', document.querySelector('input[name=orderType]:checked')?.value||'');
+    fd.append('destination', document.getElementById('fDest')?.value||'');
     fd.append('message', document.getElementById('fMsg')?.value||'');
     const files = document.getElementById('fFiles')?.files??[];
     for (let i=0;i<files.length;i++) fd.append('attachment'+i, files[i], files[i].name);
