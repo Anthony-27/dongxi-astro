@@ -43,12 +43,6 @@ const showcaseJSON = JSON.stringify(
         <button class="ld-item" data-l="ar">AR · العربية</button>
       </div>
     </div>
-    <div class="curr-wrap" id="currWrap">
-      <button class="curr-btn on" data-c="USD">USD</button>
-      <button class="curr-btn" data-c="CNY">CNY</button>
-      <button class="curr-btn" data-c="RUB">RUB</button>
-      <button class="curr-btn" data-c="AED">AED</button>
-    </div>
     <a href="#inquiry" class="tcta" data-k="cta_inq">Get a Quote</a>
   </div>
 </header>
@@ -881,8 +875,17 @@ function renderFabs() {
   const g = document.getElementById('fabGrid');
   if (!g) return;
   g.innerHTML = FABS.map(f =>
-    `<button class="fb">${f}</button>`
+    `<button class="fb" data-fab="${f}">${f}</button>`
   ).join('');
+  g.querySelectorAll('.fb').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mat = document.getElementById('fMat');
+      if (mat) mat.value = btn.dataset.fab;
+      document.getElementById('inquiry')?.scrollIntoView({ behavior: 'smooth' });
+      // jump to step 2 where the material field is
+      setTimeout(() => goS(2), 600);
+    });
+  });
 }
 
 // ── RENDER SHOWCASE ──────────────────────────────────────────
