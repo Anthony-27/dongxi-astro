@@ -134,6 +134,7 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
                   >
                     Add to Cart
                   </button>
+                  <p class="pc-ship-note">Shipping quoted after order</p>
                 </div>
               </div>
             );
@@ -145,7 +146,7 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
 
   <!-- DUTIES NOTE -->
   <p class="duties-note">
-    Prices in USD · Import duties & taxes borne by recipient · Ships from Guangzhou, China
+    Prices in USD · Shipping quoted separately after order · Import duties & taxes borne by recipient · Ships from Guangzhou, China
   </p>
 
   <!-- INQUIRY BANNER -->
@@ -313,6 +314,7 @@ body { background: var(--paper); color: var(--ink); }
   border-radius: 3px;
 }
 .pc-add:hover { background: var(--rust); letter-spacing: .22em; }
+.pc-ship-note { font-family:'Azeret Mono',monospace; font-size:8px; color:rgba(28,25,20,.28); text-align:center; margin-top:6px; letter-spacing:.04em; }
 
 .empty { padding:80px 0; font-family:'Azeret Mono',monospace; font-size:11px; color:rgba(28,25,20,.35); }
 .empty a { color: var(--rust); }

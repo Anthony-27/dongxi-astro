@@ -2,6 +2,9 @@
 import Base from '../layouts/Base.astro';
 import { getShowcase, urlFor } from '../lib/sanity';
 
+const WA = import.meta.env.PUBLIC_WA_NUMBER  ?? '';
+const TG = import.meta.env.PUBLIC_TG_USERNAME ?? '';
+
 const showcaseItems = await getShowcase();
 const showcaseJSON = JSON.stringify(
   showcaseItems.map((s: any) => ({
@@ -124,6 +127,27 @@ const showcaseJSON = JSON.stringify(
         <li data-k="ps2d">We reply within 48 hours with options & price.</li>
         <li data-k="ps3d">Sample shipped to you before bulk production.</li>
       </ul>
+
+      <!-- Direct contact channels -->
+      <div class="inq-channels">
+        <p class="inq-ch-label">Or reach us directly</p>
+        <a class="inq-ch-btn" href="mailto:hello@dongxi.io">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2" y="4" width="16" height="12" rx="1.5"/><path d="M2 5l8 6 8-6"/></svg>
+          hello@dongxi.io
+        </a>
+        {WA && (
+          <a class="inq-ch-btn" href={`https://wa.me/${WA}?text=Hi%2C%20I%20found%20DONGXI%20and%20would%20like%20to%20inquire.`} target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        )}
+        {TG && (
+          <a class="inq-ch-btn" href={`https://t.me/${TG}`} target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Telegram
+          </a>
+        )}
+      </div>
     </div>
     <form id="iqForm" class="inq-form" novalidate>
       <div class="iq-row two-col">
@@ -149,23 +173,44 @@ const showcaseJSON = JSON.stringify(
         <label class="iq-label" data-k="f_dest">Destination country</label>
         <select class="iq-in iq-select" id="fDest">
           <option value="">— select —</option>
-          <optgroup label="Asia · 亚洲">
+          <optgroup label="East Asia · 东亚">
             <option>Japan · 日本</option>
             <option>South Korea · 韩国</option>
+            <option>Mongolia · 蒙古</option>
+            <option>China · 中国大陆</option>
+            <option>China · 中国香港 HK</option>
+            <option>China · 中国澳门 MO</option>
+            <option>China · 中国台湾 TW</option>
+          </optgroup>
+          <optgroup label="Southeast Asia · 东南亚">
             <option>Singapore · 新加坡</option>
             <option>Malaysia · 马来西亚</option>
             <option>Thailand · 泰国</option>
             <option>Vietnam · 越南</option>
             <option>Philippines · 菲律宾</option>
             <option>Indonesia · 印度尼西亚</option>
+            <option>Cambodia · 柬埔寨</option>
+            <option>Myanmar · 缅甸</option>
+            <option>Laos · 老挝</option>
+            <option>Brunei · 文莱</option>
+          </optgroup>
+          <optgroup label="South Asia · 南亚">
             <option>India · 印度</option>
             <option>Bangladesh · 孟加拉国</option>
             <option>Pakistan · 巴基斯坦</option>
             <option>Sri Lanka · 斯里兰卡</option>
-            <option>China · 中国大陆</option>
-            <option>China · 中国香港 HK</option>
-            <option>China · 中国澳门 MO</option>
-            <option>China · 中国台湾 TW</option>
+            <option>Nepal · 尼泊尔</option>
+            <option>Maldives · 马尔代夫</option>
+          </optgroup>
+          <optgroup label="Central Asia · 中亚">
+            <option>Kazakhstan · 哈萨克斯坦</option>
+            <option>Kyrgyzstan · 吉尔吉斯斯坦</option>
+            <option>Uzbekistan · 乌兹别克斯坦</option>
+            <option>Tajikistan · 塔吉克斯坦</option>
+            <option>Turkmenistan · 土库曼斯坦</option>
+            <option>Azerbaijan · 阿塞拜疆</option>
+            <option>Georgia · 格鲁吉亚</option>
+            <option>Armenia · 亚美尼亚</option>
           </optgroup>
           <optgroup label="Middle East · 中东">
             <option>United Arab Emirates · 阿联酋</option>
@@ -177,20 +222,10 @@ const showcaseJSON = JSON.stringify(
             <option>Jordan · 约旦</option>
             <option>Lebanon · 黎巴嫩</option>
             <option>Israel · 以色列</option>
+            <option>Iraq · 伊拉克</option>
             <option>Turkey · 土耳其</option>
           </optgroup>
-          <optgroup label="Central Asia · 中亚">
-            <option>Kazakhstan · 哈萨克斯坦</option>
-            <option>Kyrgyzstan · 吉尔吉斯斯坦</option>
-            <option>Uzbekistan · 乌兹别克斯坦</option>
-            <option>Tajikistan · 塔吉克斯坦</option>
-            <option>Turkmenistan · 土库曼斯坦</option>
-            <option>Azerbaijan · 阿塞拜疆</option>
-            <option>Georgia · 格鲁吉亚</option>
-            <option>Armenia · 亚美尼亚</option>
-            <option>Mongolia · 蒙古</option>
-          </optgroup>
-          <optgroup label="Europe · 欧洲">
+          <optgroup label="Western Europe · 西欧">
             <option>United Kingdom · 英国</option>
             <option>France · 法国</option>
             <option>Germany · 德国</option>
@@ -199,37 +234,75 @@ const showcaseJSON = JSON.stringify(
             <option>Portugal · 葡萄牙</option>
             <option>Netherlands · 荷兰</option>
             <option>Belgium · 比利时</option>
+            <option>Switzerland · 瑞士</option>
+            <option>Austria · 奥地利</option>
+            <option>Luxembourg · 卢森堡</option>
+            <option>Ireland · 爱尔兰</option>
+          </optgroup>
+          <optgroup label="Northern Europe · 北欧">
             <option>Sweden · 瑞典</option>
             <option>Denmark · 丹麦</option>
             <option>Norway · 挪威</option>
             <option>Finland · 芬兰</option>
-            <option>Switzerland · 瑞士</option>
-            <option>Austria · 奥地利</option>
+            <option>Iceland · 冰岛</option>
+          </optgroup>
+          <optgroup label="Eastern Europe · 东欧">
             <option>Poland · 波兰</option>
             <option>Czech Republic · 捷克</option>
+            <option>Slovakia · 斯洛伐克</option>
+            <option>Hungary · 匈牙利</option>
+            <option>Romania · 罗马尼亚</option>
+            <option>Bulgaria · 保加利亚</option>
+            <option>Croatia · 克罗地亚</option>
+            <option>Serbia · 塞尔维亚</option>
+            <option>Slovenia · 斯洛文尼亚</option>
             <option>Greece · 希腊</option>
             <option>Ukraine · 乌克兰</option>
+            <option>Moldova · 摩尔多瓦</option>
           </optgroup>
-          <optgroup label="Americas · 美洲">
+          <optgroup label="North America · 北美">
             <option>United States · 美国</option>
             <option>Canada · 加拿大</option>
             <option>Mexico · 墨西哥</option>
+          </optgroup>
+          <optgroup label="Central America & Caribbean · 中美洲及加勒比">
+            <option>Guatemala · 危地马拉</option>
+            <option>Costa Rica · 哥斯达黎加</option>
+            <option>Panama · 巴拿马</option>
+            <option>Dominican Republic · 多米尼加</option>
+            <option>Jamaica · 牙买加</option>
+          </optgroup>
+          <optgroup label="South America · 南美洲">
             <option>Brazil · 巴西</option>
             <option>Argentina · 阿根廷</option>
             <option>Colombia · 哥伦比亚</option>
             <option>Chile · 智利</option>
+            <option>Peru · 秘鲁</option>
+            <option>Ecuador · 厄瓜多尔</option>
+            <option>Uruguay · 乌拉圭</option>
           </optgroup>
-          <optgroup label="Africa · 非洲">
+          <optgroup label="North Africa · 北非">
+            <option>Morocco · 摩洛哥</option>
+            <option>Algeria · 阿尔及利亚</option>
+            <option>Tunisia · 突尼斯</option>
+            <option>Egypt · 埃及</option>
+            <option>Libya · 利比亚</option>
+          </optgroup>
+          <optgroup label="Sub-Saharan Africa · 撒哈拉以南非洲">
             <option>South Africa · 南非</option>
             <option>Nigeria · 尼日利亚</option>
             <option>Kenya · 肯尼亚</option>
             <option>Ghana · 加纳</option>
-            <option>Morocco · 摩洛哥</option>
-            <option>Egypt · 埃及</option>
+            <option>Ethiopia · 埃塞俄比亚</option>
+            <option>Tanzania · 坦桑尼亚</option>
+            <option>Uganda · 乌干达</option>
+            <option>Senegal · 塞内加尔</option>
+            <option>Ivory Coast · 科特迪瓦</option>
           </optgroup>
           <optgroup label="Oceania · 大洋洲">
             <option>Australia · 澳大利亚</option>
             <option>New Zealand · 新西兰</option>
+            <option>Fiji · 斐济</option>
           </optgroup>
           <option value="Other">Other · 其他</option>
         </select>
@@ -565,6 +638,47 @@ body { background: #f8f5f1; color: #1a1a1a; font-family: 'Azeret Mono', monospac
   position: absolute; left: 0;
   color: var(--rust);
 }
+
+/* Direct contact channels */
+.inq-channels {
+  margin-top: 48px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(248,245,241,.10);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.inq-ch-label {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(248,245,241,.25);
+  margin-bottom: 4px;
+}
+.inq-ch-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border: 1px solid rgba(248,245,241,.12);
+  color: rgba(248,245,241,.7);
+  text-decoration: none;
+  font-family: 'Azeret Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .06em;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.inq-ch-btn:hover {
+  border-color: var(--rust);
+  color: var(--paper);
+  background: rgba(192,75,40,.08);
+}
+.inq-ch-btn svg {
+  width: 16px; height: 16px;
+  flex-shrink: 0;
+  opacity: .6;
+}
+.inq-ch-btn:hover svg { opacity: 1; }
+
 .inq-form { display: flex; flex-direction: column; gap: 28px; }
 .iq-row { display: flex; flex-direction: column; gap: 10px; }
 .iq-row.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
