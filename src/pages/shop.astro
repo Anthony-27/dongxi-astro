@@ -212,7 +212,13 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
                   <div class="pc-name">{p.name}</div>
                   {p.moq && <div class="pc-moq">{p.moq}</div>}
                   {p.composition && <div class="pc-comp">{p.composition}</div>}
-                  {p.fabricWidth && <div class="pc-width">Width: {p.fabricWidth} cm</div>}
+                  {(p.fabricWidth || p.gsm) && (
+                    <div class="pc-spec">
+                      {p.fabricWidth && <span>{p.fabricWidth} cm wide</span>}
+                      {p.fabricWidth && p.gsm && <span class="pc-spec-dot">·</span>}
+                      {p.gsm && <span>{p.gsm} GSM</span>}
+                    </div>
+                  )}
                   <div class="pc-price-row">
                     <span class="pc-price">${p.price.toFixed(2)}</span>
                     <span class="pc-unit">{p.unit}</span>
@@ -225,12 +231,17 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
                     data-item-description={p.description ?? ''}
                     data-item-name={p.name}
                     data-item-image={imgs[0] ?? ''}
-                    data-item-weight={
-                      p.weightPerUnit ??
-                      (p.category === 'garment'  ? 0.35 :
-                       p.category === 'trimming' ? 0.10 :
-                       p.category === 'sample'   ? 0.20 : 0.15)
-                    }
+                    data-item-weight={(() => {
+                      // Fabric: GSM × width(m) ÷ 1000 × 1.2 packaging factor
+                      if (p.gsm && p.fabricWidth)
+                        return Math.round(p.gsm * (p.fabricWidth / 100) / 1000 * 1.2 * 1000) / 1000;
+                      // Garment/trimming: direct weight
+                      if (p.weightPerUnit) return p.weightPerUnit;
+                      // Fallback by category
+                      return p.category === 'garment'  ? 0.35 :
+                             p.category === 'trimming' ? 0.10 :
+                             p.category === 'sample'   ? 0.20 : 0.15;
+                    })()}
                     data-item-weight-unit="kg"
                   >
                     Add to Cart
@@ -397,8 +408,9 @@ body { background: var(--paper); color: var(--ink); }
 .pc-season { color: var(--rust); font-weight:500; }
 .pc-name { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.35; margin-top: 5px; flex: 1; }
 .pc-moq  { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.3); margin-top:4px; }
-.pc-comp  { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.38); margin-top:3px; letter-spacing:.04em; }
-.pc-width { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.32); margin-top:2px; letter-spacing:.04em; }
+.pc-comp     { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.38); margin-top:3px; letter-spacing:.04em; }
+.pc-spec     { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.32); margin-top:3px; letter-spacing:.04em; display:flex; gap:5px; flex-wrap:wrap; }
+.pc-spec-dot { color:rgba(28,25,20,.18); }
 .pc-price-row { display:flex; align-items:baseline; gap:5px; margin-top:12px; }
 .pc-price { font-family:'Libre Baskerville',serif; font-size:20px; color:var(--ink); }
 .pc-unit  { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.35); }

@@ -32,6 +32,7 @@ export async function getProducts() {
       badge,
       composition,
       fabricWidth,
+      gsm,
       weightPerUnit,
       description,
       images,
