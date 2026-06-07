@@ -21,6 +21,7 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
       <a href="/" class="tcta tcta-ghost" style="color:rgba(240,235,224,.6);">← dongxi.io</a>
       <button class="tcta snipcart-checkout">
         Cart <span class="snipcart-items-count"></span>
+        <span class="cart-sub">order # emailed</span>
       </button>
     </div>
   </header>
@@ -58,37 +59,64 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
     </div>
   </div>
 
-  <!-- SHIPPING ESTIMATOR -->
+  <!-- SHIPPING ESTIMATOR + POLICY -->
   <div class="ship-bar">
     <div class="content-w ship-inner">
       <span class="ship-label">🚚 Estimate shipping</span>
       <select class="ship-select" id="shipRegion">
         <option value="">— select your region —</option>
         <optgroup label="Asia">
-          <option value="12">Hong Kong / Macau</option>
-          <option value="35">East Asia (Japan, Korea, Taiwan)</option>
-          <option value="28">Southeast Asia</option>
-          <option value="38">South Asia (India, Pakistan…)</option>
-          <option value="48">Central Asia</option>
+          <option value="12|1-2 days">Hong Kong / Macau</option>
+          <option value="35|3-4 days">East Asia (Japan, Korea, Taiwan)</option>
+          <option value="28|3-5 days">Southeast Asia</option>
+          <option value="38|4-5 days">South Asia (India, Pakistan…)</option>
+          <option value="48|5-6 days">Central Asia</option>
         </optgroup>
         <optgroup label="Middle East">
-          <option value="48">UAE, Saudi Arabia, Qatar…</option>
+          <option value="48|4-6 days">UAE, Saudi Arabia, Qatar…</option>
         </optgroup>
         <optgroup label="Europe">
-          <option value="58">Western Europe</option>
-          <option value="62">Eastern Europe</option>
+          <option value="58|5-7 days">Western Europe</option>
+          <option value="62|6-8 days">Eastern Europe</option>
         </optgroup>
         <optgroup label="Americas">
-          <option value="68">United States / Canada</option>
-          <option value="72">Latin America</option>
+          <option value="68|5-7 days">United States / Canada</option>
+          <option value="72|7-9 days">Latin America</option>
         </optgroup>
         <optgroup label="Oceania & Africa">
-          <option value="62">Australia / New Zealand</option>
-          <option value="78">Africa</option>
+          <option value="62|5-7 days">Australia / New Zealand</option>
+          <option value="78|7-10 days">Africa</option>
         </optgroup>
       </select>
       <span class="ship-result" id="shipResult"></span>
       <span class="ship-note">DHL Express · duties not included</span>
+    </div>
+  </div>
+
+  <!-- SHIPPING POLICY PANEL -->
+  <div class="ship-policy">
+    <div class="content-w ship-policy-inner">
+      <div class="sp-block">
+        <div class="sp-icon">📦</div>
+        <div>
+          <div class="sp-title">Standard Shipping</div>
+          <div class="sp-desc">DHL Express from Guangzhou · Tracked door-to-door · Quoted after order based on weight & destination</div>
+        </div>
+      </div>
+      <div class="sp-block">
+        <div class="sp-icon">🚢</div>
+        <div>
+          <div class="sp-title">Bulk Orders — Sea Freight Available</div>
+          <div class="sp-desc">Ordering large quantities? Sea freight saves 60–80% vs air. <a href="/#inquiry">Contact us</a> to arrange before placing your order.</div>
+        </div>
+      </div>
+      <div class="sp-block">
+        <div class="sp-icon">🔖</div>
+        <div>
+          <div class="sp-title">Order Reference Number</div>
+          <div class="sp-desc">Every order gets a unique reference number emailed to you. Quote it when contacting us about shipping, tracking or changes.</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -168,7 +196,7 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
                   >
                     Add to Cart
                   </button>
-                  <p class="pc-ship-note">Shipping quoted after order</p>
+                  <p class="pc-ship-note">DHL Express · shipping quoted after order</p>
                 </div>
               </div>
             );
@@ -179,9 +207,10 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
   </section>
 
   <!-- DUTIES NOTE -->
-  <p class="duties-note">
-    Prices in USD · Shipping quoted separately after order · Import duties & taxes borne by recipient · Ships from Guangzhou, China
-  </p>
+  <div class="duties-note">
+    <p>Prices in USD &nbsp;·&nbsp; Shipping quoted after order based on weight &amp; destination &nbsp;·&nbsp; Import duties &amp; taxes borne by recipient &nbsp;·&nbsp; Ships from Guangzhou, China</p>
+    <p class="duties-order">🔖 A unique <b>order reference number</b> is emailed upon checkout — quote it for any shipping or product queries: <a href="mailto:hello@dongxi.io">hello@dongxi.io</a></p>
+  </div>
 
   <!-- INQUIRY BANNER -->
   <div class="inq-banner">
@@ -354,15 +383,6 @@ body { background: var(--paper); color: var(--ink); }
 .empty a { color: var(--rust); }
 
 /* BOTTOM */
-.duties-note {
-  text-align: center;
-  padding: 16px;
-  font-family: 'Azeret Mono', monospace;
-  font-size: 9px;
-  color: rgba(28,25,20,.3);
-  letter-spacing: .08em;
-  border-top: 1px solid var(--line);
-}
 .inq-banner {
   background: var(--ink);
   color: var(--paper);
@@ -398,6 +418,9 @@ body { background: var(--paper); color: var(--ink); }
 }
 .shop-foot span { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(240,235,224,.2); letter-spacing:.06em; }
 :root { --color-primary: #c04b28; }
+
+/* CART SUB LABEL */
+.cart-sub { display:block; font-size:7px; letter-spacing:.08em; opacity:.45; margin-top:1px; }
 
 /* SHIPPING ESTIMATOR */
 .ship-bar {
@@ -446,6 +469,50 @@ body { background: var(--paper); color: var(--ink); }
   letter-spacing: .06em;
 }
 @media(max-width:600px) { .ship-inner { gap: 10px; } .ship-select { min-width: 100%; } }
+
+/* SHIPPING POLICY PANEL */
+.ship-policy {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(248,245,241,.06);
+}
+.ship-policy-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media(max-width:760px) { .ship-policy-inner { grid-template-columns: 1fr; gap: 20px; } }
+.sp-block {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.sp-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.sp-title {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--paper);
+  margin-bottom: 6px;
+}
+.sp-desc {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px;
+  line-height: 1.8;
+  color: rgba(248,245,241,.38);
+  letter-spacing: .03em;
+}
+.sp-desc a { color: var(--rust); text-decoration: none; }
+.sp-desc a:hover { text-decoration: underline; }
+
+/* DUTIES NOTE */
+.duties-note { text-align:center; padding:20px 24px; border-top:1px solid var(--line); }
+.duties-note p { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.3); letter-spacing:.06em; margin:0; line-height:2; }
+.duties-order { color:rgba(28,25,20,.45) !important; margin-top:8px !important; }
+.duties-order b { color:rgba(28,25,20,.6); }
+.duties-order a { color:var(--rust); text-decoration:none; }
 </style>
 
 <script>
@@ -454,7 +521,8 @@ document.getElementById('shipRegion')?.addEventListener('change', (e) => {
   const val = (e.target as HTMLSelectElement).value;
   const el  = document.getElementById('shipResult')!;
   if (!val) { el.textContent = ''; el.classList.remove('has-val'); return; }
-  el.textContent = `+ $${val} shipping`;
+  const [price, days] = val.split('|');
+  el.textContent = `est. $${price}  ·  ${days}`;
   el.classList.add('has-val');
 });
 
