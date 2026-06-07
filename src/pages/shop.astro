@@ -58,6 +58,40 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
     </div>
   </div>
 
+  <!-- SHIPPING ESTIMATOR -->
+  <div class="ship-bar">
+    <div class="content-w ship-inner">
+      <span class="ship-label">🚚 Estimate shipping</span>
+      <select class="ship-select" id="shipRegion">
+        <option value="">— select your region —</option>
+        <optgroup label="Asia">
+          <option value="12">Hong Kong / Macau</option>
+          <option value="35">East Asia (Japan, Korea, Taiwan)</option>
+          <option value="28">Southeast Asia</option>
+          <option value="38">South Asia (India, Pakistan…)</option>
+          <option value="48">Central Asia</option>
+        </optgroup>
+        <optgroup label="Middle East">
+          <option value="48">UAE, Saudi Arabia, Qatar…</option>
+        </optgroup>
+        <optgroup label="Europe">
+          <option value="58">Western Europe</option>
+          <option value="62">Eastern Europe</option>
+        </optgroup>
+        <optgroup label="Americas">
+          <option value="68">United States / Canada</option>
+          <option value="72">Latin America</option>
+        </optgroup>
+        <optgroup label="Oceania & Africa">
+          <option value="62">Australia / New Zealand</option>
+          <option value="78">Africa</option>
+        </optgroup>
+      </select>
+      <span class="ship-result" id="shipResult"></span>
+      <span class="ship-note">DHL Express · duties not included</span>
+    </div>
+  </div>
+
   <!-- FILTER + GRID -->
   <section class="shop-body">
     <div class="content-w">
@@ -364,9 +398,66 @@ body { background: var(--paper); color: var(--ink); }
 }
 .shop-foot span { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(240,235,224,.2); letter-spacing:.06em; }
 :root { --color-primary: #c04b28; }
+
+/* SHIPPING ESTIMATOR */
+.ship-bar {
+  background: #f2ede8;
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+.ship-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.ship-label {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(28,25,20,.5);
+  white-space: nowrap;
+}
+.ship-select {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .06em;
+  padding: 8px 12px;
+  border: 1px solid rgba(28,25,20,.18);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: 2px;
+  min-width: 220px;
+}
+.ship-result {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 18px;
+  color: var(--ink);
+  font-weight: 400;
+  min-width: 80px;
+}
+.ship-result.has-val { color: var(--rust); }
+.ship-note {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px;
+  color: rgba(28,25,20,.3);
+  letter-spacing: .06em;
+}
+@media(max-width:600px) { .ship-inner { gap: 10px; } .ship-select { min-width: 100%; } }
 </style>
 
 <script>
+// Shipping estimator
+document.getElementById('shipRegion')?.addEventListener('change', (e) => {
+  const val = (e.target as HTMLSelectElement).value;
+  const el  = document.getElementById('shipResult')!;
+  if (!val) { el.textContent = ''; el.classList.remove('has-val'); return; }
+  el.textContent = `+ $${val} shipping`;
+  el.classList.add('has-val');
+});
+
 // Filter
 document.getElementById('filters')?.querySelectorAll('.fp').forEach(btn => {
   btn.addEventListener('click', () => {
