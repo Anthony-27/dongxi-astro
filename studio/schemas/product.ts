@@ -108,6 +108,24 @@ export const product = defineType({
       description: '面料成分，显示在产品卡片上',
     }),
     defineField({
+      name: 'fabricWidth',
+      title: '幅宽 / Fabric Width (cm)',
+      type: 'number',
+      description: '面料幅宽，如 150 表示150cm。成衣/辅料可不填。',
+      placeholder: '例如: 150',
+      options: {
+        list: [90, 110, 114, 140, 150, 160],
+      },
+    }),
+    defineField({
+      name: 'weightPerUnit',
+      title: '单件重量含包装 / Weight per unit incl. packaging (kg)',
+      type: 'number',
+      description: '用于计算运费。面料填每米重量（kg/m），成衣填每件重量（kg/pc）。',
+      placeholder: '例如: 面料 0.15 / 成衣 0.35',
+      validation: R => R.positive(),
+    }),
+    defineField({
       name: 'description',
       title: '产品描述',
       type: 'text',

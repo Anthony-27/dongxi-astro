@@ -31,6 +31,8 @@ export async function getProducts() {
       moq,
       badge,
       composition,
+      fabricWidth,
+      weightPerUnit,
       description,
       images,
       video
