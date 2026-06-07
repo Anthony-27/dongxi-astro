@@ -135,6 +135,13 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
         </div>
       </div>
       <div class="sp-block">
+        <div class="sp-icon">🏛️</div>
+        <div>
+          <div class="sp-title">Import Duties & Taxes</div>
+          <div class="sp-desc">Not included in our prices. Assessed by your country's customs on arrival — payable by recipient. DHL will notify you of any charges. This is standard for international B2B shipments.</div>
+        </div>
+      </div>
+      <div class="sp-block">
         <div class="sp-icon">🔖</div>
         <div>
           <div class="sp-title">Order Reference Number</div>
@@ -239,6 +246,7 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
   <!-- DUTIES NOTE -->
   <div class="duties-note">
     <p>Prices in USD &nbsp;·&nbsp; Shipping quoted after order based on weight &amp; destination &nbsp;·&nbsp; Import duties &amp; taxes borne by recipient &nbsp;·&nbsp; Ships from Guangzhou, China</p>
+    <p class="duties-order">⚠️ <b>Import duties & local taxes are not included</b> — they are assessed by your country's customs and payable by the recipient upon arrival. DHL will notify you of any applicable charges. For duty rate estimates, check your country's customs authority website.</p>
     <p class="duties-order">🔖 A unique <b>order reference number</b> is emailed upon checkout — quote it for any shipping or product queries: <a href="mailto:hello@dongxi.io">hello@dongxi.io</a></p>
   </div>
 
@@ -518,10 +526,11 @@ body { background: var(--paper); color: var(--ink); }
 }
 .ship-policy-inner {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
-@media(max-width:760px) { .ship-policy-inner { grid-template-columns: 1fr; gap: 20px; } }
+@media(max-width:960px) { .ship-policy-inner { grid-template-columns: repeat(2,1fr); gap: 20px; } }
+@media(max-width:560px)  { .ship-policy-inner { grid-template-columns: 1fr; } }
 .sp-block {
   display: flex;
   gap: 14px;
