@@ -210,13 +210,25 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
                     {p.category}
                   </div>
                   <div class="pc-name">{p.name}</div>
-                  {p.moq && <div class="pc-moq">{p.moq}</div>}
-                  {p.composition && <div class="pc-comp">{p.composition}</div>}
+                  {p.moq && (
+                    <div class="pc-moq">
+                      <span class="tip" data-tip="Minimum Order Quantity">MOQ</span> · {p.moq}
+                    </div>
+                  )}
+                  {p.composition && (
+                    <div class="pc-comp">
+                      <span class="tip" data-tip="Fabric material content">Composition</span>: {p.composition}
+                    </div>
+                  )}
                   {(p.fabricWidth || p.gsm) && (
                     <div class="pc-spec">
-                      {p.fabricWidth && <span>{p.fabricWidth} cm wide</span>}
+                      {p.fabricWidth && (
+                        <span class="tip" data-tip="Fabric width from selvage to selvage">{p.fabricWidth} cm wide</span>
+                      )}
                       {p.fabricWidth && p.gsm && <span class="pc-spec-dot">·</span>}
-                      {p.gsm && <span>{p.gsm} GSM</span>}
+                      {p.gsm && (
+                        <span class="tip" data-tip="Grams per square metre — higher = heavier & thicker fabric">{p.gsm} GSM</span>
+                      )}
                     </div>
                   )}
                   <div class="pc-price-row">
@@ -411,6 +423,28 @@ body { background: var(--paper); color: var(--ink); }
 .pc-comp     { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.38); margin-top:3px; letter-spacing:.04em; }
 .pc-spec     { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.32); margin-top:3px; letter-spacing:.04em; display:flex; gap:5px; flex-wrap:wrap; }
 .pc-spec-dot { color:rgba(28,25,20,.18); }
+.tip { cursor:help; border-bottom:1px dotted rgba(28,25,20,.3); position:relative; }
+.tip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px;
+  letter-spacing: .06em;
+  line-height: 1.6;
+  padding: 6px 10px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+  z-index: 100;
+  border-radius: 2px;
+}
+.tip:hover::after { opacity: 1; }
 .pc-price-row { display:flex; align-items:baseline; gap:5px; margin-top:12px; }
 .pc-price { font-family:'Libre Baskerville',serif; font-size:20px; color:var(--ink); }
 .pc-unit  { font-family:'Azeret Mono',monospace; font-size:9px; color:rgba(28,25,20,.35); }
