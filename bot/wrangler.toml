@@ -1,0 +1,7 @@
+name = "dongxi-tg-bot"
+main = "src/index.ts"
+compatibility_date = "2026-05-21"
+
+[[kv_namespaces]]
+binding = "BOT_KV"
+id = "7f53f3669acf4837b1f7ff510376a32d"

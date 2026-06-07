@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import { getShowcase, urlFor } from '../lib/sanity';
 
 const WA = import.meta.env.PUBLIC_WA_NUMBER  ?? '';
-const TG = import.meta.env.PUBLIC_TG_USERNAME ?? '';
+const TG = import.meta.env.PUBLIC_TG_USERNAME ?? 'dongxiiobot';
 
 const showcaseItems = await getShowcase();
 const showcaseJSON = JSON.stringify(
