@@ -63,33 +63,57 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
   <div class="ship-bar">
     <div class="content-w ship-inner">
       <span class="ship-label">🚚 Estimate shipping</span>
+
       <select class="ship-select" id="shipRegion">
-        <option value="">— select your region —</option>
+        <option value="">— destination —</option>
         <optgroup label="Asia">
-          <option value="12|1-2 days">Hong Kong / Macau</option>
-          <option value="35|3-4 days">East Asia (Japan, Korea, Taiwan)</option>
-          <option value="28|3-5 days">Southeast Asia</option>
-          <option value="38|4-5 days">South Asia (India, Pakistan…)</option>
-          <option value="48|5-6 days">Central Asia</option>
+          <option value="10|8|1-2 days">Hong Kong / Macau</option>
+          <option value="28|10|3-4 days">East Asia (Japan, Korea, Taiwan)</option>
+          <option value="22|9|3-5 days">Southeast Asia</option>
+          <option value="30|11|4-5 days">South Asia (India, Pakistan…)</option>
+          <option value="38|12|5-6 days">Central Asia</option>
         </optgroup>
         <optgroup label="Middle East">
-          <option value="48|4-6 days">UAE, Saudi Arabia, Qatar…</option>
+          <option value="38|12|4-6 days">UAE, Saudi Arabia, Qatar…</option>
         </optgroup>
         <optgroup label="Europe">
-          <option value="58|5-7 days">Western Europe</option>
-          <option value="62|6-8 days">Eastern Europe</option>
+          <option value="48|15|5-7 days">Western Europe</option>
+          <option value="52|15|6-8 days">Eastern Europe</option>
         </optgroup>
         <optgroup label="Americas">
-          <option value="68|5-7 days">United States / Canada</option>
-          <option value="72|7-9 days">Latin America</option>
+          <option value="55|16|5-7 days">United States / Canada</option>
+          <option value="60|16|7-9 days">Latin America</option>
         </optgroup>
         <optgroup label="Oceania & Africa">
-          <option value="62|5-7 days">Australia / New Zealand</option>
-          <option value="78|7-10 days">Africa</option>
+          <option value="50|15|5-7 days">Australia / New Zealand</option>
+          <option value="65|16|7-10 days">Africa</option>
         </optgroup>
       </select>
-      <span class="ship-result" id="shipResult"></span>
-      <span class="ship-note">DHL Express · duties not included</span>
+
+      <select class="ship-select ship-select-sm" id="shipQty">
+        <option value="">— qty / weight —</option>
+        <optgroup label="Fabric (by metre)">
+          <option value="0.3">1–5 m (samples)</option>
+          <option value="1.5">5–20 m</option>
+          <option value="4">20–50 m</option>
+          <option value="8">50–100 m</option>
+          <option value="18">100–200 m</option>
+          <option value="40">200 m+</option>
+        </optgroup>
+        <optgroup label="Garments (pieces)">
+          <option value="1">1–5 pcs</option>
+          <option value="3">5–20 pcs</option>
+          <option value="8">20–50 pcs</option>
+          <option value="20">50–100 pcs</option>
+          <option value="45">100 pcs+</option>
+        </optgroup>
+      </select>
+
+      <div class="ship-result-wrap">
+        <span class="ship-result" id="shipResult"></span>
+        <span class="ship-bulk" id="shipBulk"></span>
+      </div>
+      <span class="ship-note">DHL Express est. · duties not included</span>
     </div>
   </div>
 
@@ -454,21 +478,30 @@ body { background: var(--paper); color: var(--ink); }
   border-radius: 2px;
   min-width: 220px;
 }
+.ship-select-sm { min-width: 160px !important; }
+.ship-result-wrap { display: flex; flex-direction: column; gap: 4px; }
 .ship-result {
   font-family: 'Libre Baskerville', serif;
   font-size: 18px;
   color: var(--ink);
   font-weight: 400;
-  min-width: 80px;
 }
 .ship-result.has-val { color: var(--rust); }
+.ship-bulk {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px;
+  color: var(--rust);
+  letter-spacing: .04em;
+  max-width: 320px;
+  line-height: 1.7;
+}
 .ship-note {
   font-family: 'Azeret Mono', monospace;
   font-size: 8px;
   color: rgba(28,25,20,.3);
   letter-spacing: .06em;
 }
-@media(max-width:600px) { .ship-inner { gap: 10px; } .ship-select { min-width: 100%; } }
+@media(max-width:700px) { .ship-inner { flex-wrap: wrap; gap: 10px; } .ship-select, .ship-select-sm { min-width: calc(50% - 5px) !important; } }
 
 /* SHIPPING POLICY PANEL */
 .ship-policy {
@@ -516,15 +549,43 @@ body { background: var(--paper); color: var(--ink); }
 </style>
 
 <script>
-// Shipping estimator
-document.getElementById('shipRegion')?.addEventListener('change', (e) => {
-  const val = (e.target as HTMLSelectElement).value;
-  const el  = document.getElementById('shipResult')!;
-  if (!val) { el.textContent = ''; el.classList.remove('has-val'); return; }
-  const [price, days] = val.split('|');
-  el.textContent = `est. $${price}  ·  ${days}`;
-  el.classList.add('has-val');
-});
+// Shipping estimator — base + per-kg rate
+// option value format: "base|perKg|days"
+function calcShipping() {
+  const regionEl = document.getElementById('shipRegion') as HTMLSelectElement;
+  const qtyEl    = document.getElementById('shipQty')    as HTMLSelectElement;
+  const resultEl = document.getElementById('shipResult')!;
+  const bulkEl   = document.getElementById('shipBulk')!;
+
+  const region = regionEl?.value;
+  const kg     = parseFloat(qtyEl?.value ?? '');
+
+  if (!region || !kg) {
+    resultEl.textContent = ''; resultEl.classList.remove('has-val');
+    bulkEl.textContent = '';
+    return;
+  }
+
+  const [baseStr, perKgStr, days] = region.split('|');
+  const base  = parseFloat(baseStr);
+  const perKg = parseFloat(perKgStr);
+
+  // first 2kg included in base, then per-kg after
+  const extra = Math.max(0, kg - 2) * perKg;
+  const total = Math.ceil(base + extra);
+
+  resultEl.textContent = `est. $${total}  ·  ${days}`;
+  resultEl.classList.add('has-val');
+
+  // Suggest sea freight for heavy shipments
+  if (kg >= 18) {
+    bulkEl.textContent = '🚢 Large order — sea freight may save 60–80%. Contact us before ordering.';
+  } else {
+    bulkEl.textContent = '';
+  }
+}
+document.getElementById('shipRegion')?.addEventListener('change', calcShipping);
+document.getElementById('shipQty')?.addEventListener('change', calcShipping);
 
 // Filter
 document.getElementById('filters')?.querySelectorAll('.fp').forEach(btn => {
