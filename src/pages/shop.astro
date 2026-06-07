@@ -217,6 +217,12 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
                     data-item-description={p.description ?? ''}
                     data-item-name={p.name}
                     data-item-image={imgs[0] ?? ''}
+                    data-item-weight={
+                      p.category === 'garment'  ? 0.35 :
+                      p.category === 'trimming' ? 0.10 :
+                      p.category === 'sample'   ? 0.20 : 0.15
+                    }
+                    data-item-weight-unit="kg"
                   >
                     Add to Cart
                   </button>
