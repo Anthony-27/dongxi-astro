@@ -587,7 +587,7 @@ function calcShipping() {
 
   // first 2kg included in base, then per-kg after
   const extra = Math.max(0, kg - 2) * perKg;
-  const total = Math.ceil(base + extra);
+  const total = Math.ceil((base + extra) * 2);
 
   resultEl.textContent = `est. $${total}  ·  ${days}`;
   resultEl.classList.add('has-val');
