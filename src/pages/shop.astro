@@ -67,26 +67,26 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
       <select class="ship-select" id="shipRegion">
         <option value="">— destination —</option>
         <optgroup label="Asia">
-          <option value="10|8|1-2 days">Hong Kong / Macau</option>
-          <option value="28|10|3-4 days">East Asia (Japan, Korea, Taiwan)</option>
-          <option value="22|9|3-5 days">Southeast Asia</option>
-          <option value="30|11|4-5 days">South Asia (India, Pakistan…)</option>
-          <option value="38|12|5-6 days">Central Asia</option>
+          <option value="10|8|1-2 days|0">Hong Kong / Macau</option>
+          <option value="28|10|3-4 days|9">East Asia (Japan, Korea, Taiwan)</option>
+          <option value="22|9|3-5 days|10">Southeast Asia</option>
+          <option value="30|11|4-5 days|20">South Asia (India, Pakistan…)</option>
+          <option value="38|12|5-6 days|12">Central Asia</option>
         </optgroup>
         <optgroup label="Middle East">
-          <option value="38|12|4-6 days">UAE, Saudi Arabia, Qatar…</option>
+          <option value="38|12|4-6 days|5">UAE, Saudi Arabia, Qatar…</option>
         </optgroup>
         <optgroup label="Europe">
-          <option value="48|15|5-7 days">Western Europe</option>
-          <option value="52|15|6-8 days">Eastern Europe</option>
+          <option value="48|15|5-7 days|12">Western Europe</option>
+          <option value="52|15|6-8 days|12">Eastern Europe</option>
         </optgroup>
         <optgroup label="Americas">
-          <option value="55|16|5-7 days">United States / Canada</option>
-          <option value="60|16|7-9 days">Latin America</option>
+          <option value="55|16|5-7 days|25">United States / Canada</option>
+          <option value="60|16|7-9 days|25">Latin America</option>
         </optgroup>
         <optgroup label="Oceania & Africa">
-          <option value="50|15|5-7 days">Australia / New Zealand</option>
-          <option value="65|16|7-10 days">Africa</option>
+          <option value="50|15|5-7 days|5">Australia / New Zealand</option>
+          <option value="65|16|7-10 days|20">Africa</option>
         </optgroup>
       </select>
 
@@ -111,9 +111,10 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
 
       <div class="ship-result-wrap">
         <span class="ship-result" id="shipResult"></span>
-        <span class="ship-bulk" id="shipBulk"></span>
+        <span class="ship-duty"  id="shipDuty"></span>
+        <span class="ship-bulk"  id="shipBulk"></span>
       </div>
-      <span class="ship-note">DHL Express est. · duties not included</span>
+      <span class="ship-note">DHL Express est. · duty estimate shown separately</span>
     </div>
   </div>
 
@@ -550,6 +551,15 @@ body { background: var(--paper); color: var(--ink); }
   font-weight: 400;
 }
 .ship-result.has-val { color: var(--rust); }
+.ship-duty {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px;
+  color: rgba(28,25,20,.38);
+  letter-spacing: .04em;
+  line-height: 1.7;
+  min-height: 1em;
+}
+.ship-duty.ok { color: rgba(28,25,20,.28); }
 .ship-bulk {
   font-family: 'Azeret Mono', monospace;
   font-size: 8px;
@@ -619,6 +629,7 @@ function calcShipping() {
   const regionEl = document.getElementById('shipRegion') as HTMLSelectElement;
   const qtyEl    = document.getElementById('shipQty')    as HTMLSelectElement;
   const resultEl = document.getElementById('shipResult')!;
+  const dutyEl   = document.getElementById('shipDuty')!;
   const bulkEl   = document.getElementById('shipBulk')!;
 
   const region = regionEl?.value;
@@ -626,13 +637,15 @@ function calcShipping() {
 
   if (!region || !kg) {
     resultEl.textContent = ''; resultEl.classList.remove('has-val');
+    dutyEl.textContent = ''; dutyEl.classList.remove('ok');
     bulkEl.textContent = '';
     return;
   }
 
-  const [baseStr, perKgStr, days] = region.split('|');
+  const [baseStr, perKgStr, days, dutyStr] = region.split('|');
   const base  = parseFloat(baseStr);
   const perKg = parseFloat(perKgStr);
+  const duty  = parseFloat(dutyStr ?? '15');
 
   // first 2kg included in base, then per-kg after
   const extra = Math.max(0, kg - 2) * perKg;
@@ -640,6 +653,16 @@ function calcShipping() {
 
   resultEl.textContent = `est. $${total}  ·  ${days}`;
   resultEl.classList.add('has-val');
+
+  // Duty estimate line
+  if (duty === 0) {
+    dutyEl.textContent = '✓ duty-free destination';
+    dutyEl.classList.add('ok');
+  } else {
+    const note = duty >= 20 ? ' (incl. special tariffs)' : '';
+    dutyEl.textContent = `est. import duty ~${duty}% of goods value${note} · paid to customs on arrival, not to us`;
+    dutyEl.classList.remove('ok');
+  }
 
   // Suggest sea freight for heavy shipments
   if (kg >= 18) {
