@@ -11,7 +11,8 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
   ogUrl="https://dongxi.io/shop"
 >
   <slot slot="head">
-    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.css">
+    <!-- Snipcart paused — re-enable when tax setup complete -->
+    <!-- <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.css"> -->
   </slot>
 
   <!-- TOPBAR -->
@@ -19,10 +20,7 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
     <a href="/" class="logo"><span class="logo-pip"></span>DONGXI</a>
     <div class="bar-r">
       <a href="/" class="tcta tcta-ghost" style="color:rgba(240,235,224,.6);">← dongxi.io</a>
-      <button class="tcta snipcart-checkout">
-        Cart <span class="snipcart-items-count"></span>
-        <span class="cart-sub">order # emailed</span>
-      </button>
+      <a href="mailto:hello@dongxi.io" class="tcta">Inquire to Order</a>
     </div>
   </header>
 
@@ -236,30 +234,13 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
                     <span class="pc-price">${p.price.toFixed(2)}</span>
                     <span class="pc-unit">{p.unit}</span>
                   </div>
-                  <button
-                    class="pc-add snipcart-add-item"
-                    data-item-id={p.slug}
-                    data-item-price={p.price.toFixed(2)}
-                    data-item-url="https://dongxi.io/shop"
-                    data-item-description={p.description ?? ''}
-                    data-item-name={p.name}
-                    data-item-image={imgs[0] ?? ''}
-                    data-item-weight={(() => {
-                      // Fabric: GSM × width(m) ÷ 1000 × 1.2 packaging factor
-                      if (p.gsm && p.fabricWidth)
-                        return Math.round(p.gsm * (p.fabricWidth / 100) / 1000 * 1.2 * 1000) / 1000;
-                      // Garment/trimming: direct weight
-                      if (p.weightPerUnit) return p.weightPerUnit;
-                      // Fallback by category
-                      return p.category === 'garment'  ? 0.35 :
-                             p.category === 'trimming' ? 0.10 :
-                             p.category === 'sample'   ? 0.20 : 0.15;
-                    })()}
-                    data-item-weight-unit="kg"
+                  <a
+                    class="pc-add"
+                    href={`mailto:hello@dongxi.io?subject=Inquiry: ${encodeURIComponent(p.name)}&body=Hi, I'm interested in ${encodeURIComponent(p.name)} ($${p.price.toFixed(2)}${p.unit ?? '/m'}). Please send me a quote.`}
                   >
-                    Add to Cart
-                  </button>
-                  <p class="pc-ship-note">DHL Express · shipping quoted after order</p>
+                    Inquire to Order
+                  </a>
+                  <p class="pc-ship-note">Online checkout coming soon · email us to order</p>
                 </div>
               </div>
             );
@@ -291,9 +272,9 @@ const SNIPCART = import.meta.env.PUBLIC_SNIPCART_KEY ?? 'NWFlYjg0ZDgtOWFiNC00MmM
     <span>© 2025 All rights reserved</span>
   </footer>
 
-  <!-- Snipcart -->
-  <div hidden id="snipcart" data-api-key={SNIPCART} data-currency="usd"></div>
-  <script async src="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.js"></script>
+  <!-- Snipcart paused — re-enable when tax setup complete -->
+  <!-- <div hidden id="snipcart" data-api-key={SNIPCART} data-currency="usd"></div> -->
+  <!-- <script async src="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.js"></script> -->
 </Base>
 
 <style>
